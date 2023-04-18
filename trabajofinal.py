@@ -2,6 +2,11 @@ from funciones import *
 
 class main:
     recorrertxt()
+    print(empresaa.clientes)
+    print(empresaa.trabajadores)
+    print(empresaa.estaciones)
+    print(empresaa.bicicletas)
+    print(empresaa.alquileres)
     seguir = "seguir"
     while seguir == "seguir":
         print("1. Ingreso de datos cliente")
@@ -73,11 +78,17 @@ class main:
                 print("El trabajador no existe")
                 print("")
         elif eleccion == "5":
+            actualizartxt()
+            print(empresaa.clientes)
+            print(empresaa.trabajadores)
+            print(empresaa.estaciones)
+            print(empresaa.bicicletas)
+            print(empresaa.alquileres)
             exit()
         else:
             print("Ingreso incorrecto de opcion")
             print("")
-    actualizartxt()
+
 
 
 

@@ -249,37 +249,37 @@ def recorrertxt():
 
 def actualizartxt():
     texto = ""
-    for i in empresaa.clientes:
+    for i in range(len(empresaa.clientes)):
         for n in empresaa.clientes[i]:
             texto += str(n) + "\t" 
-            f = open("datosclientes.txt","w")
-            f.write("\n" + texto)
-            f.close()
+        f = open("datosclientes.txt","w")
+        f.write("\n" + texto)
+        f.close()
     texto = ""
-    for i in empresaa.trabajadores:
+    for i in range(len(empresaa.trabajadores)):
         for n in empresaa.trabajadores[i]:
             texto += str(n) + "\t" 
-            f = open("datostrabajadores.txt","w")
-            f.write("\n" + texto)
-            f.close()
+        f = open("datostrabajadores.txt","w")
+        f.write("\n" + texto)
+        f.close()
     texto = ""
-    for i in empresaa.estaciones:
+    for i in range(len(empresaa.estaciones)):
         for n in empresaa.estaciones[i]:
             texto += str(n) + "\t" 
-            f = open("datosestaciones.txt","w")
-            f.write("\n" + texto)
-            f.close()
+        f = open("datosestaciones.txt","w")
+        f.write("\n" + texto)
+        f.close()
     texto = ""
-    for i in empresaa.bicicletas:
+    for i in range(len(empresaa.bicicletas)):
         for n in empresaa.bicicletas[i]:
             texto += str(n) + "\t" 
-            f = open("datosbicicletas.txt","w")
-            f.write("\n" + texto)
-            f.close()
+        f = open("datosbicicletas.txt","w")
+        f.write("\n" + texto)
+        f.close()
     texto = ""
-    for i in empresaa.alquileres:
+    for i in range(len(empresaa.alquileres)):
         for n in empresaa.alquileres[i]:
             texto += str(n) + "\t" 
-            f = open("datosalquileres.txt","w")
-            f.write("\n" + texto)
-            f.close()
+        f = open("datosalquileres.txt","w")
+        f.write("\n" + texto)
+        f.close()
