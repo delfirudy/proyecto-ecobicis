@@ -52,7 +52,7 @@ def ingresotrabajador():
     print("")
     texto = ""
     for i in trabajadorr.listatrabajador:
-        texto += " " + str(i)
+        texto += str(i) + "\t" 
     f = open("datostrabajadores.txt","a")
     f.write("\n" + texto)
     f.close()
@@ -74,7 +74,7 @@ def ingresoestacion():
     print("")
     texto = ""
     for i in estacionn.listaestacion:
-        texto += " " + str(i)
+        texto += str(i) + "\t" 
     f = open("datosestaciones.txt","a")
     f.write("\n" + texto)
     f.close()
@@ -111,7 +111,7 @@ def ingresobicicleta():
         print("")
     texto = ""
     for i in bicicletaa.listabicicleta:
-        texto += " " + str(i)
+        texto += str(i) + "\t" 
     f = open("datosbicicletas.txt","a")
     f.write("\n" + texto)
     f.close()
@@ -165,7 +165,7 @@ def alquilar(usuario):
         print("")
     texto = ""
     for i in alquilerr.listaalquiler:
-        texto += " " + str(i)
+        texto += str(i) + "\t" 
     f = open("datosalquileres.txt","a")
     f.write("\n" + texto)
     f.close()
@@ -215,3 +215,19 @@ def cambiotrabajador(usuario):
                     print("Cambio realizado")
                     print("")
 
+def recorrertxt():
+    with open("datosclientes.txt") as datosclientes:
+        for line in datosclientes:
+            empresaa.clientes.append(line.strip().split("\t"))
+    with open("datostrabajadores.txt") as datostrabajadores:
+        for line in datostrabajadores:
+            empresaa.trabajadores.append(line.strip().split("\t"))
+    with open("datosestaciones.txt") as datosestaciones:
+        for line in datosestaciones:
+            empresaa.estaciones.append(line.strip().split("\t"))
+    with open("datosbicicletas.txt") as datosbicicletas:
+        for line in datosbicicletas:
+            empresaa.bicicletas.append(line.strip().split("\t"))
+    with open("datosalquileres.txt") as datosalquileres:
+        for line in datosalquileres:
+            empresaa.alquileres.append(line.strip().split("\t"))
