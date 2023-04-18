@@ -1,6 +1,7 @@
 from funciones import *
 
 class main:
+    recorrertxt()
     seguir = "seguir"
     while seguir == "seguir":
         print("1. Ingreso de datos cliente")
@@ -76,6 +77,8 @@ class main:
         else:
             print("Ingreso incorrecto de opcion")
             print("")
+    actualizartxt()
+
 
 
 

@@ -231,3 +231,40 @@ def recorrertxt():
     with open("datosalquileres.txt") as datosalquileres:
         for line in datosalquileres:
             empresaa.alquileres.append(line.strip().split("\t"))
+
+def actualizartxt():
+    texto = ""
+    for i in empresaa.clientes:
+        for n in empresaa.clientes[i]:
+            texto += str(n) + "\t" 
+            f = open("datosclientes.txt","a")
+            f.write("\n" + texto)
+            f.close()
+    texto = ""
+    for i in empresaa.trabajadores:
+        for n in empresaa.trabajadores[i]:
+            texto += str(n) + "\t" 
+            f = open("datostrabajadores.txt","a")
+            f.write("\n" + texto)
+            f.close()
+    texto = ""
+    for i in empresaa.estaciones:
+        for n in empresaa.estaciones[i]:
+            texto += str(n) + "\t" 
+            f = open("datosestaciones.txt","a")
+            f.write("\n" + texto)
+            f.close()
+    texto = ""
+    for i in empresaa.bicicletas:
+        for n in empresaa.bicicletas[i]:
+            texto += str(n) + "\t" 
+            f = open("datosbicicletas.txt","a")
+            f.write("\n" + texto)
+            f.close()
+    texto = ""
+    for i in empresaa.alquileres:
+        for n in empresaa.alquileres[i]:
+            texto += str(n) + "\t" 
+            f = open("datosalquileres.txt","a")
+            f.write("\n" + texto)
+            f.close()
