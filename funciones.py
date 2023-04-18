@@ -217,20 +217,35 @@ def cambiotrabajador(usuario):
 
 def recorrertxt():
     with open("datosclientes.txt") as datosclientes:
-        for line in datosclientes:
-            empresaa.clientes.append(line.strip().split("\t"))
+        for i, line in enumerate(datosclientes):
+            if i == 0:
+                continue
+            else:
+                empresaa.clientes.append(line.strip().split("\t"))
     with open("datostrabajadores.txt") as datostrabajadores:
-        for line in datostrabajadores:
-            empresaa.trabajadores.append(line.strip().split("\t"))
+        for i, line in enumerate(datostrabajadores):
+            if i == 0:
+                continue
+            else:
+                empresaa.trabajadores.append(line.strip().split("\t"))
     with open("datosestaciones.txt") as datosestaciones:
-        for line in datosestaciones:
-            empresaa.estaciones.append(line.strip().split("\t"))
+        for i, line in enumerate(datosestaciones):
+            if i == 0:
+                continue
+            else:
+                empresaa.estaciones.append(line.strip().split("\t"))
     with open("datosbicicletas.txt") as datosbicicletas:
-        for line in datosbicicletas:
-            empresaa.bicicletas.append(line.strip().split("\t"))
+        for i, line in enumerate(datosbicicletas):
+            if i == 0:
+                continue
+            else:
+                empresaa.bicicletas.append(line.strip().split("\t"))
     with open("datosalquileres.txt") as datosalquileres:
-        for line in datosalquileres:
-            empresaa.alquileres.append(line.strip().split("\t"))
+        for i, line in enumerate(datosalquileres):
+            if i == 0:
+                continue
+            else:
+                empresaa.alquileres.append(line.strip().split("\t"))
 
 def actualizartxt():
     texto = ""
