@@ -24,7 +24,7 @@ def ingresocliente():
     print("")
     texto = ""
     for i in clientee.listacliente:
-        texto += " " + str(i)
+        texto += str(i) + "\t" 
     f = open("datosclientes.txt","a")
     f.write("\n" + texto)
     f.close()
