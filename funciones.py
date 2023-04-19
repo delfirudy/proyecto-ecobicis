@@ -93,6 +93,7 @@ def ingresobicicleta():
     anno = input("Ingrese anno: ")
     estacionactual = input("Ingrese estacion donde se ingresa la bicicleta: ")
     print("")
+    t = 0
     x = 0
     for i in empresaa.estaciones:
         if i[0] == estacionactual:
@@ -103,18 +104,20 @@ def ingresobicicleta():
             else:
                 bicicletaa = bicicleta(patente, modelo, anno, estacionactual)
                 empresaa.bicicletas.append(bicicletaa.listabicicleta)
-                i[4] += 1
+                i[4] = str(int(i[4]) + 1)
+                t = 1
                 print("Ingreso de datos realizado")
                 print("")
     if x == 0:
         print("No se encontro la estacion")
         print("")
     texto = ""
-    for i in bicicletaa.listabicicleta:
-        texto += str(i) + "\t" 
-    f = open("datosbicicletas.txt","a")
-    f.write("\n" + texto)
-    f.close()
+    if t == 1:
+        for i in bicicletaa.listabicicleta:
+            texto += str(i) + "\t" 
+        f = open("datosbicicletas.txt","a")
+        f.write("\n" + texto)
+        f.close()
 
 
 # DESCRIPCION
@@ -134,6 +137,7 @@ def alquilar(usuario):
     estacionsalida = input("Ingrese estacion de salida: ")
     estacionllegada = input("Ingrese estacion de llegada: ")
     print("")
+    w = 0
     x = 0
     for i in empresaa.estaciones:
         if i[0] == estacionllegada:
@@ -154,21 +158,23 @@ def alquilar(usuario):
                     codigo += 1
                     alquilerr = alquiler(usuario,patente,codigo,fecyhora,duracion,estacionsalida,estacionllegada)
                     empresaa.alquileres.append(alquilerr.listaalquiler)
-                    m[4] += 1
+                    m[4] = str(int(m[4]) + 1)
                     for p in empresaa.estaciones:
                         if p[0] == estacionsalida:
-                            p[4] -= 1
+                            p[4] = str(int(p[4]) - 1)
+                    w = 1
                     print("Ingreso de alquiler realizado")
                     print("")
     else:
         print("No se encontro patente, estacion de salida o estacion de llegada")
         print("")
     texto = ""
-    for i in alquilerr.listaalquiler:
-        texto += str(i) + "\t" 
-    f = open("datosalquileres.txt","a")
-    f.write("\n" + texto)
-    f.close()
+    if w == 1:
+        for i in alquilerr.listaalquiler:
+            texto += str(i) + "\t" 
+        f = open("datosalquileres.txt","a")
+        f.write("\n" + texto)
+        f.close()
 
 
 # DESCRIPCION
@@ -248,38 +254,78 @@ def recorrertxt():
                 empresaa.alquileres.append(line.strip().split("\t"))
 
 def actualizartxt():
-    texto = ""
     for i in range(len(empresaa.clientes)):
-        for n in empresaa.clientes[i]:
-            texto += str(n) + "\t" 
-        f = open("datosclientes.txt","w")
-        f.write("\n" + texto)
-        f.close()
-    texto = ""
+        if i == 0:
+            texto = ""
+            for n in empresaa.clientes[i]:
+                texto += str(n) + "\t" 
+            f = open("datosclientes.txt","w")
+            f.write("\n" + texto)
+            f.close()
+        else:
+            texto = ""
+            for n in empresaa.clientes[i]:
+                texto += str(n) + "\t" 
+            f = open("datosclientes.txt","a")
+            f.write("\n" + texto)
+            f.close()
     for i in range(len(empresaa.trabajadores)):
-        for n in empresaa.trabajadores[i]:
-            texto += str(n) + "\t" 
-        f = open("datostrabajadores.txt","w")
-        f.write("\n" + texto)
-        f.close()
-    texto = ""
+        if i ==0:
+            texto = ""
+            for n in empresaa.trabajadores[i]:
+                texto += str(n) + "\t" 
+            f = open("datostrabajadores.txt","w")
+            f.write("\n" + texto)
+            f.close()
+        else:
+            texto = ""
+            for n in empresaa.trabajadores[i]:
+                texto += str(n) + "\t" 
+            f = open("datostrabajadores.txt","a")
+            f.write("\n" + texto)
+            f.close()       
     for i in range(len(empresaa.estaciones)):
-        for n in empresaa.estaciones[i]:
-            texto += str(n) + "\t" 
-        f = open("datosestaciones.txt","w")
-        f.write("\n" + texto)
-        f.close()
-    texto = ""
+        if i ==0:
+            texto = ""
+            for n in empresaa.estaciones[i]:
+                texto += str(n) + "\t" 
+            f = open("datosestaciones.txt","w")
+            f.write("\n" + texto)
+            f.close()
+        else:
+            texto = ""
+            for n in empresaa.estaciones[i]:
+                texto += str(n) + "\t" 
+            f = open("datosestaciones.txt","a")
+            f.write("\n" + texto)
+            f.close()
     for i in range(len(empresaa.bicicletas)):
-        for n in empresaa.bicicletas[i]:
-            texto += str(n) + "\t" 
-        f = open("datosbicicletas.txt","w")
-        f.write("\n" + texto)
-        f.close()
-    texto = ""
+        if i ==0: 
+            texto = ""
+            for n in empresaa.bicicletas[i]:
+                texto += str(n) + "\t" 
+            f = open("datosbicicletas.txt","w")
+            f.write("\n" + texto)
+            f.close()
+        else:
+            texto = ""
+            for n in empresaa.bicicletas[i]:
+                texto += str(n) + "\t" 
+            f = open("datosbicicletas.txt","a")
+            f.write("\n" + texto)
+            f.close()
     for i in range(len(empresaa.alquileres)):
-        for n in empresaa.alquileres[i]:
-            texto += str(n) + "\t" 
-        f = open("datosalquileres.txt","w")
-        f.write("\n" + texto)
-        f.close()
+        if i ==0:
+            texto = ""
+            for n in empresaa.alquileres[i]:
+                texto += str(n) + "\t" 
+            f = open("datosalquileres.txt","w")
+            f.write("\n" + texto)
+            f.close()
+        else:
+            texto = ""
+            for n in empresaa.alquileres[i]:
+                texto += str(n) + "\t" 
+            f = open("datosalquileres.txt","a")
+            f.write("\n" + texto)
+            f.close()
