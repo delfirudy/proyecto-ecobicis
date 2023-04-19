@@ -162,6 +162,9 @@ def alquilar(usuario):
                     for p in empresaa.estaciones:
                         if p[0] == estacionsalida:
                             p[4] = str(int(p[4]) - 1)
+                    for q in empresaa.bicicletas:
+                        if q[0] == patente:
+                            q[4] == str(int(q[4]) + 1)
                     w = 1
                     print("Ingreso de alquiler realizado")
                     print("")
