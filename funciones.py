@@ -141,13 +141,13 @@ def alquilar(usuario):
     x = 0
     for i in empresaa.estaciones:
         if i[0] == estacionllegada:
-            x = 1
+            x += 1
     for n in empresaa.estaciones:
         if n[0] == estacionsalida:
-            x = 2
+            x += 1
     for k in empresaa.bicicletas:
         if k[0] == patente:
-            x = 3
+            x += 1
     if x == 3:
         for m in empresaa.estaciones:
             if m[0] == estacionllegada:
@@ -164,7 +164,8 @@ def alquilar(usuario):
                             p[4] = str(int(p[4]) - 1)
                     for q in empresaa.bicicletas:
                         if q[0] == patente:
-                            q[4] == str(int(q[4]) + 1)
+                            q[4] = str(int(q[4]) + 1)
+                            q[3] = estacionllegada
                     w = 1
                     print("Ingreso de alquiler realizado")
                     print("")
