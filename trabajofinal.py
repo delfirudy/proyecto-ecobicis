@@ -2,7 +2,6 @@ from funciones import *
 
 class main:
     recorrertxt()
-    print(empresaa.clientes)
     seguir = "seguir"
     while seguir == "seguir":
         print("1. Ingreso de datos cliente")
