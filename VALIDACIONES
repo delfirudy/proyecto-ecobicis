@@ -1,7 +1,21 @@
-#FECNAC
-
+from clases import *
 from datetime import datetime, date
 
+empresaa = empresa("Ecobicis")
+
+
+# DESCRIPCION
+# Ingreso todos los datos del cliente
+# Se genera la listacliente, con todos los datos sobre el cliente
+# Se agrega a clientes la listacliente
+def ingresocliente():
+
+    usuario = input("Ingrese usuario: ")
+    contrasena = input("Ingrese contrasena: ")
+    nombre = input("Ingrese nombre: ")
+    dni = input("Ingrese dni: ")
+
+#fecnac
 while True:
     fecha = input("Ingrese una fecha en formato YYYY/MM/DD: ")
 
