@@ -32,3 +32,11 @@ while True:
     except ValueError:
         print("La fecha no tiene el formato esperado. Ingrese la fecha nuevamente.")
         continue
+
+#telefono
+
+tel = input("Ingrese numero de telefono: ")
+while len(tel) != 8:
+    tel = input("Ingrese nuevamente el telefono (debe tener 8 dígitos): ")
+telefono = tel
+print(telefono)
