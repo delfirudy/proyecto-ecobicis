@@ -1,4 +1,4 @@
-class empresa:
+class Empresa:
     def __init__(self, nombre):
         self.nombre = nombre
         self.trabajadores = []
@@ -8,7 +8,7 @@ class empresa:
         self.alquileres = []
 
 
-class persona:
+class Persona:
     def __init__(self, usuario, contrasena, nombre, dni, fecnac, telefono, mail, direccion):
         self.usuario = usuario
         self.contrasena = contrasena
@@ -20,22 +20,22 @@ class persona:
         self.direccion = direccion
 
 
-class cliente(persona):
+class Cliente(Persona):
     def __init__(self, usuario, contrasena, nombre, dni, fecnac, telefono, mail, direccion, tarjeta):
-        persona.__init__(self, usuario, contrasena, nombre, dni, fecnac, telefono, mail, direccion)
+        Persona.__init__(self, usuario, contrasena, nombre, dni, fecnac, telefono, mail, direccion)
         self.tarjeta = tarjeta
         self.listacliente = [usuario, contrasena, nombre, dni, fecnac, telefono, mail, direccion, tarjeta]
 
 
-class trabajador(persona):
+class Trabajador(Persona):
     def __init__(self, usuario, contrasena, nombre, dni, fecnac, telefono, mail, direccion, puesto, cbu):
-        persona.__init__(self, usuario, contrasena, nombre, dni, fecnac, telefono, mail, direccion)
+        Persona.__init__(self, usuario, contrasena, nombre, dni, fecnac, telefono, mail, direccion)
         self.puesto = puesto
         self.cbu = cbu
         self.listatrabajador = [usuario, contrasena, nombre, dni, fecnac, telefono, mail, direccion, puesto, cbu]
 
 
-class estacion:
+class Estacion:
     def __init__(self, nombre, direccion, barrio, cantbicitotal, cantbicidisponible=0):
         self.nombre = nombre
         self.direccion = direccion
@@ -45,7 +45,7 @@ class estacion:
         self.listaestacion = [nombre, direccion, barrio, cantbicitotal, cantbicidisponible]
 
 
-class bicicleta:
+class Bicicleta:
     def __init__(self, patente, modelo, anno, estacionactual, cantusos=0):
         self.patente = patente
         self.modelo = modelo
@@ -55,7 +55,7 @@ class bicicleta:
         self.listabicicleta = [patente, modelo, anno, estacionactual, cantusos]
 
 
-class alquiler():
+class Alquiler():
     def __init__(self, usuario, patente, codigo, fecyhora, duracion, estacionsalida, estacionllegada):
         self.usuario = usuario
         self.patente = patente
