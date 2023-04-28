@@ -73,9 +73,8 @@ def ingresocliente():
     texto = ""
     for i in clientee.listacliente:
         texto += " " + str(i)
-    f = open("datosclientes.txt","a")
-    f.write("\n" + texto)
-    f.close()
+    with open("./datosclientes.txt", "a", encoding= "utf-8") as f:
+        f.write("\n" + texto)
 
 
 # DESCRIPCION
@@ -101,9 +100,8 @@ def ingresotrabajador():
     texto = ""
     for i in trabajadorr.listatrabajador:
         texto += " " + str(i)
-    f = open("datostrabajadores.txt","a")
-    f.write("\n" + texto)
-    f.close()
+    with open("./datostrabajadores.txt", "a", encoding= "utf-8") as f:
+        f.write("\n" + texto)
 
 
 # DESCRIPCION
@@ -116,7 +114,7 @@ def ingresoestacion():
     barrio = input("Ingrese barrio: ")
     cantbicitotal = int(input("Ingrese capacidad: "))
     print("")
-    estacionn = estacion(nombre, direccion, barrio, cantbicitotal)
+    estacionn = Estacion(nombre, direccion, barrio, cantbicitotal)
     empresaa.estaciones.append(estacionn.listaestacion)
     print("Ingreso de datos realizado")
     print("")
