@@ -10,15 +10,15 @@ empresaa = Empresa("Ecobicis")
 # Se agrega a clientes la listacliente
 def ingresocliente():
 
-########################################
+# ######################################## HAY QUE VER SI ESTO FUNCIONA 
     nombre_usuario = input("Ingrese un nombre de usuario: ")
-    e = Empresa('Nombre de la empresa') 
-    for i in range(len(e.clientes)):
-        if nombre_usuario == e.clientes[i][0]:
+    for cliente in empresaa.clientes:
+        if nombre_usuario == cliente[0]:
             nombre_usuario = input("Este nombre de usuario ya existe. Por favor, ingrese otro nombre de usuario: ")
-    usuario = nombre_usuario
+    usuario = nombre_usuario 
     print("El nombre de usuario", nombre_usuario, "ha sido registrado exitosamente")
-#######################################
+
+
     
     contrasena = input("Ingrese contrasena: ")
     nombre = input("Ingrese nombre: ")
