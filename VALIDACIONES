@@ -1,0 +1,18 @@
+from datetime import datetime, date
+
+while True:
+    fecha = input("Ingrese una fecha en formato YYYY/MM/DD: ")
+
+    try:
+        fecha_valida = datetime.strptime(fecha, "%Y/%m/%d").date()
+        fecha_actual = date.today()
+        if fecha_valida < fecha_actual:
+            print("La fecha ingresada es:", fecha_valida)
+            fecnac = fecha_valida
+            break
+        else:
+            print("La fecha es válida pero no es anterior a la fecha actual.")
+            continue
+    except ValueError:
+        print("La fecha no tiene el formato esperado. Ingrese la fecha nuevamente.")
+        continue
