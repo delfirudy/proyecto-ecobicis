@@ -1,3 +1,5 @@
+#FECNAC
+
 from datetime import datetime, date
 
 while True:
