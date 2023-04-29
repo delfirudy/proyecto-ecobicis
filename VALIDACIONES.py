@@ -20,7 +20,12 @@ def ingresocliente():
 
 
     
-    contrasena = input("Ingrese contrasena: ")
+    contrasenaa = input("Ingrese contrasena con caracteres especiales, alfabeticos y digitos con la primera letra mayuscula: ")
+    if contrasenaa.isalpha() and contrasenaa.isdigit() and contrasenaa.isspace() and contrasenaa[0].isupper():
+         contrasena= contrasenaa
+    else: 
+        contrasenaa = input("Ingrese contrasena correcta : ")
+
     nombre = input("Ingrese nombre: ")
   
     dni1 = input("ingrese dni:")
@@ -147,7 +152,7 @@ def ingresobicicleta():
                 print("No hay lugar en la estacion, ingrese la bicicleta en otra estacion")
                 print("")
             else:
-                bicicletaa = bicicleta(patente, modelo, anno, estacionactual)
+                bicicletaa = Bicicleta(patente, modelo, anno, estacionactual)
                 empresaa.bicicletas.append(bicicletaa.listabicicleta)
                 i[4] += 1
                 print("Ingreso de datos realizado")
@@ -198,7 +203,7 @@ def alquilar(usuario):
                     print("")
                 else:
                     codigo += 1
-                    alquilerr = alquiler(usuario,patente,codigo,fecyhora,duracion,estacionsalida,estacionllegada)
+                    alquilerr = Alquiler(usuario,patente,codigo,fecyhora,duracion,estacionsalida,estacionllegada)
                     empresaa.alquileres.append(alquilerr.listaalquiler)
                     m[4] += 1
                     for p in empresaa.estaciones:
