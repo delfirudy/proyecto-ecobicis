@@ -9,9 +9,25 @@ empresaa = Empresa("Ecobicis")
 # Se agrega a clientes la listacliente
 def ingresocliente():
     usuario = input("Ingrese usuario: ")
+    while usuario.isalpha() == False or usuario in empresaa.usuarios:
+        print("El usuario ya existe o ingresó caracteres numericos, el usuario debe contener solo letras")
+        print("")
+        usuario = input("Ingrese usuario: ")
     contrasena = input("Ingrese contrasena: ")
+    while contrasena.isalpha() == False or contrasena[0].isupper() == False:
+        print("La contrasena debe contener solo letras y la primera debe ser mayuscula")
+        print("")
+        contrasena = input("Ingrese contrasena: ")
     nombre = input("Ingrese nombre: ")
+    while nombre.isalpha() == False or nombre[0].isupper() == False:
+        print("El nombre debe contener solo letras y la primera debe ser mayuscula")
+        print("")
+        nombre = input("Ingrese nombre: ")
     dni = input("Ingrese dni: ")
+    while dni.isdigit() == False or len(dni) != 8:
+        print("El dni debe ser un numero de ocho caracteres")
+        print("")
+        dni = input("Ingrese dni: ")
     fecnac = input("Ingrese fecha de nacimiento: ")
     telefono = input("Ingrese telefono: ")
     mail = input("Ingrese mail: ")
@@ -20,6 +36,7 @@ def ingresocliente():
     print("")
     clientee = Cliente(usuario, contrasena, nombre, dni, fecnac, telefono, mail, direccion, tarjeta)
     empresaa.clientes.append(clientee.listacliente)
+    empresaa.usuarios.append(usuario)
     print("Ingreso de datos realizado")
     print("")
     texto = ""
@@ -36,9 +53,25 @@ def ingresocliente():
 # Se agrega a trabajadores la listatrabajador
 def ingresotrabajador():
     usuario = input("Ingrese usuario: ")
+    while usuario.isalpha() == False or usuario in empresaa.usuarios:
+        print("El usuario ya existe o ingresó caracteres numericos, el usuario debe contener solo letras")
+        print("")
+        usuario = input("Ingrese usuario: ")
     contrasena = input("Ingrese contrasena: ")
+    while contrasena.isalpha() == False or contrasena[0].isupper() == False:
+        print("La contrasena debe contener solo letras y la primera debe ser mayuscula")
+        print("")
+        contrasena = input("Ingrese contrasena: ")
     nombre = input("Ingrese nombre: ")
+    while nombre.isalpha() == False or nombre[0].isupper() == False:
+        print("El nombre debe contener solo letras y la primera debe ser mayuscula")
+        print("")
+        nombre = input("Ingrese nombre: ")
     dni = input("Ingrese dni: ")
+    while dni.isdigit() == False or len(dni) != 8:
+        print("El dni debe ser un numero de ocho caracteres")
+        print("")
+        dni = input("Ingrese dni: ")
     fecnac = input("Ingrese fecha de nacimiento: ")
     telefono = input("Ingrese telefono: ")
     mail = input("Ingrese mail: ")
@@ -48,6 +81,7 @@ def ingresotrabajador():
     print("")
     trabajadorr = Trabajador(usuario, contrasena, nombre, dni, fecnac, telefono, mail, direccion, puesto, cbu)
     empresaa.trabajadores.append(trabajadorr.listatrabajador)
+    empresaa.usuarios.append(usuario)
     print("Ingreso de datos realizado")
     print("")
     texto = ""

@@ -6,6 +6,8 @@ class Empresa:
         self.estaciones = []
         self.bicicletas = []
         self.alquileres = []
+        self.usuarios = []
+        self.nombresestaciones = []
 
 
 class Persona:
