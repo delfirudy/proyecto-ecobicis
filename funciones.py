@@ -196,6 +196,7 @@ def mostrarinfo():
 # No se puede cambiar el usuario
 def cambiocliente(usuario):
     dato = input("Ingrese dato que desea cambiar: ")
+    r = 0
     for i in empresaa.clientes:
         if i[0] == usuario:
             for n in range(1,9):
@@ -205,6 +206,10 @@ def cambiocliente(usuario):
                     i[n] = cambio
                     print("Cambio realizado")
                     print("")
+                    r = 1
+    if r == 0:
+        print("No se encontro el dato que desea cambiar")
+        print("")
 
 
 # DESCRIPCION
@@ -215,6 +220,7 @@ def cambiocliente(usuario):
 # No se puede cambiar el usuario
 def cambiotrabajador(usuario):
     dato = input("Ingrese que dato quiere cambiar: ")
+    t = 0
     for i in empresaa.trabajadores:
         if i[0] == usuario:
             for n in range(1,10):
@@ -224,6 +230,10 @@ def cambiotrabajador(usuario):
                     i[n] = cambio
                     print("Cambio realizado")
                     print("")
+                    t = 1
+    if t == 0:
+        print("No se encontro el dato que desea cambiar")
+        print("")
 
 def recorrertxt():
     with open("datosclientes.txt") as datosclientes:
