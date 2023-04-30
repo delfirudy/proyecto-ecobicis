@@ -1,6 +1,6 @@
 from clases import *
 
-empresaa = empresa("Ecobicis")
+empresaa = Empresa("Ecobicis")
 
 
 # DESCRIPCION
@@ -18,7 +18,7 @@ def ingresocliente():
     direccion = input("Ingrese direccion: ")
     tarjeta = input("Ingrese tarjeta: ")
     print("")
-    clientee = cliente(usuario, contrasena, nombre, dni, fecnac, telefono, mail, direccion, tarjeta)
+    clientee = Cliente(usuario, contrasena, nombre, dni, fecnac, telefono, mail, direccion, tarjeta)
     empresaa.clientes.append(clientee.listacliente)
     print("Ingreso de datos realizado")
     print("")
@@ -46,7 +46,7 @@ def ingresotrabajador():
     puesto = input("Ingrese puesto: ")
     cbu = input("Ingrese cbu: ")
     print("")
-    trabajadorr = trabajador(usuario, contrasena, nombre, dni, fecnac, telefono, mail, direccion, puesto, cbu)
+    trabajadorr = Trabajador(usuario, contrasena, nombre, dni, fecnac, telefono, mail, direccion, puesto, cbu)
     empresaa.trabajadores.append(trabajadorr.listatrabajador)
     print("Ingreso de datos realizado")
     print("")
@@ -68,7 +68,7 @@ def ingresoestacion():
     barrio = input("Ingrese barrio: ")
     cantbicitotal = int(input("Ingrese capacidad: "))
     print("")
-    estacionn = estacion(nombre, direccion, barrio, cantbicitotal)
+    estacionn = Estacion(nombre, direccion, barrio, cantbicitotal)
     empresaa.estaciones.append(estacionn.listaestacion)
     print("Ingreso de datos realizado")
     print("")
@@ -102,7 +102,7 @@ def ingresobicicleta():
                 print("No hay lugar en la estacion, ingrese la bicicleta en otra estacion")
                 print("")
             else:
-                bicicletaa = bicicleta(patente, modelo, anno, estacionactual)
+                bicicletaa = Bicicleta(patente, modelo, anno, estacionactual)
                 empresaa.bicicletas.append(bicicletaa.listabicicleta)
                 i[4] = str(int(i[4]) + 1)
                 t = 1
@@ -156,7 +156,7 @@ def alquilar(usuario):
                     print("")
                 else:
                     codigo += 1
-                    alquilerr = alquiler(usuario,patente,codigo,fecyhora,duracion,estacionsalida,estacionllegada)
+                    alquilerr = Alquiler(usuario,patente,codigo,fecyhora,duracion,estacionsalida,estacionllegada)
                     empresaa.alquileres.append(alquilerr.listaalquiler)
                     m[4] = str(int(m[4]) + 1)
                     for p in empresaa.estaciones:
