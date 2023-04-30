@@ -1,6 +1,7 @@
 from clases import *
 from datetime import datetime, date
 
+
 empresaa = Empresa("Ecobicis")
 
 
@@ -8,26 +9,37 @@ empresaa = Empresa("Ecobicis")
 # Ingreso todos los datos del cliente
 # Se genera la listacliente, con todos los datos sobre el cliente
 # Se agrega a clientes la listacliente
+
 def ingresocliente():
 
-# ######################################## HAY QUE VER SI ESTO FUNCIONA 
-    nombre_usuario = input("Ingrese un nombre de usuario: ")
-    for cliente in empresaa.clientes:
-        if nombre_usuario == cliente[0]:
-            nombre_usuario = input("Este nombre de usuario ya existe. Por favor, ingrese otro nombre de usuario: ")
-    usuario = nombre_usuario 
-    print("El nombre de usuario", nombre_usuario, "ha sido registrado exitosamente")
-
-
+#nombre usuario  
+    nombre_usuario = input("Ingrese un nombre de usuario de caracteres alfabeticos: ")
+    if nombre_usuario.isdigit()==True:
+        input=("El nombre de usuario ingresado no debe contener numeros")
+    else:
+        #ver que el nombre del archivo txt coincida y que este en la misma carpeta
+        ##with open('clientes.txt', 'r') as file_object: 
+        with open("./datosclientes.txt", "a", encoding= "utf-8") as f_obj:
+            for line in f_obj:
+                if nombre_usuario==line[0]:
+                    nombre_usuario=input("Este nombre de usuario ya existe. Por favor, ingrese otro nombre de usuario: ")
+                else usuario = nombre_usuario 
     
-    contrasenaa = input("Ingrese contrasena con caracteres especiales, alfabeticos y digitos con la primera letra mayuscula: ")
-    if contrasenaa.isalpha() and contrasenaa.isdigit() and contrasenaa.isspace() and contrasenaa[0].isupper():
+    #contrasena
+    contrasenaa = input("Ingrese contrasena unicamente con caracteres alfabeticos, con la primera letra mayuscula: ")
+    if (contrasenaa.isalpha()==True) and (contrasenaa[0].isupper()==True):
          contrasena= contrasenaa
     else: 
-        contrasenaa = input("Ingrese contrasena correcta : ")
+        contrasenaa = input("La contrasena ingresada es invalida, ingrese nueva contrasena: ")
 
-    nombre = input("Ingrese nombre: ")
-  
+    #nombre 
+    nombree = input("Ingrese nombre, con la primera letra mayuscula: ")
+    if (nombree.isalpha()==True) and (nombree[0].isupper()==True):
+         nombre= nombree
+    else: 
+        nombree= input("El nombre ingresado es invalido, ingrese nuevamente: ")
+    
+    #DNI
     dni1 = input("ingrese dni:")
     while len(dni1)!=8 or not dni1.isdigit():
         dni1=input("Ingrese dni nuevamente") 
@@ -68,8 +80,10 @@ def ingresocliente():
     while len(tarjeta1.replace(" ", "")) != 16 or not tarjeta1.isdigit():
         tarjeta1 = input("Ingrese nuevamente:")
         tarjeta = tarjeta1
-
+        
+    #direccion
     direccion = input("Ingrese direccion: ")
+    
     print("")
     clientee = Cliente(usuario, contrasena, nombre, dni, fecnac, telefono, mail, direccion, tarjeta)
     empresaa.clientes.append(clientee.listacliente)
