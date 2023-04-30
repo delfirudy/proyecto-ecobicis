@@ -28,7 +28,7 @@ class main:
                     print("")
                     print("1. Alquilar")
                     print("2. Cambiar datos")
-                    print("3. Informacion")
+                    print("3. Informacion sobre estaciones")
                     print("")
                     eleccionusuario = input("Ingrese opcion: ")
                     print("")
