@@ -10,28 +10,28 @@ empresaa = Empresa("Ecobicis")
 # Se genera la listacliente, con todos los datos sobre el cliente
 # Se agrega a clientes la listacliente
 def ingresocliente():
-    usuario = input("Ingrese usuario: ")
-    while usuario.isalpha() == False or usuario in empresaa.usuarios:
+    usuario = input("Ingrese usuario: ").strip()
+    while usuario.replace(" ","").isalpha() == False or usuario in empresaa.usuarios:
         print("El usuario ya existe o el formato es incorrecto, el usuario debe contener solo letras")
         print("")
-        usuario = input("Ingrese usuario: ")
-    contrasena = input("Ingrese contrasena: ")
-    while contrasena.isalpha() == False or contrasena[0].isupper() == False:
+        usuario = input("Ingrese usuario: ").strip()
+    contrasena = input("Ingrese contrasena: ").strip()
+    while contrasena.replace(" ","").isalpha() == False or contrasena[0].replace(" ","").isupper() == False:
         print("El formato es incorrecto, la contrasena debe contener solo letras y la primera debe ser mayuscula")
         print("")
-        contrasena = input("Ingrese contrasena: ")
-    nombre = input("Ingrese nombre: ")
-    while nombre.isalpha() == False or nombre[0].isupper() == False:
+        contrasena = input("Ingrese contrasena: ").strip()
+    nombre = input("Ingrese nombre: ").strip()
+    while nombre.replace(" ","").isalpha() == False or nombre[0].replace(" ","").isupper() == False:
         print("El formato es incorrecto, el nombre debe contener solo letras y la primera debe ser mayuscula")
         print("")
-        nombre = input("Ingrese nombre: ")
-    dni = input("Ingrese dni: ")
+        nombre = input("Ingrese nombre: ").strip()
+    dni = input("Ingrese dni: ").strip()
     while dni.isdigit() == False or len(dni) != 8 or dni in empresaa.dnis:
         print("El dni ya existe o el formato es incorrecto, debe ser un numero de ocho caracteres")
         print("")
-        dni = input("Ingrese dni: ")
+        dni = input("Ingrese dni: ").strip()
     while True:
-        fecha = input("Ingrese fecha de nacimiento: ")
+        fecha = input("Ingrese fecha de nacimiento: ").strip()
         try:
             fecha_valida = datetime.strptime(fecha, "%Y/%m/%d").date()
             fecha_actual = date.today()
@@ -46,26 +46,26 @@ def ingresocliente():
             print("El formato es incorrecto, la fecha debe ser de la forma YYYY/MM/DD")
             print("")
             continue
-    telefono = input("Ingrese telefono: ")
+    telefono = input("Ingrese telefono: ").strip()
     while telefono.isdigit() == False or len(telefono) != 10:
         print("El formato es incorrecto, el telefono debe ser un numero de diez caracteres")
         print("")
-        telefono = input("Ingrese telefono: ")
-    mail = input("Ingrese mail: ")
+        telefono = input("Ingrese telefono: ").strip()
+    mail = input("Ingrese mail: ").strip()
     while "@" not in mail:
         print("El formato es incorrecto, el mail debe contener un @")
         print("")
-        mail = input("Ingrese mail: ")
-    direccion = input("Ingrese direccion: ")
-    while direccion.isdigit() == True or direccion.isalpha() == True:
+        mail = input("Ingrese mail: ").strip()
+    direccion = input("Ingrese direccion: ").strip()
+    while direccion.replace(" ","").isdigit() == True or direccion.replace(" ","").isalpha() == True:
         print("El formato es incorrecto, la direccion debe tener letras y numeros")
         print("")
-        direccion = input("Ingrese direccion: ")
-    tarjeta = input("Ingrese tarjeta: ")
+        direccion = input("Ingrese direccion: ").strip()
+    tarjeta = input("Ingrese tarjeta: ").strip()
     while tarjeta.isdigit() == False or len(tarjeta) != 16:
         print("El formato es incorrecto, la tarjeta debe ser un numero de 16 digitos")
         print("")
-        tarjeta = input("Ingrese tarjeta: ")
+        tarjeta = input("Ingrese tarjeta: ").strip()
     print("")
     clientee = Cliente(usuario, contrasena, nombre, dni, fecnac, telefono, mail, direccion, tarjeta)
     empresaa.clientes.append(clientee.listacliente)
@@ -81,28 +81,28 @@ def ingresocliente():
 # Se genera la listatrabajador, con todos los datos sobre el trabajador
 # Se agrega a trabajadores la listatrabajador
 def ingresotrabajador():
-    usuario = input("Ingrese usuario: ")
-    while usuario.isalpha() == False or usuario in empresaa.usuarios:
+    usuario = input("Ingrese usuario: ").strip()
+    while usuario.replace(" ","").isalpha() == False or usuario in empresaa.usuarios:
         print("El usuario ya existe o el formato es incorrecto, el usuario debe contener solo letras")
         print("")
-        usuario = input("Ingrese usuario: ")
-    contrasena = input("Ingrese contrasena: ")
-    while contrasena.isalpha() == False or contrasena[0].isupper() == False:
+        usuario = input("Ingrese usuario: ").strip()
+    contrasena = input("Ingrese contrasena: ").strip()
+    while contrasena.replace(" ","").isalpha() == False or contrasena[0].replace(" ","").isupper() == False:
         print("El formato es incorrecto, la contrasena debe contener solo letras y la primera debe ser mayuscula")
         print("")
-        contrasena = input("Ingrese contrasena: ")
-    nombre = input("Ingrese nombre: ")
-    while nombre.isalpha() == False or nombre[0].isupper() == False:
+        contrasena = input("Ingrese contrasena: ").strip()
+    nombre = input("Ingrese nombre: ").strip()
+    while nombre.replace(" ","").isalpha() == False or nombre[0].replace(" ","").isupper() == False:
         print("El formato es incorrecto, el nombre debe contener solo letras y la primera debe ser mayuscula")
         print("")
-        nombre = input("Ingrese nombre: ")
-    dni = input("Ingrese dni: ")
+        nombre = input("Ingrese nombre: ").strip()
+    dni = input("Ingrese dni: ").strip()
     while dni.isdigit() == False or len(dni) != 8 or dni in empresaa.dnis:
         print("El dni ya existe o el formato es incorrecto, debe ser un numero de ocho caracteres")
         print("")
-        dni = input("Ingrese dni: ")
+        dni = input("Ingrese dni: ").strip()
     while True:
-        fecha = input("Ingrese fecha de nacimiento: ")
+        fecha = input("Ingrese fecha de nacimiento: ").strip()
         try:
             fecha_valida = datetime.strptime(fecha, "%Y/%m/%d").date()
             fecha_actual = date.today()
@@ -117,31 +117,31 @@ def ingresotrabajador():
             print("El formato es incorrecto, la fecha debe ser de la forma YYYY/MM/DD")
             print("")
             continue
-    telefono = input("Ingrese telefono: ")
+    telefono = input("Ingrese telefono: ").strip()
     while telefono.isdigit() == False or len(telefono) != 10:
         print("El formato es incorrecto, el telefono debe ser un numero de diez caracteres")
         print("")
-        telefono = input("Ingrese telefono: ")
-    mail = input("Ingrese mail: ")
+        telefono = input("Ingrese telefono: ").strip()
+    mail = input("Ingrese mail: ").strip()
     while "@" not in mail:
         print("El formato es incorrecto, el mail debe contener un @")
         print("")
-        mail = input("Ingrese mail: ")
-    direccion = input("Ingrese direccion: ")
-    while direccion.isdigit() == True or direccion.isalpha() == True:
+        mail = input("Ingrese mail: ").strip()
+    direccion = input("Ingrese direccion: ").strip()
+    while direccion.replace(" ","").isdigit() == True or direccion.replace(" ","").isalpha() == True:
         print("El formato es incorrecto, la direccion debe tener letras y numeros")
         print("")
-        direccion = input("Ingrese direccion: ")
-    puesto = input("Ingrese puesto: ")
-    while puesto.isalpha() == False:
+        direccion = input("Ingrese direccion: ").strip()
+    puesto = input("Ingrese puesto: ").strip()
+    while puesto.replace(" ","").isalpha() == False:
         print("El formato es incorrecto, el puesto debe contener solo letras")
         print("")
-        puesto = input("Ingrese puesto: ")
-    cbu = input("Ingrese cbu: ")
+        puesto = input("Ingrese puesto: ").strip()
+    cbu = input("Ingrese cbu: ").strip()
     while cbu.isdigit() == False or len(cbu) != 22:
         print("El formato es incorrecto, el cbu debe ser un numero de 22 digitos")
         print("")
-        cbu = input("Ingrese el cbu: ")
+        cbu = input("Ingrese el cbu: ").strip()
     print("")
     trabajadorr = Trabajador(usuario, contrasena, nombre, dni, fecnac, telefono, mail, direccion, puesto, cbu)
     empresaa.trabajadores.append(trabajadorr.listatrabajador)
@@ -157,26 +157,26 @@ def ingresotrabajador():
 # Se genera la listaestacion, con todos los datos sobre la estacion
 # Se agrega a estaciones la listaestacion
 def ingresoestacion():
-    nombre = input("Ingrese nombre: ")
-    while nombre.isalpha() == False or nombre in empresaa.nombresestaciones:
+    nombre = input("Ingrese nombre: ").strip()
+    while nombre.replace(" ","").isalpha() == False or nombre in empresaa.nombresestaciones:
         print("La estacion ya existe o el formato es incorrecto, el nombre debe contener solo letras")
         print("")
-        nombre = input("Ingrse nombre: ")
-    direccion = input("Ingrese direccion: ")
-    while direccion.isdigit() == True or direccion.isalpha() == True:
+        nombre = input("Ingrse nombre: ").strip()
+    direccion = input("Ingrese direccion: ").strip()
+    while direccion.replace(" ","").isdigit() == True or direccion.replace(" ","").isalpha() == True:
         print("El formato es incorrecto, la direccion debe tener letras y numeros")
         print("")
-        direccion = input("Ingrese direccion: ")
-    barrio = input("Ingrese barrio: ")
-    while barrio.isalpha() == False:
+        direccion = input("Ingrese direccion: ").strip()
+    barrio = input("Ingrese barrio: ").strip()
+    while barrio.replace(" ","").isalpha() == False:
         print("El formato es incorrecto, el barrio debe contener solo letras")
         print("")
-        barrio = input("Ingrese barrio: ")
-    cantbicitotal = input("Ingrese capacidad: ")
+        barrio = input("Ingrese barrio: ").strip()
+    cantbicitotal = input("Ingrese capacidad: ").strip()
     while cantbicitotal.isdigit() == False:
         print("El formato es incorrecto, la capacidad debe ser un numero")
         print("")
-        cantbicitotal = input("Ingrese capacidad: ")
+        cantbicitotal = input("Ingrese capacidad: ").strip()
     print("")
     estacionn = Estacion(nombre, direccion, barrio, cantbicitotal)
     empresaa.estaciones.append(estacionn.listaestacion)
@@ -193,17 +193,17 @@ def ingresoestacion():
 # Se agrega a bicicletas la listabicicleta
 # Se suma 1 a la cantidad disponible de bicicletas en la estacionactual
 def ingresobicicleta():
-    patente = input("Ingrese patente: ")
+    patente = input("Ingrese patente: ").strip()
     while patente.isdigit() == False or patente in empresaa.patentes:
         print("La patente ya existe o el formato es incorrecto, la patente debe ser un numero")
         print("")
-        patente = input("Ingrese patente: ")
-    modelo = input("Ingrese modelo: ")
-    estacionactual = input("Ingrese estacion donde se ingresa la bicicleta: ")
+        patente = input("Ingrese patente: ").strip()
+    modelo = input("Ingrese modelo: ").strip()
+    estacionactual = input("Ingrese estacion donde se ingresa la bicicleta: ").strip()
     while estacionactual not in empresaa.nombresestaciones:
         print("No se encontro la estacion")
         print("")
-        estacionactual = input("Ingrese estacion donde se ingresa la bicicleta: ")
+        estacionactual = input("Ingrese estacion donde se ingresa la bicicleta: ").strip()
     print("")
     for i in empresaa.estaciones:
         if i[0] == estacionactual:
@@ -231,7 +231,7 @@ codigo = 0
 def alquilar(usuario):
     global codigo
     while True:
-        fechaa = input("Ingrese fecha del alquiler: ")
+        fechaa = input("Ingrese fecha del alquiler: ").strip()
         try:
             fecha_valida = datetime.strptime(fechaa, "%Y/%m/%d").date()
             fecha_actual = date.today()
@@ -246,21 +246,21 @@ def alquilar(usuario):
             print("El formato es incorrecto, la fecha debe ser de la forma YYYY/MM/DD")
             print("")
             continue
-    duracion = input("Ingrese duracion del alquiler en minutos: ")
+    duracion = input("Ingrese duracion del alquiler en minutos: ").strip()
     while duracion.isdigit() == False:
         print("El formato es incorrecto, la duracion debe ser un numero")
         print("")
-        duracion = input("Ingrese duracion: ")
-    estacionsalida = input("Ingrese estacion de salida: ")
+        duracion = input("Ingrese duracion: ").strip()
+    estacionsalida = input("Ingrese estacion de salida: ").strip()
     while estacionsalida not in empresaa.nombresestaciones:
         print("No se encontro la estacion")
         print("")
-        estacionsalida = input("Ingrese estacion de salida: ")
-    estacionllegada = input("Ingrese estacion de llegada: ")
+        estacionsalida = input("Ingrese estacion de salida: ").strip()
+    estacionllegada = input("Ingrese estacion de llegada: ").strip()
     while estacionllegada not in empresaa.nombresestaciones:
         print("No se encontro la estacion")
         print("")
-        estacionllegada = input("Ingrese estacion de llegada: ")
+        estacionllegada = input("Ingrese estacion de llegada: ").strip()
     print("")
     for m in empresaa.estaciones:
         if m[0] == estacionllegada:
@@ -296,13 +296,13 @@ def mostrarinfo():
 # Anotacion: Cuando pasemos todo a diccionarios, dato va a ser contrasena, nombre etc. Por ahora es el valor actual
 # No se puede cambiar el usuario
 def cambiocliente(usuario):
-    dato = input("Ingrese dato que desea cambiar: ")
+    dato = input("Ingrese dato que desea cambiar: ").strip()
     r = 0
     for i in empresaa.clientes:
         if i[0] == usuario:
             for n in range(1,9):
                 if i[n] == dato:
-                    cambio = input("Ingrese valor nuevo: ")
+                    cambio = input("Ingrese valor nuevo: ").strip()
                     print("")
                     i[n] = cambio
                     print("Cambio realizado")
@@ -319,13 +319,13 @@ def cambiocliente(usuario):
 # Anotacion: Cuando pasemos todo a diccionarios, dato va a ser contrasena, nombre etc. Por ahora es el valor actual
 # No se puede cambiar el usuario
 def cambiotrabajador(usuario):
-    dato = input("Ingrese que dato quiere cambiar: ")
+    dato = input("Ingrese que dato quiere cambiar: ").strip()
     t = 0
     for i in empresaa.trabajadores:
         if i[0] == usuario:
             for n in range(1,10):
                 if i[n] == dato:
-                    cambio = input("Ingrese valor nuevo: ")
+                    cambio = input("Ingrese valor nuevo: ").strip()
                     print("")
                     i[n] = cambio
                     print("Cambio realizado")

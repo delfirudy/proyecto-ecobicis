@@ -10,15 +10,15 @@ class main:
         print("4. Opciones trabajador")
         print("5. Salir")
         print("")
-        eleccion = input("Ingrese opcion: ")
+        eleccion = input("Ingrese opcion: ").strip()
         print("")
         if eleccion == "1":
             ingresocliente()
         elif eleccion == "2":
             ingresotrabajador()
         elif eleccion == "3":
-            usuario1 = input("Ingrese usuario: ")
-            contrasena1 = input("Ingrese contrasena: ")
+            usuario1 = input("Ingrese usuario: ").strip()
+            contrasena1 = input("Ingrese contrasena: ").strip()
             print("")
             validacioncliente = 0
             for i in empresaa.clientes:
@@ -30,7 +30,7 @@ class main:
                     print("2. Cambiar datos")
                     print("3. Informacion sobre estaciones")
                     print("")
-                    eleccionusuario = input("Ingrese opcion: ")
+                    eleccionusuario = input("Ingrese opcion: ").strip()
                     print("")
                     if eleccionusuario == "1":
                         alquilar(usuario1)
@@ -45,8 +45,8 @@ class main:
                 print("El cliente no existe")
                 print("")
         elif eleccion == "4":
-            usuario2 = input("Ingrese usuario: ")
-            contrasena2 = input("Ingrese contrasena: ")
+            usuario2 = input("Ingrese usuario: ").strip()
+            contrasena2 = input("Ingrese contrasena: ").strip()
             print("")
             validaciontrabajador = 0
             for i in empresaa.trabajadores:
@@ -58,7 +58,7 @@ class main:
                     print("2. Ingresar bicicleta")
                     print("3. Cambiar datos")
                     print("")
-                    elecciontrabajador = input("Ingrese opcion: ")
+                    elecciontrabajador = input("Ingrese opcion: ").strip()
                     print("")
                     if elecciontrabajador == "1":
                         ingresoestacion()
