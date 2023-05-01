@@ -311,18 +311,24 @@ def recorrertxt():
                 continue
             else:
                 empresaa.clientes.append(line.strip().split("\t"))
+    for i in empresaa.clientes:
+        empresaa.usuarios.append(i[0])
     with open("datostrabajadores.txt") as datostrabajadores:
         for i, line in enumerate(datostrabajadores):
             if i == 0:
                 continue
             else:
                 empresaa.trabajadores.append(line.strip().split("\t"))
+    for i in empresaa.trabajadores:
+        empresaa.usuarios.append(i[0])
     with open("datosestaciones.txt") as datosestaciones:
         for i, line in enumerate(datosestaciones):
             if i == 0:
                 continue
             else:
                 empresaa.estaciones.append(line.strip().split("\t"))
+    for i in empresaa.estaciones:
+        empresaa.nombresestaciones.append(i[0])
     with open("datosbicicletas.txt") as datosbicicletas:
         for i, line in enumerate(datosbicicletas):
             if i == 0:
