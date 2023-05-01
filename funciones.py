@@ -25,7 +25,7 @@ def ingresocliente():
         print("")
         nombre = input("Ingrese nombre: ").strip()
     dni = input("Ingrese dni: ").strip()
-    while validardni(dni, empresaa.dnis):
+    while validardni(dni, empresaa.dnis) == False:
         print("El dni ya existe o el formato es incorrecto, debe ser un numero de ocho caracteres")
         print("")
         dni = input("Ingrese dni: ").strip()
@@ -83,7 +83,7 @@ def ingresotrabajador():
         print("")
         nombre = input("Ingrese nombre: ").strip()
     dni = input("Ingrese dni: ").strip()
-    while validardni(dni, empresaa.dnis):
+    while validardni(dni, empresaa.dnis) == False:
         print("El dni ya existe o el formato es incorrecto, debe ser un numero de ocho caracteres")
         print("")
         dni = input("Ingrese dni: ").strip()

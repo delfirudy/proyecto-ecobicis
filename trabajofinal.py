@@ -2,8 +2,8 @@ from funciones import *
 
 class main:
     recorrertxt()
-    seguir = "seguir"
-    while seguir == "seguir":
+    seguir = "Seguir"
+    while seguir == "Seguir":
         print("1. Ingreso de datos cliente")
         print("2. Ingreso de datos trabajador")
         print("3. Opciones cliente")
@@ -26,18 +26,23 @@ class main:
                     validacioncliente = 1
                     print("Cliente validado")
                     print("")
-                    print("1. Alquilar")
-                    print("2. Información sobre estaciones")
-                    print("")
-                    eleccionusuario = input("Ingrese opcion: ").strip()
-                    print("")
-                    if eleccionusuario == "1":
-                        alquilar(usuario1)
-                    elif eleccionusuario == "2":
-                        mostrarinfo()
-                    else:
-                        print("Ingreso incorrecto de opcion")
+                    seguir1 = "Seguir"
+                    while seguir1 == "Seguir":
+                        print("1. Alquilar")
+                        print("2. Información sobre estaciones")
+                        print("3. Volver al menu principal")
                         print("")
+                        eleccionusuario = input("Ingrese opcion: ").strip()
+                        print("")
+                        if eleccionusuario == "1":
+                            alquilar(usuario1)
+                        elif eleccionusuario == "2":
+                            mostrarinfo()
+                        elif eleccionusuario == "3":
+                            seguir1 = "No seguir"
+                        else:
+                            print("Ingreso incorrecto de opcion")
+                            print("")
             if validacioncliente == 0:
                 print("El cliente no existe")
                 print("")
