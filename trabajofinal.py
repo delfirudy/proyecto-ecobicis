@@ -56,18 +56,23 @@ class main:
                     validaciontrabajador = 1
                     print("Trabajador validado")
                     print("")
-                    print("1. Ingresar estacion")
-                    print("2. Ingresar bicicleta")
-                    print("")
-                    elecciontrabajador = input("Ingrese opcion: ").strip()
-                    print("")
-                    if elecciontrabajador == "1":
-                        ingresoestacion()
-                    elif elecciontrabajador == "2":
-                        ingresobicicleta()
-                    else:
-                        print("Ingreso incorrecto de opcion")
+                    seguir2 = "Seguir"
+                    while seguir2 == "Seguir":
+                        print("1. Ingresar estacion")
+                        print("2. Ingresar bicicleta")
+                        print("3. Volver al menu principal")
                         print("")
+                        elecciontrabajador = input("Ingrese opcion: ").strip()
+                        print("")
+                        if elecciontrabajador == "1":
+                            ingresoestacion()
+                        elif elecciontrabajador == "2":
+                            ingresobicicleta()
+                        elif elecciontrabajador == "3":
+                            seguir2 = "No seguir"
+                        else:
+                            print("Ingreso incorrecto de opcion")
+                            print("")
             if validaciontrabajador == 0:
                 print("El trabajador no existe")
                 print("")

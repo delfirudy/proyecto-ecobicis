@@ -55,5 +55,11 @@ def validarnumero(cantbicitotal):
 def validarpatente(patente, listapatentes):
     patente.isdigit() and patente not in listapatentes
 
-def validarestacionactual(estacionactual, listaestaciones):
-    return estacionactual in listaestaciones
+def validarestacionactual(estacionactual, listaestaciones, listadatosestaciones):
+    for i in listadatosestaciones:
+        if i[0] == estacionactual:
+            if i[3] != i[4]:
+                cumple = "Si"
+            else:
+                cumple = "No"
+    return estacionactual in listaestaciones and cumple == "Si"

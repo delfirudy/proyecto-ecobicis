@@ -111,7 +111,7 @@ def ingresotrabajador():
         print("")
         puesto = input("Ingrese puesto: ").strip()
     cbu = input("Ingrese cbu: ").strip()
-    while validarcbu(cbu,empresaa.cbus):
+    while validarcbu(cbu,empresaa.cbus) == False:
         print("El formato es incorrecto, el cbu debe ser un numero de 22 digitos")
         print("")
         cbu = input("Ingrese el cbu: ").strip()
@@ -131,7 +131,7 @@ def ingresotrabajador():
 # Se agrega a estaciones la listaestacion
 def ingresoestacion():
     nombre = input("Ingrese nombre: ").strip()
-    while validarestacion(nombre) == False:
+    while validarestacion(nombre, empresaa.nombresestaciones) == False:
         print("La estacion ya existe o el formato es incorrecto, el nombre debe contener solo letras y la primera debe ser mayuscula")
         print("")
         nombre = input("Ingrse nombre: ").strip()
@@ -173,24 +173,19 @@ def ingresobicicleta():
         patente = input("Ingrese patente: ").strip()
     modelo = input("Ingrese modelo: ").strip()
     estacionactual = input("Ingrese estacion donde se ingresa la bicicleta: ").strip()
-    while validarestacionactual(estacionactual, empresaa.nombresestaciones) == False:
-        print("No se encontro la estacion")
+    while validarestacionactual(estacionactual, empresaa.nombresestaciones, empresaa.estaciones) == False:
+        print("No se encontro la estacion o no hay lugar para dejar la bicicleta")
         print("")
         estacionactual = input("Ingrese estacion donde se ingresa la bicicleta: ").strip()
     print("")
+    bicicletaa = Bicicleta(patente, modelo, estacionactual)
+    empresaa.bicicletas.append(bicicletaa.listabicicleta)
+    empresaa.patentes.append(patente)
+    print("Ingreso de datos realizado")
+    print("")
     for i in empresaa.estaciones:
         if i[0] == estacionactual:
-            if i[3] == i[4]:
-                print("No hay lugar en la estacion, ingrese la bicicleta en otra estacion")
-                print("")
-            else:
-                bicicletaa = Bicicleta(patente, modelo, estacionactual)
-                empresaa.bicicletas.append(bicicletaa.listabicicleta)
-                empresaa.patentes.append(patente)
-                i[4] = str(int(i[4]) + 1)
-                print("Ingreso de datos realizado")
-                print("")
-        break
+            i[4] = str(int(i[4]) + 1)
 
 # DESCRIPCION
 # Ingreso de los datos necesarios para el alquiler
