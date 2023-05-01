@@ -70,6 +70,7 @@ def ingresocliente():
     clientee = Cliente(usuario, contrasena, nombre, dni, fecnac, telefono, mail, direccion, tarjeta)
     empresaa.clientes.append(clientee.listacliente)
     empresaa.usuarios.append(usuario)
+    empresaa.tarjetas.append(tarjeta)
     print("Ingreso de datos realizado")
     print("")
     texto = ""
@@ -151,6 +152,7 @@ def ingresotrabajador():
     trabajadorr = Trabajador(usuario, contrasena, nombre, dni, fecnac, telefono, mail, direccion, puesto, cbu)
     empresaa.trabajadores.append(trabajadorr.listatrabajador)
     empresaa.usuarios.append(usuario)
+    empresaa.cbus.append(cbu)
     print("Ingreso de datos realizado")
     print("")
     texto = ""
@@ -190,6 +192,7 @@ def ingresoestacion():
     print("")
     estacionn = Estacion(nombre, direccion, barrio, cantbicitotal)
     empresaa.estaciones.append(estacionn.listaestacion)
+    empresaa.nombresestaciones.append(nombre)
     print("Ingreso de datos realizado")
     print("")
     texto = ""
@@ -211,7 +214,7 @@ def ingresoestacion():
 def ingresobicicleta():
     patente = input("Ingrese patente: ")
     while patente.isdigit() == False or patente in empresaa.patentes:
-        print("La patente ya existe o ingresó una leta, la patente debe ser un numero")
+        print("La patente ya existe o ingresó una letra, la patente debe ser un numero")
         print("")
         patente = input("Ingrese patente: ")
     modelo = input("Ingrese modelo: ")
@@ -253,7 +256,7 @@ codigo = 0
 def alquilar(usuario):
     global codigo
     while True:
-        fechaa = input("Ingrese una fecha en formato YYYY/MM/DD: ")
+        fechaa = input("Ingrese fecha del alquiler en formato YYYY/MM/DD: ")
         try:
             fecha_valida = datetime.strptime(fechaa, "%Y/%m/%d").date()
             fecha_actual = date.today()
@@ -268,7 +271,7 @@ def alquilar(usuario):
             print("La fecha no tiene el formato esperado")
             print("")
             continue
-    duracion = input("Ingrese duracion del alquiler: ")
+    duracion = input("Ingrese duracion del alquiler en minutos: ")
     while duracion.isdigit() == False:
         print("La duracion debe ser un numero")
         print("")
@@ -299,7 +302,7 @@ def alquilar(usuario):
                         p[4] = str(int(p[4]) - 1)
                 for q in empresaa.bicicletas:
                     if q[2] == estacionsalida: 
-                        q[4] = str(int(q[4]) + 1)
+                        q[3] = str(int(q[3]) + 1)
                         q[2] = estacionllegada
                         break
                 print("Ingreso de alquiler realizado")
@@ -364,7 +367,7 @@ def cambiotrabajador(usuario):
                     t = 1
     if t == 0:
         print("No se encontro el dato que desea cambiar")
-        print("")
+        print("") 
 
 def recorrertxt():
     with open("datosclientes.txt") as datosclientes:
