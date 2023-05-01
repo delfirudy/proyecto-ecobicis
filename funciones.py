@@ -1,6 +1,5 @@
 from clases import *
-from datetime import datetime
-from datetime import date
+from validaciones import *
 
 empresaa = Empresa("Ecobicis")
 
@@ -11,58 +10,45 @@ empresaa = Empresa("Ecobicis")
 # Se agrega a clientes la listacliente
 def ingresocliente():
     usuario = input("Ingrese usuario: ").strip()
-    while usuario.replace(" ","").isalpha() == False or usuario in empresaa.usuarios:
+    while validarusuario(usuario,empresaa.usuarios) == False:
         print("El usuario ya existe o el formato es incorrecto, el usuario debe contener solo letras")
         print("")
         usuario = input("Ingrese usuario: ").strip()
     contrasena = input("Ingrese contrasena: ").strip()
-    while contrasena.replace(" ","").isalpha() == False or contrasena[0].replace(" ","").isupper() == False:
+    while validarcontrasena(contrasena) == False:
         print("El formato es incorrecto, la contrasena debe contener solo letras y la primera debe ser mayuscula")
         print("")
         contrasena = input("Ingrese contrasena: ").strip()
     nombre = input("Ingrese nombre: ").strip()
-    while nombre.replace(" ","").isalpha() == False or nombre[0].replace(" ","").isupper() == False:
+    while validarnombre(nombre) == False:
         print("El formato es incorrecto, el nombre debe contener solo letras y la primera debe ser mayuscula")
         print("")
         nombre = input("Ingrese nombre: ").strip()
     dni = input("Ingrese dni: ").strip()
-    while dni.isdigit() == False or len(dni) != 8 or dni in empresaa.dnis:
+    while validardni(dni, empresaa.dnis):
         print("El dni ya existe o el formato es incorrecto, debe ser un numero de ocho caracteres")
         print("")
         dni = input("Ingrese dni: ").strip()
-    while True:
-        fecha = input("Ingrese fecha de nacimiento: ").strip()
-        try:
-            fecha_valida = datetime.strptime(fecha, "%Y/%m/%d").date()
-            fecha_actual = date.today()
-            if fecha_valida < fecha_actual:
-                fecnac = fecha_valida
-                break
-            else:
-                print("El formato es correcto pero la fecha no es anterior a la actual")
-                print("")
-                continue
-        except ValueError:
-            print("El formato es incorrecto, la fecha debe ser de la forma YYYY/MM/DD")
-            print("")
-            continue
+    fecnac = input("Ingrese fecha de nacimiento: ").strip() 
+    while validarfecha(fecnac) == False:
+        fecnac = input("Ingrese fecha de nacimiento: ").strip() 
     telefono = input("Ingrese telefono: ").strip()
-    while telefono.isdigit() == False or len(telefono) != 10:
+    while validartelefono(telefono) == False:
         print("El formato es incorrecto, el telefono debe ser un numero de diez caracteres")
         print("")
         telefono = input("Ingrese telefono: ").strip()
     mail = input("Ingrese mail: ").strip()
-    while "@" not in mail:
+    while validarmail(mail) == False:
         print("El formato es incorrecto, el mail debe contener un @")
         print("")
         mail = input("Ingrese mail: ").strip()
     direccion = input("Ingrese direccion: ").strip()
-    while direccion.replace(" ","").isdigit() == True or direccion.replace(" ","").isalpha() == True:
+    while validardireccion(direccion) == False:
         print("El formato es incorrecto, la direccion debe tener letras y numeros")
         print("")
         direccion = input("Ingrese direccion: ").strip()
     tarjeta = input("Ingrese tarjeta: ").strip()
-    while tarjeta.isdigit() == False or len(tarjeta) != 16:
+    while validartarjeta(tarjeta, empresaa.tarjetas) == False:
         print("El formato es incorrecto, la tarjeta debe ser un numero de 16 digitos")
         print("")
         tarjeta = input("Ingrese tarjeta: ").strip()
@@ -82,63 +68,50 @@ def ingresocliente():
 # Se agrega a trabajadores la listatrabajador
 def ingresotrabajador():
     usuario = input("Ingrese usuario: ").strip()
-    while usuario.replace(" ","").isalpha() == False or usuario in empresaa.usuarios:
+    while validarusuario(usuario,empresaa.usuarios) == False:
         print("El usuario ya existe o el formato es incorrecto, el usuario debe contener solo letras")
         print("")
         usuario = input("Ingrese usuario: ").strip()
     contrasena = input("Ingrese contrasena: ").strip()
-    while contrasena.replace(" ","").isalpha() == False or contrasena[0].replace(" ","").isupper() == False:
+    while validarcontrasena(contrasena) == False:
         print("El formato es incorrecto, la contrasena debe contener solo letras y la primera debe ser mayuscula")
         print("")
         contrasena = input("Ingrese contrasena: ").strip()
     nombre = input("Ingrese nombre: ").strip()
-    while nombre.replace(" ","").isalpha() == False or nombre[0].replace(" ","").isupper() == False:
+    while validarnombre(nombre) == False:
         print("El formato es incorrecto, el nombre debe contener solo letras y la primera debe ser mayuscula")
         print("")
         nombre = input("Ingrese nombre: ").strip()
     dni = input("Ingrese dni: ").strip()
-    while dni.isdigit() == False or len(dni) != 8 or dni in empresaa.dnis:
+    while validardni(dni, empresaa.dnis):
         print("El dni ya existe o el formato es incorrecto, debe ser un numero de ocho caracteres")
         print("")
         dni = input("Ingrese dni: ").strip()
-    while True:
-        fecha = input("Ingrese fecha de nacimiento: ").strip()
-        try:
-            fecha_valida = datetime.strptime(fecha, "%Y/%m/%d").date()
-            fecha_actual = date.today()
-            if fecha_valida < fecha_actual:
-                fecnac = fecha_valida
-                break
-            else:
-                print("El formato es correcto pero la fecha no es anterior a la actual")
-                print("")
-                continue
-        except ValueError:
-            print("El formato es incorrecto, la fecha debe ser de la forma YYYY/MM/DD")
-            print("")
-            continue
+    fecnac = input("Ingrese fecha de nacimiento: ").strip() 
+    while validarfecha(fecnac) == False:
+        fecnac = input("Ingrese fecha de nacimiento: ").strip() 
     telefono = input("Ingrese telefono: ").strip()
-    while telefono.isdigit() == False or len(telefono) != 10:
+    while validartelefono(telefono) == False:
         print("El formato es incorrecto, el telefono debe ser un numero de diez caracteres")
         print("")
         telefono = input("Ingrese telefono: ").strip()
     mail = input("Ingrese mail: ").strip()
-    while "@" not in mail:
+    while validarmail(mail) == False:
         print("El formato es incorrecto, el mail debe contener un @")
         print("")
         mail = input("Ingrese mail: ").strip()
     direccion = input("Ingrese direccion: ").strip()
-    while direccion.replace(" ","").isdigit() == True or direccion.replace(" ","").isalpha() == True:
+    while validardireccion(direccion) == False:
         print("El formato es incorrecto, la direccion debe tener letras y numeros")
         print("")
         direccion = input("Ingrese direccion: ").strip()
     puesto = input("Ingrese puesto: ").strip()
-    while puesto.replace(" ","").isalpha() == False:
+    while validarpuesto(puesto) == False:
         print("El formato es incorrecto, el puesto debe contener solo letras")
         print("")
         puesto = input("Ingrese puesto: ").strip()
     cbu = input("Ingrese cbu: ").strip()
-    while cbu.isdigit() == False or len(cbu) != 22:
+    while validarcbu(cbu,empresaa.cbus):
         print("El formato es incorrecto, el cbu debe ser un numero de 22 digitos")
         print("")
         cbu = input("Ingrese el cbu: ").strip()
@@ -158,22 +131,22 @@ def ingresotrabajador():
 # Se agrega a estaciones la listaestacion
 def ingresoestacion():
     nombre = input("Ingrese nombre: ").strip()
-    while nombre.replace(" ","").isalpha() == False or nombre in empresaa.nombresestaciones:
-        print("La estacion ya existe o el formato es incorrecto, el nombre debe contener solo letras")
+    while validarestacion(nombre) == False:
+        print("La estacion ya existe o el formato es incorrecto, el nombre debe contener solo letras y la primera debe ser mayuscula")
         print("")
         nombre = input("Ingrse nombre: ").strip()
     direccion = input("Ingrese direccion: ").strip()
-    while direccion.replace(" ","").isdigit() == True or direccion.replace(" ","").isalpha() == True:
+    while validardireccion(direccion) == False:
         print("El formato es incorrecto, la direccion debe tener letras y numeros")
         print("")
         direccion = input("Ingrese direccion: ").strip()
     barrio = input("Ingrese barrio: ").strip()
-    while barrio.replace(" ","").isalpha() == False:
-        print("El formato es incorrecto, el barrio debe contener solo letras")
+    while validarnombre(barrio) == False:
+        print("El formato es incorrecto, el barrio debe contener solo letras y la primera debe ser mayuscula")
         print("")
         barrio = input("Ingrese barrio: ").strip()
     cantbicitotal = input("Ingrese capacidad: ").strip()
-    while cantbicitotal.isdigit() == False:
+    while validarnumero(cantbicitotal) == False:
         print("El formato es incorrecto, la capacidad debe ser un numero")
         print("")
         cantbicitotal = input("Ingrese capacidad: ").strip()
@@ -194,13 +167,13 @@ def ingresoestacion():
 # Se suma 1 a la cantidad disponible de bicicletas en la estacionactual
 def ingresobicicleta():
     patente = input("Ingrese patente: ").strip()
-    while patente.isdigit() == False or patente in empresaa.patentes:
+    while validarpatente(patente, empresaa.patentes) == False:
         print("La patente ya existe o el formato es incorrecto, la patente debe ser un numero")
         print("")
         patente = input("Ingrese patente: ").strip()
     modelo = input("Ingrese modelo: ").strip()
     estacionactual = input("Ingrese estacion donde se ingresa la bicicleta: ").strip()
-    while estacionactual not in empresaa.nombresestaciones:
+    while validarestacionactual(estacionactual, empresaa.nombresestaciones) == False:
         print("No se encontro la estacion")
         print("")
         estacionactual = input("Ingrese estacion donde se ingresa la bicicleta: ").strip()
@@ -230,34 +203,21 @@ def ingresobicicleta():
 codigo = 0
 def alquilar(usuario):
     global codigo
-    while True:
-        fechaa = input("Ingrese fecha del alquiler: ").strip()
-        try:
-            fecha_valida = datetime.strptime(fechaa, "%Y/%m/%d").date()
-            fecha_actual = date.today()
-            if fecha_valida < fecha_actual:
-                fecha = fecha_valida
-                break
-            else:
-                print("El formato es correcto pero la fecha no es anterior a la actual")
-                print("")
-                continue
-        except ValueError:
-            print("El formato es incorrecto, la fecha debe ser de la forma YYYY/MM/DD")
-            print("")
-            continue
+    fecha = input("Ingrese fecha del alquiler: ").strip()
+    while validarfecha(fecha) == False:
+        fecha = input("Ingrese fecha del alquiler: ").strip() 
     duracion = input("Ingrese duracion del alquiler en minutos: ").strip()
-    while duracion.isdigit() == False:
+    while validarnumero(duracion) == False:
         print("El formato es incorrecto, la duracion debe ser un numero")
         print("")
         duracion = input("Ingrese duracion: ").strip()
     estacionsalida = input("Ingrese estacion de salida: ").strip()
-    while estacionsalida not in empresaa.nombresestaciones:
+    while validarestacion(estacionsalida, empresaa.nombresestaciones) == False:
         print("No se encontro la estacion")
         print("")
         estacionsalida = input("Ingrese estacion de salida: ").strip()
     estacionllegada = input("Ingrese estacion de llegada: ").strip()
-    while estacionllegada not in empresaa.nombresestaciones:
+    while validarestacion(estacionllegada, empresaa.nombresestaciones) == False:
         print("No se encontro la estacion")
         print("")
         estacionllegada = input("Ingrese estacion de llegada: ").strip()
