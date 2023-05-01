@@ -11,6 +11,7 @@ class Empresa:
         self.patentes = []
         self.cbus = []
         self.tarjetas = []
+        self.dnis = []
 
 
 class Persona:
