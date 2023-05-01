@@ -13,7 +13,6 @@ class Empresa:
         self.tarjetas = []
         self.dnis = []
 
-
 class Persona:
     def __init__(self, usuario, contrasena, nombre, dni, fecnac, telefono, mail, direccion):
         self.usuario = usuario
@@ -25,13 +24,11 @@ class Persona:
         self.mail = mail
         self.direccion = direccion
 
-
 class Cliente(Persona):
     def __init__(self, usuario, contrasena, nombre, dni, fecnac, telefono, mail, direccion, tarjeta):
         Persona.__init__(self, usuario, contrasena, nombre, dni, fecnac, telefono, mail, direccion)
         self.tarjeta = tarjeta
         self.listacliente = [usuario, contrasena, nombre, dni, fecnac, telefono, mail, direccion, tarjeta]
-
 
 class Trabajador(Persona):
     def __init__(self, usuario, contrasena, nombre, dni, fecnac, telefono, mail, direccion, puesto, cbu):
@@ -39,7 +36,6 @@ class Trabajador(Persona):
         self.puesto = puesto
         self.cbu = cbu
         self.listatrabajador = [usuario, contrasena, nombre, dni, fecnac, telefono, mail, direccion, puesto, cbu]
-
 
 class Estacion:
     def __init__(self, nombre, direccion, barrio, cantbicitotal, cantbicidisponible=0):
@@ -50,7 +46,6 @@ class Estacion:
         self.cantbicidisponible = cantbicidisponible
         self.listaestacion = [nombre, direccion, barrio, cantbicitotal, cantbicidisponible]
 
-
 class Bicicleta:
     def __init__(self, patente, modelo, estacionactual, cantusos=0):
         self.patente = patente
@@ -58,7 +53,6 @@ class Bicicleta:
         self.estacionactual = estacionactual
         self.cantusos = cantusos
         self.listabicicleta = [patente, modelo, estacionactual, cantusos]
-
 
 class Alquiler():
     def __init__(self, usuario, codigo, fecha, duracion, estacionsalida, estacionllegada):

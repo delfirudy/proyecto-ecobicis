@@ -290,49 +290,7 @@ def mostrarinfo():
     print("")
 
 # DESCRIPCION
-# Pide valor actual que se desea cambiar (dato)
-# Pide valor nuevo (cambio)
-# Realiza el cambio de dato y altera todas las listas que lo tienen.
-# Anotacion: Cuando pasemos todo a diccionarios, dato va a ser contrasena, nombre etc. Por ahora es el valor actual
-# No se puede cambiar el usuario
-def cambiocliente(usuario):
-    dato = input("Ingrese dato que desea cambiar: ").strip()
-    datoscliente = ["usuario", "contrasena", "nombre", "dni", "fecnac", "telefono", "mail", "direccion", "tarjeta"]
-    for i in empresaa.clientes:
-        if i[0] == usuario:
-            for n, line in datoscliente:
-                if line == dato:
-                    cambio = input("Ingrese valor nuevo: ").strip()
-                    print("")
-                    i[n] = cambio
-                    print("Cambio realizado")
-                    print("")
-                else:
-                    print("No se encontro el dato que desea cambiar")
-                    print("")
-
-# DESCRIPCION
-# Pide valor actual que se desea cambiar (dato)
-# Pide valor nuevo (cambio)
-# Realiza el cambio de dato y altera todas las listas que lo tienen.
-# Anotacion: Cuando pasemos todo a diccionarios, dato va a ser contrasena, nombre etc. Por ahora es el valor actual
-# No se puede cambiar el usuario
-def cambiotrabajador(usuario):
-    dato = input("Ingrese dato que desea cambiar: ").strip()
-    datostrabajador = ["usuario", "contrasena", "nombre", "dni", "fecnac", "telefono", "mail", "direccion", "puesto", "cbu"]
-    for i in empresaa.trabajadores:
-        if i[0] == usuario:
-            for n, line in datostrabajador:
-                if line == dato:
-                    cambio = input("Ingrese valor nuevo: ").strip()
-                    print("")
-                    i[n] = cambio
-                    print("Cambio realizado")
-                    print("")
-                else:
-                    print("No se encontro el dato que desea cambiar")
-                    print("")
-
+# Recorre el txt al inicio de la ejecución para pasar los datos a las listas
 def recorrertxt():
     with open("datosclientes.txt") as datosclientes:
         for i, line in enumerate(datosclientes):
@@ -377,6 +335,8 @@ def recorrertxt():
             else:
                 empresaa.alquileres.append(line.strip().split("\t"))
 
+# DESCRIPCION
+# Actualiza el txt al cerrar el código
 def actualizartxt():
     for i in range(len(empresaa.clientes)):
         if i == 0:

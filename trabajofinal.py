@@ -27,16 +27,13 @@ class main:
                     print("Cliente validado")
                     print("")
                     print("1. Alquilar")
-                    print("2. Cambiar datos")
-                    print("3. Informacion sobre estaciones")
+                    print("2. Información sobre estaciones")
                     print("")
                     eleccionusuario = input("Ingrese opcion: ").strip()
                     print("")
                     if eleccionusuario == "1":
                         alquilar(usuario1)
                     elif eleccionusuario == "2":
-                        cambiocliente(usuario1)
-                    elif eleccionusuario == "3":
                         mostrarinfo()
                     else:
                         print("Ingreso incorrecto de opcion")
@@ -56,7 +53,6 @@ class main:
                     print("")
                     print("1. Ingresar estacion")
                     print("2. Ingresar bicicleta")
-                    print("3. Cambiar datos")
                     print("")
                     elecciontrabajador = input("Ingrese opcion: ").strip()
                     print("")
@@ -64,8 +60,6 @@ class main:
                         ingresoestacion()
                     elif elecciontrabajador == "2":
                         ingresobicicleta()
-                    elif elecciontrabajador == "3":
-                        cambiotrabajador(usuario2)
                     else:
                         print("Ingreso incorrecto de opcion")
                         print("")
@@ -78,9 +72,5 @@ class main:
         else:
             print("Ingreso incorrecto de opcion")
             print("")
-
-
-
-
 
 trabajofinal = main()
