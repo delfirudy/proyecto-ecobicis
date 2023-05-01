@@ -8,6 +8,9 @@ class Empresa:
         self.alquileres = []
         self.usuarios = []
         self.nombresestaciones = []
+        self.patentes = []
+        self.cbus = []
+        self.tarjetas = []
 
 
 class Persona:

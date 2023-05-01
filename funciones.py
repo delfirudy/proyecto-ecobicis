@@ -27,10 +27,12 @@ def ingresocliente():
         print("El dni debe ser un numero de ocho caracteres")
         print("")
         dni = input("Ingrese dni: ")
-    fecnac = input("Ingrese fecha en formato YYYY/MM/DD")
+    # FALTA FECHA #
+    fecnac = input("Ingrese fecha en formato YYYY/MM/DD: ")
+    # FALTA FECHA #
     telefono = input("Ingrese telefono: ")
-    while telefono.isdigit() == False or len(telefono) != 8:
-        print("El telefono debe ser un numero de ocho caracteres")
+    while telefono.isdigit() == False or len(telefono) != 10:
+        print("El telefono debe ser un numero de diez caracteres")
         print("")
         telefono = input("Ingrese telefono: ")
     mail = input("Ingrese mail: ")
@@ -87,10 +89,12 @@ def ingresotrabajador():
         print("El dni debe ser un numero de ocho caracteres")
         print("")
         dni = input("Ingrese dni: ")
-    fecnac = input("Ingrese fecha en formato YYYY/MM/DD")
+    # FALTA FECHA #
+    fecnac = input("Ingrese fecha en formato YYYY/MM/DD: ")
+    # FALTA FECHA #
     telefono = input("Ingrese telefono: ")
-    while telefono.isdigit() == False or len(telefono) != 8:
-        print("El telefono debe ser un numero de ocho caracteres")
+    while telefono.isdigit() == False or len(telefono) != 10:
+        print("El telefono debe ser un numero de diez caracteres")
         print("")
         telefono = input("Ingrese telefono: ")
     mail = input("Ingrese mail: ")
@@ -133,9 +137,25 @@ def ingresotrabajador():
 # Se agrega a estaciones la listaestacion
 def ingresoestacion():
     nombre = input("Ingrese nombre: ")
+    while nombre.isalpha() == False or nombre in empresaa.nombresestaciones:
+        print("La estacion ya existe o ingresó caracteres numericos, el nombre debe contener solo letras")
+        print("")
+        nombre = input("Ingrse nombre: ")
     direccion = input("Ingrese direccion: ")
+    while direccion.isdigit() == True or direccion.isalpha() == True:
+        print("La direccion debe tener letras y numeros")
+        print("")
+        direccion = input("Ingrese direccion: ")
     barrio = input("Ingrese barrio: ")
-    cantbicitotal = int(input("Ingrese capacidad: "))
+    while barrio.isalpha() == False:
+        print("El barrio debe contener solo letras")
+        print("")
+        barrio = input("Ingrese barrio: ")
+    cantbicitotal = input("Ingrese capacidad: ")
+    while cantbicitotal.isdigit() == False:
+        print("La capacidad debe ser un numero")
+        print("")
+        cantbicitotal = input("Ingrese capacidad: ")
     print("")
     estacionn = Estacion(nombre, direccion, barrio, cantbicitotal)
     empresaa.estaciones.append(estacionn.listaestacion)
@@ -158,36 +178,40 @@ def ingresoestacion():
 # Se suma 1 a la cantidad disponible de bicicletas en la estacionactual
 def ingresobicicleta():
     patente = input("Ingrese patente: ")
+    while patente.isdigit() == False or patente in empresaa.patentes:
+        print("La patente ya existe o ingresó una leta, la patente debe ser un numero")
+        print("")
+        patente = input("Ingrese patente: ")
     modelo = input("Ingrese modelo: ")
+    # FALTA FECHA #
     anno = input("Ingrese anno: ")
+    # FALTA FECHA #
     estacionactual = input("Ingrese estacion donde se ingresa la bicicleta: ")
+    while estacionactual not in empresaa.nombresestaciones:
+        print("No se encontro la estacion")
+        print("")
+        estacionactual = input("Ingrese estacion donde se ingresa la bicicleta: ")
     print("")
-    t = 0
-    x = 0
     for i in empresaa.estaciones:
         if i[0] == estacionactual:
-            x = 1
             if i[3] == i[4]:
                 print("No hay lugar en la estacion, ingrese la bicicleta en otra estacion")
                 print("")
             else:
                 bicicletaa = Bicicleta(patente, modelo, anno, estacionactual)
                 empresaa.bicicletas.append(bicicletaa.listabicicleta)
+                empresaa.patentes.append(patente)
                 i[4] = str(int(i[4]) + 1)
                 t = 1
                 print("Ingreso de datos realizado")
                 print("")
-    if x == 0:
-        print("No se encontro la estacion")
-        print("")
-    texto = ""
-    if t == 1:
-        for i in bicicletaa.listabicicleta:
-            texto += str(i) + "\t" 
-        f = open("datosbicicletas.txt","a")
-        f.write("\n" + texto)
-        f.close()
-
+                texto = ""
+                for i in bicicletaa.listabicicleta:
+                    texto += str(i) + "\t" 
+                f = open("datosbicicletas.txt","a")
+                f.write("\n" + texto)
+                f.close()
+        break
 
 # DESCRIPCION
 # Ingreso de los datos necesarios para el alquiler
@@ -313,6 +337,7 @@ def recorrertxt():
                 empresaa.clientes.append(line.strip().split("\t"))
     for i in empresaa.clientes:
         empresaa.usuarios.append(i[0])
+        empresaa.tarjetas.append(i[8])
     with open("datostrabajadores.txt") as datostrabajadores:
         for i, line in enumerate(datostrabajadores):
             if i == 0:
@@ -321,6 +346,7 @@ def recorrertxt():
                 empresaa.trabajadores.append(line.strip().split("\t"))
     for i in empresaa.trabajadores:
         empresaa.usuarios.append(i[0])
+        empresaa.cbus.append(i[9])
     with open("datosestaciones.txt") as datosestaciones:
         for i, line in enumerate(datosestaciones):
             if i == 0:
@@ -335,6 +361,8 @@ def recorrertxt():
                 continue
             else:
                 empresaa.bicicletas.append(line.strip().split("\t"))
+    for i in empresaa.bicicletas:
+        empresaa.patentes.append(i[0])
     with open("datosalquileres.txt") as datosalquileres:
         for i, line in enumerate(datosalquileres):
             if i == 0:
