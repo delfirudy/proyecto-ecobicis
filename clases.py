@@ -51,22 +51,20 @@ class Estacion:
 
 
 class Bicicleta:
-    def __init__(self, patente, modelo, anno, estacionactual, cantusos=0):
+    def __init__(self, patente, modelo, estacionactual, cantusos=0):
         self.patente = patente
         self.modelo = modelo
-        self.anno = anno
         self.estacionactual = estacionactual
         self.cantusos = cantusos
-        self.listabicicleta = [patente, modelo, anno, estacionactual, cantusos]
+        self.listabicicleta = [patente, modelo, estacionactual, cantusos]
 
 
 class Alquiler():
-    def __init__(self, usuario, patente, codigo, fecyhora, duracion, estacionsalida, estacionllegada):
+    def __init__(self, usuario, codigo, fecha, duracion, estacionsalida, estacionllegada):
         self.usuario = usuario
-        self.patente = patente
         self.codigo = codigo
-        self.fecyhora = fecyhora
+        self.fecha = fecha
         self.duracion = duracion
         self.estacionsalida = estacionsalida
         self.estacionllegada = estacionllegada
-        self.listaalquiler = [usuario, patente, codigo, fecyhora, duracion, estacionsalida, estacionllegada]
+        self.listaalquiler = [usuario, codigo, fecha, duracion, estacionsalida, estacionllegada]

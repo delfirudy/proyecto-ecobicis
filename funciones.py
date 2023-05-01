@@ -1,9 +1,12 @@
 from clases import *
+from datetime import datetime
+from datetime import date
 
 empresaa = Empresa("Ecobicis")
 
 # DESCRIPCION
 # Ingreso todos los datos del cliente
+# Se validan los datos
 # Se genera la listacliente, con todos los datos sobre el cliente
 # Se agrega a clientes la listacliente
 def ingresocliente():
@@ -27,9 +30,22 @@ def ingresocliente():
         print("El dni debe ser un numero de ocho caracteres")
         print("")
         dni = input("Ingrese dni: ")
-    # FALTA FECHA #
-    fecnac = input("Ingrese fecha en formato YYYY/MM/DD: ")
-    # FALTA FECHA #
+    while True:
+        fecha = input("Ingrese una fecha en formato YYYY/MM/DD: ")
+        try:
+            fecha_valida = datetime.strptime(fecha, "%Y/%m/%d").date()
+            fecha_actual = date.today()
+            if fecha_valida < fecha_actual:
+                fecnac = fecha_valida
+                break
+            else:
+                print("La fecha es válida pero no es anterior a la fecha actual")
+                print("")
+                continue
+        except ValueError:
+            print("La fecha no tiene el formato esperado")
+            print("")
+            continue
     telefono = input("Ingrese telefono: ")
     while telefono.isdigit() == False or len(telefono) != 10:
         print("El telefono debe ser un numero de diez caracteres")
@@ -66,6 +82,7 @@ def ingresocliente():
 
 # DESCRIPCION
 # Ingreso todos los datos del trabajador
+# Se validan los datos
 # Se genera la listatrabajador, con todos los datos sobre el trabajador
 # Se agrega a trabajadores la listatrabajador
 def ingresotrabajador():
@@ -89,9 +106,22 @@ def ingresotrabajador():
         print("El dni debe ser un numero de ocho caracteres")
         print("")
         dni = input("Ingrese dni: ")
-    # FALTA FECHA #
-    fecnac = input("Ingrese fecha en formato YYYY/MM/DD: ")
-    # FALTA FECHA #
+    while True:
+        fecha = input("Ingrese una fecha en formato YYYY/MM/DD: ")
+        try:
+            fecha_valida = datetime.strptime(fecha, "%Y/%m/%d").date()
+            fecha_actual = date.today()
+            if fecha_valida < fecha_actual:
+                fecnac = fecha_valida
+                break
+            else:
+                print("La fecha es válida pero no es anterior a la fecha actual")
+                print("")
+                continue
+        except ValueError:
+            print("La fecha no tiene el formato esperado")
+            print("")
+            continue
     telefono = input("Ingrese telefono: ")
     while telefono.isdigit() == False or len(telefono) != 10:
         print("El telefono debe ser un numero de diez caracteres")
@@ -133,6 +163,7 @@ def ingresotrabajador():
 
 # DESCRIPCION
 # Ingreso todos los datos de la estacion
+# Se validan los datos
 # Se genera la listaestacion, con todos los datos sobre la estacion
 # Se agrega a estaciones la listaestacion
 def ingresoestacion():
@@ -171,6 +202,7 @@ def ingresoestacion():
 
 # DESCRIPCION
 # Ingreso todos los datos de la bicicleta
+# Se validan los datos
 # Si no hay lugar en la estacionactual para guardar la bicicleta se cancela el ingreso y le pide al trabajador que ingrese la bicicleta en otra estacion antes de volver a cargar el ingreso
 # Si hay lugar en la estacionactual hace lo siguiente
 # Se genera la listabicicleta, con todos los datos sobre la bicicleta
@@ -183,9 +215,6 @@ def ingresobicicleta():
         print("")
         patente = input("Ingrese patente: ")
     modelo = input("Ingrese modelo: ")
-    # FALTA FECHA #
-    anno = input("Ingrese anno: ")
-    # FALTA FECHA #
     estacionactual = input("Ingrese estacion donde se ingresa la bicicleta: ")
     while estacionactual not in empresaa.nombresestaciones:
         print("No se encontro la estacion")
@@ -198,11 +227,10 @@ def ingresobicicleta():
                 print("No hay lugar en la estacion, ingrese la bicicleta en otra estacion")
                 print("")
             else:
-                bicicletaa = Bicicleta(patente, modelo, anno, estacionactual)
+                bicicletaa = Bicicleta(patente, modelo, estacionactual)
                 empresaa.bicicletas.append(bicicletaa.listabicicleta)
                 empresaa.patentes.append(patente)
                 i[4] = str(int(i[4]) + 1)
-                t = 1
                 print("Ingreso de datos realizado")
                 print("")
                 texto = ""
@@ -224,54 +252,64 @@ def ingresobicicleta():
 codigo = 0
 def alquilar(usuario):
     global codigo
-    patente = input("Ingrese patente de la bicicleta: ")
-    fecyhora = input("Ingrese fecha y hora del alquiler: ")
+    while True:
+        fechaa = input("Ingrese una fecha en formato YYYY/MM/DD: ")
+        try:
+            fecha_valida = datetime.strptime(fechaa, "%Y/%m/%d").date()
+            fecha_actual = date.today()
+            if fecha_valida < fecha_actual:
+                fecha = fecha_valida
+                break
+            else:
+                print("La fecha es válida pero no es anterior a la fecha actual")
+                print("")
+                continue
+        except ValueError:
+            print("La fecha no tiene el formato esperado")
+            print("")
+            continue
     duracion = input("Ingrese duracion del alquiler: ")
-    estacionsalida = input("Ingrese estacion de salida: ")
-    estacionllegada = input("Ingrese estacion de llegada: ")
-    print("")
-    w = 0
-    x = 0
-    for i in empresaa.estaciones:
-        if i[0] == estacionllegada:
-            x += 1
-    for n in empresaa.estaciones:
-        if n[0] == estacionsalida:
-            x += 1
-    for k in empresaa.bicicletas:
-        if k[0] == patente:
-            x += 1
-    if x == 3:
-        for m in empresaa.estaciones:
-            if m[0] == estacionllegada:
-                if m[3] == m[4]:
-                    print("No hay lugar para dejar la bicicleta, dejarla en otra estacion")
-                    print("")
-                else:
-                    codigo += 1
-                    alquilerr = Alquiler(usuario,patente,codigo,fecyhora,duracion,estacionsalida,estacionllegada)
-                    empresaa.alquileres.append(alquilerr.listaalquiler)
-                    m[4] = str(int(m[4]) + 1)
-                    for p in empresaa.estaciones:
-                        if p[0] == estacionsalida:
-                            p[4] = str(int(p[4]) - 1)
-                    for q in empresaa.bicicletas:
-                        if q[0] == patente:
-                            q[4] = str(int(q[4]) + 1)
-                            q[3] = estacionllegada
-                    w = 1
-                    print("Ingreso de alquiler realizado")
-                    print("")
-    else:
-        print("No se encontro patente, estacion de salida o estacion de llegada")
+    while duracion.isdigit() == False:
+        print("La duracion debe ser un numero")
         print("")
-    texto = ""
-    if w == 1:
-        for i in alquilerr.listaalquiler:
-            texto += str(i) + "\t" 
-        f = open("datosalquileres.txt","a")
-        f.write("\n" + texto)
-        f.close()
+        duracion = input("Ingrese duracion: ")
+    estacionsalida = input("Ingrese estacion de salida: ")
+    while estacionsalida not in empresaa.nombresestaciones:
+        print("No se encontro la estacion")
+        print("")
+        estacionsalida = input("Ingrese estacion de salida: ")
+    estacionllegada = input("Ingrese estacion de llegada: ")
+    while estacionllegada not in empresaa.nombresestaciones:
+        print("No se encontro la estacion")
+        print("")
+        estacionllegada = input("Ingrese estacion de llegada: ")
+    print("")
+    for m in empresaa.estaciones:
+        if m[0] == estacionllegada:
+            if m[3] == m[4]:
+                print("No hay lugar para dejar la bicicleta, dejarla en otra estacion")
+                print("")
+            else:
+                codigo += 1
+                alquilerr = Alquiler(usuario, codigo, fecha, duracion, estacionsalida, estacionllegada)
+                empresaa.alquileres.append(alquilerr.listaalquiler)
+                m[4] = str(int(m[4]) + 1)
+                for p in empresaa.estaciones:
+                    if p[0] == estacionsalida:
+                        p[4] = str(int(p[4]) - 1)
+                for q in empresaa.bicicletas:
+                    if q[2] == estacionsalida: 
+                        q[4] = str(int(q[4]) + 1)
+                        q[2] = estacionllegada
+                        break
+                print("Ingreso de alquiler realizado")
+                print("")
+                texto = ""
+                for i in alquilerr.listaalquiler:
+                    texto += str(i) + "\t" 
+                f = open("datosalquileres.txt","a")
+                f.write("\n" + texto)
+                f.close()
 
 
 # DESCRIPCION
