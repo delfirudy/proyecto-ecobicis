@@ -2,7 +2,6 @@ from clases import *
 
 empresaa = Empresa("Ecobicis")
 
-
 # DESCRIPCION
 # Ingreso todos los datos del cliente
 # Se genera la listacliente, con todos los datos sobre el cliente
@@ -28,11 +27,27 @@ def ingresocliente():
         print("El dni debe ser un numero de ocho caracteres")
         print("")
         dni = input("Ingrese dni: ")
-    fecnac = input("Ingrese fecha de nacimiento: ")
+    fecnac = input("Ingrese fecha en formato YYYY/MM/DD")
     telefono = input("Ingrese telefono: ")
+    while telefono.isdigit() == False or len(telefono) != 8:
+        print("El telefono debe ser un numero de ocho caracteres")
+        print("")
+        telefono = input("Ingrese telefono: ")
     mail = input("Ingrese mail: ")
+    while "@" not in mail:
+        print("El mail debe contener un @")
+        print("")
+        mail = input("Ingrese mail: ")
     direccion = input("Ingrese direccion: ")
+    while direccion.isdigit() == True or direccion.isalpha() == True:
+        print("La direccion debe tener letras y numeros")
+        print("")
+        direccion = input("Ingrese direccion: ")
     tarjeta = input("Ingrese tarjeta: ")
+    while tarjeta.isdigit() == False or len(tarjeta) != 16:
+        print("La tarjeta debe ser un numero de 16 digitos")
+        print("")
+        tarjeta = input("Ingrese tarjeta: ")
     print("")
     clientee = Cliente(usuario, contrasena, nombre, dni, fecnac, telefono, mail, direccion, tarjeta)
     empresaa.clientes.append(clientee.listacliente)
@@ -72,12 +87,32 @@ def ingresotrabajador():
         print("El dni debe ser un numero de ocho caracteres")
         print("")
         dni = input("Ingrese dni: ")
-    fecnac = input("Ingrese fecha de nacimiento: ")
+    fecnac = input("Ingrese fecha en formato YYYY/MM/DD")
     telefono = input("Ingrese telefono: ")
+    while telefono.isdigit() == False or len(telefono) != 8:
+        print("El telefono debe ser un numero de ocho caracteres")
+        print("")
+        telefono = input("Ingrese telefono: ")
     mail = input("Ingrese mail: ")
+    while "@" not in mail:
+        print("El mail debe contener un @")
+        print("")
+        mail = input("Ingrese mail: ")
     direccion = input("Ingrese direccion: ")
+    while direccion.isdigit() == True or direccion.isalpha() == True:
+        print("La direccion debe tener letras y numeros")
+        print("")
+        direccion = input("Ingrese direccion: ")
     puesto = input("Ingrese puesto: ")
+    while puesto.isalpha() == False:
+        print("El puesto debe contener solo letras")
+        print("")
+        puesto = input("Ingrese puesto: ")
     cbu = input("Ingrese cbu: ")
+    while cbu.isdigit() == False or len(cbu) != 22:
+        print("El cb debe ser un numero de 22 digitos")
+        print("")
+        cbu = input("Ingrese el cbu: ")
     print("")
     trabajadorr = Trabajador(usuario, contrasena, nombre, dni, fecnac, telefono, mail, direccion, puesto, cbu)
     empresaa.trabajadores.append(trabajadorr.listatrabajador)

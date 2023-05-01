@@ -17,64 +17,6 @@
 #             print("La fecha no tiene el formato esperado. Ingrese la fecha nuevamente.")
 #             continue
 
-#     #Telefono
-#     tel = input("Ingrese numero de telefono: ")
-#     while len(tel) != 8 or not tel.isdigit():
-#         tel = input("Ingrese nuevamente el telefono (debe tener 8 dígitos): ")
-#         telefono = tel
-
-#     #Mail
-#     maill = input("Ingrese correo electronico:")
-#     while "@" not in maill: 
-#         maill = input("Ingrese nuevamente el correo electronico (debe contener @)")
-#         mail = maill
-
-#     #Tarjeta
-#     tarjeta1 = input("Ingrese numero de tarjeta:")
-#     while len(tarjeta1.replace(" ", "")) != 16 or not tarjeta1.isdigit():
-#         tarjeta1 = input("Ingrese nuevamente:")
-#         tarjeta = tarjeta1
-        
-#     #direccion
-#     direccion = input("Ingrese direccion: ")
-    
-#     print("")
-#     clientee = Cliente(usuario, contrasena, nombre, dni, fecnac, telefono, mail, direccion, tarjeta)
-#     empresaa.clientes.append(clientee.listacliente)
-#     print("Ingreso de datos realizado")
-#     print("")
-#     texto = ""
-#     for i in clientee.listacliente:
-#         texto += " " + str(i)
-#     with open("./datosclientes.txt", "a", encoding= "utf-8") as f:
-#         f.write("\n" + texto)
-
-
-# # DESCRIPCION
-# # Ingreso todos los datos del trabajador
-# # Se genera la listatrabajador, con todos los datos sobre el trabajador
-# # Se agrega a trabajadores la listatrabajador
-# def ingresotrabajador():
-#     usuario = input("Ingrese usuario: ")
-#     contrasena = input("Ingrese contrasena: ")
-#     nombre = input("Ingrese nombre: ")
-#     dni = input("Ingrese dni: ")
-#     fecnac = input("Ingrese fecha de nacimiento: ")
-#     telefono = input("Ingrese telefono: ")
-#     mail = input("Ingrese mail: ")
-#     direccion = input("Ingrese direccion: ")
-#     puesto = input("Ingrese puesto: ")
-#     cbu = input("Ingrese cbu: ")
-#     print("")
-#     trabajadorr = Trabajador(usuario, contrasena, nombre, dni, fecnac, telefono, mail, direccion, puesto, cbu)
-#     empresaa.trabajadores.append(trabajadorr.listatrabajador)
-#     print("Ingreso de datos realizado")
-#     print("")
-#     texto = ""
-#     for i in trabajadorr.listatrabajador:
-#         texto += " " + str(i)
-#     with open("./datostrabajadores.txt", "a", encoding= "utf-8") as f:
-#         f.write("\n" + texto)
 
 
 # # DESCRIPCION
