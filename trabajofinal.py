@@ -20,10 +20,10 @@ class main:
             usuario1 = input("Ingrese usuario: ")
             contrasena1 = input("Ingrese contrasena: ")
             print("")
-            x = 0
+            validacioncliente = 0
             for i in empresaa.clientes:
                 if i[0] == usuario1 and i[1] == contrasena1:
-                    x = 1
+                    validacioncliente = 1
                     print("Cliente validado")
                     print("")
                     print("1. Alquilar")
@@ -41,17 +41,17 @@ class main:
                     else:
                         print("Ingreso incorrecto de opcion")
                         print("")
-            if x == 0:
+            if validacioncliente == 0:
                 print("El cliente no existe")
                 print("")
         elif eleccion == "4":
             usuario2 = input("Ingrese usuario: ")
             contrasena2 = input("Ingrese contrasena: ")
             print("")
-            y = 0
+            validaciontrabajador = 0
             for i in empresaa.trabajadores:
                 if i[0] == usuario2 and i[1] == contrasena2:
-                    y = 1
+                    validaciontrabajador = 1
                     print("Trabajador validado")
                     print("")
                     print("1. Ingresar estacion")
@@ -69,7 +69,7 @@ class main:
                     else:
                         print("Ingreso incorrecto de opcion")
                         print("")
-            if y == 0:
+            if validaciontrabajador == 0:
                 print("El trabajador no existe")
                 print("")
         elif eleccion == "5":
