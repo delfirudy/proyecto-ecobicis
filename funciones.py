@@ -240,6 +240,15 @@ def mostrarinfo():
 
 # DESCRIPCION
 # Recorre el txt al inicio de la ejecución para pasar los datos a las listas
+# def recorrertxt(nombretxt, nombrepy, lista):
+#     with open(nombretxt) as nombrepy:
+#         for i, line in enumerate(nombrepy):
+#             if i == 0:
+#                 continue
+#             else:
+#                 lista.append(line.strip().split("\t"))
+# Para despues
+
 def recorrertxt():
     with open("datosclientes.txt") as datosclientes:
         for i, line in enumerate(datosclientes):
