@@ -212,31 +212,25 @@ def alquilar(usuario):
         print("")
         estacionsalida = input("Ingrese estacion de salida: ").strip()
     estacionllegada = input("Ingrese estacion de llegada: ").strip()
-    while validarestacion(estacionllegada, empresaa.nombresestaciones) == False:
-        print("No se encontro la estacion")
+    while validarestacionactual(estacionllegada, empresaa.nombresestaciones, empresaa.estaciones) == False:
+        print("No se encontro la estacion o no hay lugar para dejar la bicicleta")
         print("")
         estacionllegada = input("Ingrese estacion de llegada: ").strip()
     print("")
-    for m in empresaa.estaciones:
-        if m[0] == estacionllegada:
-            if m[3] == m[4]:
-                print("No hay lugar para dejar la bicicleta, dejarla en otra estacion")
-                print("")
-            else:
-                codigo += 1
-                alquilerr = Alquiler(usuario, codigo, fecha, duracion, estacionsalida, estacionllegada)
-                empresaa.alquileres.append(alquilerr.listaalquiler)
-                m[4] = str(int(m[4]) + 1)
-                for p in empresaa.estaciones:
-                    if p[0] == estacionsalida:
-                        p[4] = str(int(p[4]) - 1)
-                for q in empresaa.bicicletas:
-                    if q[2] == estacionsalida: 
-                        q[3] = str(int(q[3]) + 1)
-                        q[2] = estacionllegada
-                        break
-                print("Ingreso de alquiler realizado")
-                print("")
+    codigo += 1
+    alquilerr = Alquiler(usuario, codigo, fecha, duracion, estacionsalida, estacionllegada)
+    empresaa.alquileres.append(alquilerr.listaalquiler)
+    print("Ingreso de alquiler realizado")
+    print("")
+    for p in empresaa.estaciones:
+        if p[0] == estacionsalida:
+            p[4] = str(int(p[4]) - 1)
+        if p[0] == estacionllegada:
+            p[4] = str(int(p[4]) + 1)
+    for q in empresaa.bicicletas:
+        if q[2] == estacionsalida: 
+            q[3] = str(int(q[3]) + 1)
+            q[2] = estacionllegada
 
 # DESCRIPCION
 # Muestra la informacion de las estaciones, con sus bicicletas
