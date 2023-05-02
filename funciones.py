@@ -49,7 +49,7 @@ def ingresocliente():
         direccion = input("Ingrese direccion: ").strip()
     tarjeta = input("Ingrese tarjeta: ").strip()
     while validartarjeta(tarjeta, empresaa.tarjetas) == False:
-        print("El formato es incorrecto, la tarjeta debe ser un numero de 16 digitos")
+        print("La tarjeta ya existe o el formato es incorrecto, la tarjeta debe ser un numero de 16 digitos")
         print("")
         tarjeta = input("Ingrese tarjeta: ").strip()
     print("")
@@ -68,7 +68,7 @@ def ingresocliente():
 # Se agrega a trabajadores la listatrabajador
 def ingresotrabajador():
     usuario = input("Ingrese usuario: ").strip()
-    while validarusuario(usuario,empresaa.usuarios) == False:
+    while validarusuario(usuario, empresaa.usuarios) == False:
         print("El usuario ya existe o el formato es incorrecto, el usuario debe contener solo letras")
         print("")
         usuario = input("Ingrese usuario: ").strip()
@@ -111,8 +111,8 @@ def ingresotrabajador():
         print("")
         puesto = input("Ingrese puesto: ").strip()
     cbu = input("Ingrese cbu: ").strip()
-    while validarcbu(cbu,empresaa.cbus) == False:
-        print("El formato es incorrecto, el cbu debe ser un numero de 22 digitos")
+    while validarcbu(cbu, empresaa.cbus) == False:
+        print("El cbu ya existe o el formato es incorrecto, el cbu debe ser un numero de 22 digitos")
         print("")
         cbu = input("Ingrese el cbu: ").strip()
     print("")
@@ -174,7 +174,7 @@ def ingresobicicleta():
     modelo = input("Ingrese modelo: ").strip()
     estacionactual = input("Ingrese estacion donde se ingresa la bicicleta: ").strip()
     while validarestacionactual(estacionactual, empresaa.nombresestaciones, empresaa.estaciones) == False:
-        print("No se encontro la estacion o no hay lugar para dejar la bicicleta")
+        print("No se encontro la estacion, no hay lugar para dejar la bicicleta o el formato es incorrecto, el nombre debe contener solo letras y la primera debe ser mayuscula")
         print("")
         estacionactual = input("Ingrese estacion donde se ingresa la bicicleta: ").strip()
     print("")
@@ -207,13 +207,13 @@ def alquilar(usuario):
         print("")
         duracion = input("Ingrese duracion: ").strip()
     estacionsalida = input("Ingrese estacion de salida: ").strip()
-    while validarestacion(estacionsalida, empresaa.nombresestaciones) == False:
-        print("No se encontro la estacion")
+    while validarestacionsalida(estacionsalida, empresaa.nombresestaciones) == False:
+        print("No se encontro la estacion o el formato es incorrecto, el nombre debe contener solo letras y la primera debe ser mayuscula")
         print("")
         estacionsalida = input("Ingrese estacion de salida: ").strip()
     estacionllegada = input("Ingrese estacion de llegada: ").strip()
     while validarestacionactual(estacionllegada, empresaa.nombresestaciones, empresaa.estaciones) == False:
-        print("No se encontro la estacion o no hay lugar para dejar la bicicleta")
+        print("No se encontro la estacion, no hay lugar para dejar la bicicleta o el formato es incorrecto, el nombre debe contener solo letras y la primera debe ser mayuscula")
         print("")
         estacionllegada = input("Ingrese estacion de llegada: ").strip()
     print("")
@@ -231,6 +231,7 @@ def alquilar(usuario):
         if q[2] == estacionsalida: 
             q[3] = str(int(q[3]) + 1)
             q[2] = estacionllegada
+            break
 
 # DESCRIPCION
 # Muestra la informacion de las estaciones, con sus bicicletas

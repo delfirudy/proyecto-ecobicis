@@ -55,6 +55,9 @@ def validarnumero(cantbicitotal):
 def validarpatente(patente, listapatentes):
     patente.isdigit() and patente not in listapatentes
 
+def validarestacionsalida(nombre, listaestaciones):
+    return nombre.replace(" ","").isalpha() and nombre[0].replace(" ","").isupper() and nombre in listaestaciones
+
 def validarestacionactual(estacionactual, listaestaciones, listadatosestaciones):
     for i in listadatosestaciones:
         if i[0] == estacionactual:
@@ -62,4 +65,4 @@ def validarestacionactual(estacionactual, listaestaciones, listadatosestaciones)
                 cumple = "Si"
             else:
                 cumple = "No"
-    return estacionactual in listaestaciones and cumple == "Si"
+    return estacionactual.replace(" ","").isalpha() and estacionactual[0].replace(" ","").isupper() and estacionactual in listaestaciones and cumple == "Si"
