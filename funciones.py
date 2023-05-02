@@ -241,161 +241,47 @@ def mostrarinfo():
 
 # DESCRIPCION
 # Recorre el txt al inicio de la ejecución para pasar los datos a las listas
-# Para probar despues
-# def recorrertxt(nombretxt, lista):
-#     with open(nombretxt) as nombrepy:
-#         for i, line in enumerate(nombrepy):
-#             if i == 0:
-#                 continue
-#             else:
-#                 lista.append(line.strip().split("\t"))
-#         for i in empresaa.clientes:
-#             empresaa.usuarios.append(i[0])
-#             empresaa.tarjetas.append(i[8])
-#             empresaa.dnis.append(i[3])
-#         for i in empresaa.trabajadores:
-#             empresaa.usuarios.append(i[0])
-#             empresaa.cbus.append(i[9])
-#             empresaa.dnis.append(i[3])
-#         for i in empresaa.estaciones:
-#             empresaa.nombresestaciones.append(i[0])
-#         for i in empresaa.bicicletas:
-#             empresaa.patentes.append(i[0])
-# En trabajo final
-# recorrertxt("datosclientes.txt", empresaa.clientes) y lo mismo con todos
-
 def recorrertxt():
-    with open("datosclientes.txt") as datosclientes:
-        for i, line in enumerate(datosclientes):
-            if i == 0:
-                continue
-            else:
-                empresaa.clientes.append(line.strip().split("\t"))
+    nombrestxt = ["datosclientes.txt", "datostrabajadores.txt", "datosestaciones.txt", "datosbicicletas.txt", "datosalquileres.txt"]
+    listas = [empresaa.clientes, empresaa.trabajadores, empresaa.estaciones, empresaa.bicicletas, empresaa.alquileres]
+    for n, p in zip(nombrestxt, listas): 
+        with open(n) as nombrepy:
+            for i, line in enumerate(nombrepy):
+                if i == 0:
+                    continue
+                else:
+                    p.append(line.strip().split("\t"))
     for i in empresaa.clientes:
         empresaa.usuarios.append(i[0])
         empresaa.tarjetas.append(i[8])
         empresaa.dnis.append(i[3])
-    with open("datostrabajadores.txt") as datostrabajadores:
-        for i, line in enumerate(datostrabajadores):
-            if i == 0:
-                continue
-            else:
-                empresaa.trabajadores.append(line.strip().split("\t"))
     for i in empresaa.trabajadores:
         empresaa.usuarios.append(i[0])
         empresaa.cbus.append(i[9])
         empresaa.dnis.append(i[3])
-    with open("datosestaciones.txt") as datosestaciones:
-        for i, line in enumerate(datosestaciones):
-            if i == 0:
-                continue
-            else:
-                empresaa.estaciones.append(line.strip().split("\t"))
     for i in empresaa.estaciones:
         empresaa.nombresestaciones.append(i[0])
-    with open("datosbicicletas.txt") as datosbicicletas:
-        for i, line in enumerate(datosbicicletas):
-            if i == 0:
-                continue
-            else:
-                empresaa.bicicletas.append(line.strip().split("\t"))
     for i in empresaa.bicicletas:
         empresaa.patentes.append(i[0])
-    with open("datosalquileres.txt") as datosalquileres:
-        for i, line in enumerate(datosalquileres):
-            if i == 0:
-                continue
-            else:
-                empresaa.alquileres.append(line.strip().split("\t"))
 
 # DESCRIPCION
 # Actualiza el txt al cerrar el código
-# Para probar despues
-# def actualizartxt(nombretxt, lista):
-#     for i in range(len(lista)):
-#         if i == 0:
-#             texto = ""
-#             for n in lista[i]:
-#                 texto += str(n) + "\t"
-#             f = open(nombretxt,"w")
-#             f.write("\n" + texto)
-#             f.close()
-# En trabajo final
-# actualizartxt("datosclientes.txt", empresaa.clientes) y lo mismo con todos
-            
 def actualizartxt():
-    for i in range(len(empresaa.clientes)):
-        if i == 0:
-            texto = ""
-            for n in empresaa.clientes[i]:
-                texto += str(n) + "\t" 
-            f = open("datosclientes.txt","w")
-            f.write("\n" + texto)
-            f.close()
-        else:
-            texto = ""
-            for n in empresaa.clientes[i]:
-                texto += str(n) + "\t" 
-            f = open("datosclientes.txt","a")
-            f.write("\n" + texto)
-            f.close()
-    for i in range(len(empresaa.trabajadores)):
-        if i ==0:
-            texto = ""
-            for n in empresaa.trabajadores[i]:
-                texto += str(n) + "\t" 
-            f = open("datostrabajadores.txt","w")
-            f.write("\n" + texto)
-            f.close()
-        else:
-            texto = ""
-            for n in empresaa.trabajadores[i]:
-                texto += str(n) + "\t" 
-            f = open("datostrabajadores.txt","a")
-            f.write("\n" + texto)
-            f.close()       
-    for i in range(len(empresaa.estaciones)):
-        if i ==0:
-            texto = ""
-            for n in empresaa.estaciones[i]:
-                texto += str(n) + "\t" 
-            f = open("datosestaciones.txt","w")
-            f.write("\n" + texto)
-            f.close()
-        else:
-            texto = ""
-            for n in empresaa.estaciones[i]:
-                texto += str(n) + "\t" 
-            f = open("datosestaciones.txt","a")
-            f.write("\n" + texto)
-            f.close()
-    for i in range(len(empresaa.bicicletas)):
-        if i ==0: 
-            texto = ""
-            for n in empresaa.bicicletas[i]:
-                texto += str(n) + "\t" 
-            f = open("datosbicicletas.txt","w")
-            f.write("\n" + texto)
-            f.close()
-        else:
-            texto = ""
-            for n in empresaa.bicicletas[i]:
-                texto += str(n) + "\t" 
-            f = open("datosbicicletas.txt","a")
-            f.write("\n" + texto)
-            f.close()
-    for i in range(len(empresaa.alquileres)):
-        if i ==0:
-            texto = ""
-            for n in empresaa.alquileres[i]:
-                texto += str(n) + "\t" 
-            f = open("datosalquileres.txt","w")
-            f.write("\n" + texto)
-            f.close()
-        else:
-            texto = ""
-            for n in empresaa.alquileres[i]:
-                texto += str(n) + "\t" 
-            f = open("datosalquileres.txt","a")
-            f.write("\n" + texto)
-            f.close()
+    nombrestxt = ["datosclientes.txt", "datostrabajadores.txt", "datosestaciones.txt", "datosbicicletas.txt", "datosalquileres.txt"]
+    listas = [empresaa.clientes, empresaa.trabajadores, empresaa.estaciones, empresaa.bicicletas, empresaa.alquileres]
+    for t, p in zip(nombrestxt, listas): 
+        for i in range(len(p)):
+            if i == 0:
+                texto = ""
+                for n in p[i]:
+                    texto += str(n) + "\t"
+                f = open(t,"w")
+                f.write("\n" + texto)
+                f.close()
+            else:
+                texto = ""
+                for n in p[i]:
+                    texto += str(n) + "\t" 
+                f = open(t,"a")
+                f.write("\n" + texto)
+                f.close()
