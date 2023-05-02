@@ -240,14 +240,28 @@ def mostrarinfo():
 
 # DESCRIPCION
 # Recorre el txt al inicio de la ejecución para pasar los datos a las listas
-# def recorrertxt(nombretxt, nombrepy, lista):
+# Para probar despues
+# def recorrertxt(nombretxt, lista):
 #     with open(nombretxt) as nombrepy:
 #         for i, line in enumerate(nombrepy):
 #             if i == 0:
 #                 continue
 #             else:
 #                 lista.append(line.strip().split("\t"))
-# Para despues
+#         for i in empresaa.clientes:
+#             empresaa.usuarios.append(i[0])
+#             empresaa.tarjetas.append(i[8])
+#             empresaa.dnis.append(i[3])
+#         for i in empresaa.trabajadores:
+#             empresaa.usuarios.append(i[0])
+#             empresaa.cbus.append(i[9])
+#             empresaa.dnis.append(i[3])
+#         for i in empresaa.estaciones:
+#             empresaa.nombresestaciones.append(i[0])
+#         for i in empresaa.bicicletas:
+#             empresaa.patentes.append(i[0])
+# En trabajo final
+# recorrertxt("datosclientes.txt", empresaa.clientes) y lo mismo con todos
 
 def recorrertxt():
     with open("datosclientes.txt") as datosclientes:
@@ -295,6 +309,19 @@ def recorrertxt():
 
 # DESCRIPCION
 # Actualiza el txt al cerrar el código
+# Para probar despues
+# def actualizartxt(nombretxt, lista):
+#     for i in range(len(lista)):
+#         if i == 0:
+#             texto = ""
+#             for n in lista[i]:
+#                 texto += str(n) + "\t"
+#             f = open(nombretxt,"w")
+#             f.write("\n" + texto)
+#             f.close()
+# En trabajo final
+# actualizartxt("datosclientes.txt", empresaa.clientes) y lo mismo con todos
+            
 def actualizartxt():
     for i in range(len(empresaa.clientes)):
         if i == 0:
