@@ -13,7 +13,7 @@ class Empresa:
         self.tarjetas = []
         self.dnis = []
 
-class Persona:
+class Usuario:
     def __init__(self, usuario, contrasena, nombre, dni, fecnac, telefono, mail, direccion):
         self.usuario = usuario
         self.contrasena = contrasena
@@ -24,15 +24,15 @@ class Persona:
         self.mail = mail
         self.direccion = direccion
 
-class Cliente(Persona):
+class Cliente(Usuario):
     def __init__(self, usuario, contrasena, nombre, dni, fecnac, telefono, mail, direccion, tarjeta):
-        Persona.__init__(self, usuario, contrasena, nombre, dni, fecnac, telefono, mail, direccion)
+        Usuario.__init__(self, usuario, contrasena, nombre, dni, fecnac, telefono, mail, direccion)
         self.tarjeta = tarjeta
         self.listacliente = [usuario, contrasena, nombre, dni, fecnac, telefono, mail, direccion, tarjeta]
 
-class Trabajador(Persona):
+class Trabajador(Usuario):
     def __init__(self, usuario, contrasena, nombre, dni, fecnac, telefono, mail, direccion, puesto, cbu):
-        Persona.__init__(self, usuario, contrasena, nombre, dni, fecnac, telefono, mail, direccion)
+        Usuario.__init__(self, usuario, contrasena, nombre, dni, fecnac, telefono, mail, direccion)
         self.puesto = puesto
         self.cbu = cbu
         self.listatrabajador = [usuario, contrasena, nombre, dni, fecnac, telefono, mail, direccion, puesto, cbu]
