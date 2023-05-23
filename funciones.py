@@ -1,161 +1,4 @@
 from clases import *
-from validaciones import *
-
-empresaa = Empresa("Ecobicis")
-
-# DESCRIPCION
-# Ingreso todos los datos del cliente
-# Se validan los datos
-# Se genera la listacliente, con todos los datos sobre el cliente
-# Se agrega a clientes la listacliente
-def ingresocliente():
-    usuario = input("Ingrese usuario: ").strip()
-    while validarusuario(usuario,empresaa.usuarios) == False:
-        print("El usuario ya existe o el formato es incorrecto, el usuario debe contener solo letras")
-        print("")
-        usuario = input("Ingrese usuario: ").strip()
-    contrasena = input("Ingrese contrasena: ").strip()
-    while validarcontrasena(contrasena) == False:
-        print("El formato es incorrecto, la contrasena debe contener solo letras y la primera debe ser mayuscula")
-        print("")
-        contrasena = input("Ingrese contrasena: ").strip()
-    nombre = input("Ingrese nombre: ").strip()
-    while validarnombre(nombre) == False:
-        print("El formato es incorrecto, el nombre debe contener solo letras y la primera debe ser mayuscula")
-        print("")
-        nombre = input("Ingrese nombre: ").strip()
-    dni = input("Ingrese dni: ").strip()
-    while validardni(dni, empresaa.dnis) == False:
-        print("El dni ya existe o el formato es incorrecto, debe ser un numero de ocho caracteres")
-        print("")
-        dni = input("Ingrese dni: ").strip()
-    fecnac = input("Ingrese fecha de nacimiento: ").strip() 
-    while validarfecha(fecnac) == False:
-        fecnac = input("Ingrese fecha de nacimiento: ").strip() 
-    telefono = input("Ingrese telefono: ").strip()
-    while validartelefono(telefono) == False:
-        print("El formato es incorrecto, el telefono debe ser un numero de diez caracteres")
-        print("")
-        telefono = input("Ingrese telefono: ").strip()
-    mail = input("Ingrese mail: ").strip()
-    while validarmail(mail) == False:
-        print("El formato es incorrecto, el mail debe contener un @")
-        print("")
-        mail = input("Ingrese mail: ").strip()
-    direccion = input("Ingrese direccion: ").strip()
-    while validardireccion(direccion) == False:
-        print("El formato es incorrecto, la direccion debe tener letras y numeros")
-        print("")
-        direccion = input("Ingrese direccion: ").strip()
-    tarjeta = input("Ingrese tarjeta: ").strip()
-    while validartarjeta(tarjeta, empresaa.tarjetas) == False:
-        print("La tarjeta ya existe o el formato es incorrecto, la tarjeta debe ser un numero de 16 digitos")
-        print("")
-        tarjeta = input("Ingrese tarjeta: ").strip()
-    print("")
-    clientee = Cliente(usuario, contrasena, nombre, dni, fecnac, telefono, mail, direccion, tarjeta)
-    empresaa.clientes.append(clientee.listacliente)
-    empresaa.usuarios.append(usuario)
-    empresaa.tarjetas.append(tarjeta)
-    empresaa.dnis.append(dni)
-    print("Ingreso de datos realizado")
-    print("")
-
-# DESCRIPCION
-# Ingreso todos los datos del trabajador
-# Se validan los datos
-# Se genera la listatrabajador, con todos los datos sobre el trabajador
-# Se agrega a trabajadores la listatrabajador
-def ingresotrabajador():
-    usuario = input("Ingrese usuario: ").strip()
-    while validarusuario(usuario, empresaa.usuarios) == False:
-        print("El usuario ya existe o el formato es incorrecto, el usuario debe contener solo letras")
-        print("")
-        usuario = input("Ingrese usuario: ").strip()
-    contrasena = input("Ingrese contrasena: ").strip()
-    while validarcontrasena(contrasena) == False:
-        print("El formato es incorrecto, la contrasena debe contener solo letras y la primera debe ser mayuscula")
-        print("")
-        contrasena = input("Ingrese contrasena: ").strip()
-    nombre = input("Ingrese nombre: ").strip()
-    while validarnombre(nombre) == False:
-        print("El formato es incorrecto, el nombre debe contener solo letras y la primera debe ser mayuscula")
-        print("")
-        nombre = input("Ingrese nombre: ").strip()
-    dni = input("Ingrese dni: ").strip()
-    while validardni(dni, empresaa.dnis) == False:
-        print("El dni ya existe o el formato es incorrecto, debe ser un numero de ocho caracteres")
-        print("")
-        dni = input("Ingrese dni: ").strip()
-    fecnac = input("Ingrese fecha de nacimiento: ").strip() 
-    while validarfecha(fecnac) == False:
-        fecnac = input("Ingrese fecha de nacimiento: ").strip() 
-    telefono = input("Ingrese telefono: ").strip()
-    while validartelefono(telefono) == False:
-        print("El formato es incorrecto, el telefono debe ser un numero de diez caracteres")
-        print("")
-        telefono = input("Ingrese telefono: ").strip()
-    mail = input("Ingrese mail: ").strip()
-    while validarmail(mail) == False:
-        print("El formato es incorrecto, el mail debe contener un @")
-        print("")
-        mail = input("Ingrese mail: ").strip()
-    direccion = input("Ingrese direccion: ").strip()
-    while validardireccion(direccion) == False:
-        print("El formato es incorrecto, la direccion debe tener letras y numeros")
-        print("")
-        direccion = input("Ingrese direccion: ").strip()
-    puesto = input("Ingrese puesto: ").strip()
-    while validarpuesto(puesto) == False:
-        print("El formato es incorrecto, el puesto debe contener solo letras")
-        print("")
-        puesto = input("Ingrese puesto: ").strip()
-    cbu = input("Ingrese cbu: ").strip()
-    while validarcbu(cbu, empresaa.cbus) == False:
-        print("El cbu ya existe o el formato es incorrecto, el cbu debe ser un numero de 22 digitos")
-        print("")
-        cbu = input("Ingrese el cbu: ").strip()
-    print("")
-    trabajadorr = Trabajador(usuario, contrasena, nombre, dni, fecnac, telefono, mail, direccion, puesto, cbu)
-    empresaa.trabajadores.append(trabajadorr.listatrabajador)
-    empresaa.usuarios.append(usuario)
-    empresaa.cbus.append(cbu)
-    empresaa.dnis.append(dni)
-    print("Ingreso de datos realizado")
-    print("")
-
-# DESCRIPCION
-# Ingreso todos los datos de la estacion
-# Se validan los datos
-# Se genera la listaestacion, con todos los datos sobre la estacion
-# Se agrega a estaciones la listaestacion
-def ingresoestacion():
-    nombre = input("Ingrese nombre: ").strip()
-    while validarestacion(nombre, empresaa.nombresestaciones) == False:
-        print("La estacion ya existe o el formato es incorrecto, el nombre debe contener solo letras y la primera debe ser mayuscula")
-        print("")
-        nombre = input("Ingrse nombre: ").strip()
-    direccion = input("Ingrese direccion: ").strip()
-    while validardireccion(direccion) == False:
-        print("El formato es incorrecto, la direccion debe tener letras y numeros")
-        print("")
-        direccion = input("Ingrese direccion: ").strip()
-    barrio = input("Ingrese barrio: ").strip()
-    while validarnombre(barrio) == False:
-        print("El formato es incorrecto, el barrio debe contener solo letras y la primera debe ser mayuscula")
-        print("")
-        barrio = input("Ingrese barrio: ").strip()
-    cantbicitotal = input("Ingrese capacidad: ").strip()
-    while validarnumero(cantbicitotal) == False:
-        print("El formato es incorrecto, la capacidad debe ser un numero")
-        print("")
-        cantbicitotal = input("Ingrese capacidad: ").strip()
-    print("")
-    estacionn = Estacion(nombre, direccion, barrio, cantbicitotal)
-    empresaa.estaciones.append(estacionn.listaestacion)
-    empresaa.nombresestaciones.append(nombre)
-    print("Ingreso de datos realizado")
-    print("")
 
 # DESCRIPCION
 # Ingreso todos los datos de la bicicleta
@@ -186,6 +29,7 @@ def ingresobicicleta():
     for i in empresaa.estaciones:
         if i[0] == estacionactual:
             i[4] = str(int(i[4]) + 1)
+# FALTAAAAA
 
 # DESCRIPCION
 # Ingreso de los datos necesarios para el alquiler
@@ -232,6 +76,7 @@ def alquilar(usuario):
             q[3] = str(int(q[3]) + 1)
             q[2] = estacionllegada
             break
+# CODIGO
 
 # DESCRIPCION
 # Muestra la informacion de las estaciones, con sus bicicletas
@@ -239,8 +84,6 @@ def mostrarinfo():
     print(empresaa.estaciones)
     print("")
 
-# DESCRIPCION
-# Recorre el txt al inicio de la ejecución para pasar los datos a las listas
 def recorrertxt():
     nombrestxt = ["datosclientes.txt", "datostrabajadores.txt", "datosestaciones.txt", "datosbicicletas.txt", "datosalquileres.txt"]
     listas = [empresaa.clientes, empresaa.trabajadores, empresaa.estaciones, empresaa.bicicletas, empresaa.alquileres]
@@ -264,8 +107,6 @@ def recorrertxt():
     for i in empresaa.bicicletas:
         empresaa.patentes.append(i[0])
 
-# DESCRIPCION
-# Actualiza el txt al cerrar el código
 def actualizartxt():
     nombrestxt = ["datosclientes.txt", "datostrabajadores.txt", "datosestaciones.txt", "datosbicicletas.txt", "datosalquileres.txt"]
     listas = [empresaa.clientes, empresaa.trabajadores, empresaa.estaciones, empresaa.bicicletas, empresaa.alquileres]

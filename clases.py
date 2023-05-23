@@ -16,6 +16,8 @@ class Empresa:
         self.bicicletas = []
         self.alquileres = []
 
+empresa = Empresa("Ecobicis")
+
 class Usuario:
     def __init__(self, usuario, contrasena, nombre, dni, fecnac, telefono, mail, direccion):
         usuario = input("Ingrese usuario: ").strip()
@@ -70,7 +72,6 @@ class Usuario:
         return "Usuario: {} \nContrasena: {} \nNombre: {} \nDni: {} \nFecha de nacimiento: {} \nTelefono: {} \nMail: {} \nDireccion: {}".format(self.usuario, self.contrasena, self.nombre, self.dni, self.fecnac, self.telefono, self.mail, self.direccion)
 
 class Cliente(Usuario):
-    clientes = []
     def __init__(self, usuario, contrasena, nombre, dni, fecnac, telefono, mail, direccion, tarjeta):
         Usuario.__init__(self, usuario, contrasena, nombre, dni, fecnac, telefono, mail, direccion)
         tarjeta = input("Ingrese tarjeta: ").strip()
@@ -81,12 +82,11 @@ class Cliente(Usuario):
         self.tarjeta = tarjeta
         listatarjetas.append(tarjeta)
     def agregar(self):
-        Cliente.clientes.append(self)
+        empresa.clientes.append(self)
     def __str__(self):
         return "Usuario: {} \nContrasena: {} \nNombre: {} \nDni: {} \nFecha de nacimiento: {} \nTelefono: {} \nMail: {} \nDireccion: {} \nTarjeta: {}".format(self.usuario, self.contrasena, self.nombre, self.dni, self.fecnac, self.telefono, self.mail, self.direccion, self.tarjeta)
 
 class Trabajador(Usuario):
-    trabajadores = []
     def __init__(self, usuario, contrasena, nombre, dni, fecnac, telefono, mail, direccion, puesto, cbu):
         Usuario.__init__(self, usuario, contrasena, nombre, dni, fecnac, telefono, mail, direccion)
         while validarpuesto(puesto) == False:
@@ -102,12 +102,12 @@ class Trabajador(Usuario):
         self.cbu = cbu
         listacbus.append(cbu)
     def agregar(self):
-        Trabajador.trabajadores.append(self)
+        empresa.trabajadores.append(self)
     def __str__(self):
         return "Usuario: {} \nContrasena: {} \nNombre: {} \nDni: {} \nFecha de nacimiento: {} \nTelefono: {} \nMail: {} \nDireccion: {} \nPuesto {} \nCbu: {}".format(self.usuario, self.contrasena, self.nombre, self.dni, self.fecnac, self.telefono, self.mail, self.direccion, self.puesto, self.cbu)
 
+# DEBERIA SER UN METODO DE TRABAJADOR
 class Estacion:
-    estaciones = []
     def __init__(self, nombre, direccion, barrio, cantbicitotal, cantbicidisponible=0):
         nombre = input("Ingrese nombre: ").strip()
         while validarestacion(nombre, listaestaciones) == False:
@@ -136,12 +136,12 @@ class Estacion:
         self.cantbicidisponible = cantbicidisponible
         listaestaciones.append(nombre)
     def agregar(self):
-        Estacion.estaciones.append(self)
+        empresa.estaciones.append(self)
     def __str__(self):
         return "Nombre: {} \nDireccion: {} \nBarrio: {} \nCantidad maxima de bicicletas: {} \nCantidad disponible de bicicletas: {}".format(self.nombre, self.direccion, self.barrio, self.cantbicitotal, self.cantbicidisponible)
 
-class Bicicleta:
-    bicicletas = []
+# DEBERIA SER UN METODO DE TRABAJADOR
+class Bicicleta():
     def __init__(self, patente, modelo, estacionactual, cantusos=0):
         patente = input("Ingrese patente: ").strip()
         while validarpatente(patente, listapatentes) == False:
@@ -150,7 +150,7 @@ class Bicicleta:
             patente = input("Ingrese patente: ").strip()
         modelo = input("Ingrese modelo: ").strip()
         estacionactual = input("Ingrese estacion donde se ingresa la bicicleta: ").strip()
-        while validarestacionactual(estacionactual, listaestaciones, empresaa.estaciones) == False:
+        while validarestacionactual(estacionactual, listaestaciones, empresa.estaciones) == False:
             print("No se encontro la estacion, no hay lugar para dejar la bicicleta o el formato es incorrecto, el nombre debe contener solo letras y la primera debe ser mayuscula")
             print("")
             estacionactual = input("Ingrese estacion donde se ingresa la bicicleta: ").strip()
@@ -158,13 +158,14 @@ class Bicicleta:
         self.modelo = modelo
         self.estacionactual = estacionactual
         self.cantusos = cantusos
+        # SUMAR UNO A CANTBICIDISPONIBLE
     def agregar(self):
-        Bicicleta.bicicletas.append(self)
+        empresa.bicicletas.append(self)
     def __str__(self):
         return "Patente: {} \nModelo: {} \nEstacion actual: {} \nCantidad de usos: {}".format(self.patente, self.modelo, self.estacionactual, self.cantusos)
 
+# DEBERIA SER UN METODO DE CLIENTE, NO UNA CLASE
 class Alquiler():
-    alquileres = []
     def __init__(self, usuario, codigo, fecha, duracion, estacionsalida, estacionllegada):
         fecha = input("Ingrese fecha del alquiler: ").strip()
         while validarfecha(fecha) == False:
@@ -180,7 +181,7 @@ class Alquiler():
             print("")
             estacionsalida = input("Ingrese estacion de salida: ").strip()
         estacionllegada = input("Ingrese estacion de llegada: ").strip()
-        while validarestacionactual(estacionllegada, listaestaciones, empresaa.estaciones) == False:
+        while validarestacionactual(estacionllegada, listaestaciones, empresa.estaciones) == False:
             print("No se encontro la estacion, no hay lugar para dejar la bicicleta o el formato es incorrecto, el nombre debe contener solo letras y la primera debe ser mayuscula")
             print("")
             estacionllegada = input("Ingrese estacion de llegada: ").strip()
@@ -190,8 +191,11 @@ class Alquiler():
         self.duracion = duracion
         self.estacionsalida = estacionsalida
         self.estacionllegada = estacionllegada
+        # SUMAR UNO A CANTIDAD DE USOS
+        # SUMAR UNO A ESTACION LLEGADA
+        # SUMAR UNO A ESTACION SALIDA
     def agregar(self):
-        Alquiler.alquileres.append(self)
+        empresa.alquileres.append(self)
     def __str__(self):
         return "Usuario: {} \nCodigo: {} \nFecha: {} \nDuracion: {} \nEstacion salida: {} \nEstacion llegada: {}".format(self.usuario, self.codigo, self.fecha, self.duracion, self.estacionsalida, self.estacionllegada)
     
