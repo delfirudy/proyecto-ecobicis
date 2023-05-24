@@ -20,7 +20,6 @@ class Empresa:
 empresa = Empresa("Ecobicis")
 
 class Usuario:
-
     def __init__(self, usuario, contrasena, nombre, dni, fecnac, telefono, mail, direccion):
         # Ingreso de datos del usuario
         usuario = input("Ingrese usuario: ").strip()
@@ -78,7 +77,6 @@ class Usuario:
         return "Usuario: {} \nContrasena: {} \nNombre: {} \nDni: {} \nFecha de nacimiento: {} \nTelefono: {} \nMail: {} \nDireccion: {}".format(self.usuario, self.contrasena, self.nombre, self.dni, self.fecnac, self.telefono, self.mail, self.direccion)
 
 class Cliente(Usuario):
-    
     def __init__(self, usuario, contrasena, nombre, dni, fecnac, telefono, mail, direccion, tarjeta):
         Usuario.__init__(self, usuario, contrasena, nombre, dni, fecnac, telefono, mail, direccion)
         # Ingreso de datos del cliente
@@ -139,7 +137,6 @@ class Cliente(Usuario):
 
 
 class Trabajador(Usuario):
-
     def __init__(self, usuario, contrasena, nombre, dni, fecnac, telefono, mail, direccion, puesto, cbu):
         Usuario.__init__(self, usuario, contrasena, nombre, dni, fecnac, telefono, mail, direccion)
         # Ingreso de datos del trabajador
@@ -215,7 +212,6 @@ class Trabajador(Usuario):
 
 
 class Estacion:
-
     def __init__(self, nombre, direccion, barrio, cantbicitotal, cantbicidisponible):
         self.nombre = nombre
         self.direccion = direccion
@@ -228,7 +224,6 @@ class Estacion:
 
 
 class Bicicleta():
-
     def __init__(self, patente, modelo, estacionactual, cantusos):
         self.patente = patente
         self.modelo = modelo
@@ -240,7 +235,6 @@ class Bicicleta():
 
 
 class Alquiler():
-
     def __init__(self, usuario, codigo, fecha, duracion, estacionsalida, estacionllegada):
         self.usuario = usuario
         self.codigo = codigo
