@@ -6,6 +6,7 @@ listatarjetas = []
 listacbus = []
 listanombres = []
 listapatentes = []
+codigoalquiler = 0
 
 class Empresa:
     def __init__(self, nombre):
@@ -93,6 +94,8 @@ class Cliente(Usuario):
         empresa.clientes.append(self)
     
     def alquilar(self):
+        global codigoalquiler
+        codigoalquiler += codigoalquiler
         # Ingreso de datos del alquiler
         fecha = input("Ingrese fecha del alquiler: ").strip()
         while validarfecha(fecha) == False:
@@ -113,7 +116,7 @@ class Cliente(Usuario):
             print("")
             estacionllegada = input("Ingrese estacion de llegada: ").strip()
         # Agregado de alquiler a la lista de alquileres
-        empresa.alquileres.append(Alquiler(self.nombre, "codigo", fecha, duracion, estacionsalida, estacionllegada))
+        empresa.alquileres.append(Alquiler(self.nombre, codigoalquiler, fecha, duracion, estacionsalida, estacionllegada))
         # Suma uno a cantusos de la bicicleta
         # Suma uno a cantbicidisponible de la estacion llegada
         # Resta uno a cantbicidisponible de la estacion salida
