@@ -8,6 +8,7 @@ listanombres = []
 listapatentes = []
 codigoalquiler = 0
 
+
 class Empresa:
     def __init__(self, nombre):
         self.nombre = nombre
@@ -18,6 +19,7 @@ class Empresa:
         self.alquileres = []
 
 empresa = Empresa("Ecobicis")
+
 
 class Usuario:
     def __init__(self, usuario, contrasena, nombre, dni, fecnac, telefono, mail, direccion):
@@ -75,6 +77,7 @@ class Usuario:
 
     def __str__(self):
         return "Usuario: {} \nContrasena: {} \nNombre: {} \nDni: {} \nFecha de nacimiento: {} \nTelefono: {} \nMail: {} \nDireccion: {}".format(self.usuario, self.contrasena, self.nombre, self.dni, self.fecnac, self.telefono, self.mail, self.direccion)
+
 
 class Cliente(Usuario):
     def __init__(self, usuario, contrasena, nombre, dni, fecnac, telefono, mail, direccion, tarjeta):
