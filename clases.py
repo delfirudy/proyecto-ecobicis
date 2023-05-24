@@ -4,7 +4,7 @@ listausuarios = []
 listadnis = []
 listatarjetas = []
 listacbus = []
-listaestaciones = []
+listanombres = []
 listapatentes = []
 
 class Empresa:
@@ -19,7 +19,9 @@ class Empresa:
 empresa = Empresa("Ecobicis")
 
 class Usuario:
+
     def __init__(self, usuario, contrasena, nombre, dni, fecnac, telefono, mail, direccion):
+        # Ingreso de datos del usuario
         usuario = input("Ingrese usuario: ").strip()
         while validarusuario(usuario, listausuarios) == False:
             print("El usuario ya existe o el formato es incorrecto, el usuario debe contener solo letras")
@@ -66,29 +68,78 @@ class Usuario:
         self.telefono = telefono
         self.mail = mail
         self.direccion = direccion
+        # Agregado de usuario a la lista de usuarios
         listausuarios.append(usuario)
+        # Agregado de dni a la lista de dnis
         listadnis.append(dni)
+
     def __str__(self):
         return "Usuario: {} \nContrasena: {} \nNombre: {} \nDni: {} \nFecha de nacimiento: {} \nTelefono: {} \nMail: {} \nDireccion: {}".format(self.usuario, self.contrasena, self.nombre, self.dni, self.fecnac, self.telefono, self.mail, self.direccion)
 
 class Cliente(Usuario):
+    
     def __init__(self, usuario, contrasena, nombre, dni, fecnac, telefono, mail, direccion, tarjeta):
         Usuario.__init__(self, usuario, contrasena, nombre, dni, fecnac, telefono, mail, direccion)
+        # Ingreso de datos del cliente
         tarjeta = input("Ingrese tarjeta: ").strip()
         while validartarjeta(tarjeta, listatarjetas) == False:
             print("La tarjeta ya existe o el formato es incorrecto, la tarjeta debe ser un numero de 16 digitos")
             print("")
             tarjeta = input("Ingrese tarjeta: ").strip()
         self.tarjeta = tarjeta
+        # Agregado de tarjeta a la lista de tarjetas
         listatarjetas.append(tarjeta)
-    def agregar(self):
+        # Agregado de cliente a la lista de clientes
         empresa.clientes.append(self)
+    
+    def alquilar(self):
+        # Ingreso de datos del alquiler
+        fecha = input("Ingrese fecha del alquiler: ").strip()
+        while validarfecha(fecha) == False:
+            fecha = input("Ingrese fecha del alquiler: ").strip() 
+        duracion = input("Ingrese duracion del alquiler en minutos: ").strip()
+        while validarnumero(duracion) == False:
+            print("El formato es incorrecto, la duracion debe ser un numero")
+            print("")
+            duracion = input("Ingrese duracion: ").strip()
+        estacionsalida = input("Ingrese estacion de salida: ").strip()
+        while validarestacionsalida(estacionsalida, listanombres) == False:
+            print("No se encontro la estacion o el formato es incorrecto, el nombre debe contener solo letras y la primera debe ser mayuscula")
+            print("")
+            estacionsalida = input("Ingrese estacion de salida: ").strip()
+        estacionllegada = input("Ingrese estacion de llegada: ").strip()
+        while validarestacionactual(estacionllegada, listanombres, empresa.estaciones) == False:
+            print("No se encontro la estacion, no hay lugar para dejar la bicicleta o el formato es incorrecto, el nombre debe contener solo letras y la primera debe ser mayuscula")
+            print("")
+            estacionllegada = input("Ingrese estacion de llegada: ").strip()
+        # Agregado de alquiler a la lista de alquileres
+        empresa.alquileres.append(Alquiler(self.nombre, "codigo", fecha, duracion, estacionsalida, estacionllegada))
+        # Suma uno a cantusos de la bicicleta
+        # Suma uno a cantbicidisponible de la estacion llegada
+        # Resta uno a cantbicidisponible de la estacion salida
+        for estacion in empresa.estaciones:
+            if estacion.nombre == estacionsalida:
+                estacion.cantbicidisponible -= 1
+            for bicicleta in empresa.bicicletas:
+                if bicicleta.estacionactual == estacionsalida:
+                    bicicleta.cantusos += 1
+                    break
+            if estacion.nombre == estacionllegada:
+                estacion.cantbicidisponible += 1
+
+    def mostrarinfo(self):
+        for estacion in empresa.estaciones:
+            print(estacion.nombre + " " + estacion.direccion + " " + estacion.barrio + " " + estacion.cantbicitotal + " " + estacion.cantbicidisponible)
+    
     def __str__(self):
         return "Usuario: {} \nContrasena: {} \nNombre: {} \nDni: {} \nFecha de nacimiento: {} \nTelefono: {} \nMail: {} \nDireccion: {} \nTarjeta: {}".format(self.usuario, self.contrasena, self.nombre, self.dni, self.fecnac, self.telefono, self.mail, self.direccion, self.tarjeta)
 
+
 class Trabajador(Usuario):
+
     def __init__(self, usuario, contrasena, nombre, dni, fecnac, telefono, mail, direccion, puesto, cbu):
         Usuario.__init__(self, usuario, contrasena, nombre, dni, fecnac, telefono, mail, direccion)
+        # Ingreso de datos del trabajador
         while validarpuesto(puesto) == False:
             print("El formato es incorrecto, el puesto debe contener solo letras")
             print("")
@@ -100,17 +151,15 @@ class Trabajador(Usuario):
             cbu = input("Ingrese el cbu: ").strip()
         self.puesto = puesto
         self.cbu = cbu
+        # Agregado del cbu a la lista de cbus
         listacbus.append(cbu)
-    def agregar(self):
+        # Agregado de trabajador a la lista de trabajadores
         empresa.trabajadores.append(self)
-    def __str__(self):
-        return "Usuario: {} \nContrasena: {} \nNombre: {} \nDni: {} \nFecha de nacimiento: {} \nTelefono: {} \nMail: {} \nDireccion: {} \nPuesto {} \nCbu: {}".format(self.usuario, self.contrasena, self.nombre, self.dni, self.fecnac, self.telefono, self.mail, self.direccion, self.puesto, self.cbu)
 
-# DEBERIA SER UN METODO DE TRABAJADOR
-class Estacion:
-    def __init__(self, nombre, direccion, barrio, cantbicitotal, cantbicidisponible=0):
+    def agregarestacion(self):
+        # Ingreso de datos de la estacion
         nombre = input("Ingrese nombre: ").strip()
-        while validarestacion(nombre, listaestaciones) == False:
+        while validarestacion(nombre, listanombres) == False:
             print("La estacion ya existe o el formato es incorrecto, el nombre debe contener solo letras y la primera debe ser mayuscula")
             print("")
             nombre = input("Ingrse nombre: ").strip()
@@ -129,20 +178,14 @@ class Estacion:
             print("El formato es incorrecto, la capacidad debe ser un numero")
             print("")
             cantbicitotal = input("Ingrese capacidad: ").strip()
-        self.nombre = nombre
-        self.direccion = direccion
-        self.barrio = barrio
-        self.cantbicitotal = cantbicitotal
-        self.cantbicidisponible = cantbicidisponible
-        listaestaciones.append(nombre)
-    def agregar(self):
-        empresa.estaciones.append(self)
-    def __str__(self):
-        return "Nombre: {} \nDireccion: {} \nBarrio: {} \nCantidad maxima de bicicletas: {} \nCantidad disponible de bicicletas: {}".format(self.nombre, self.direccion, self.barrio, self.cantbicitotal, self.cantbicidisponible)
+        cantbicidisponible = 0
+        # Agregado de nombre a la lista de nombres
+        listanombres.append(nombre)
+        # Agregado de estacion a la lista de estaciones
+        empresa.estaciones.append(Estacion(nombre, direccion, barrio, cantbicitotal, cantbicidisponible))
 
-# DEBERIA SER UN METODO DE TRABAJADOR
-class Bicicleta():
-    def __init__(self, patente, modelo, estacionactual, cantusos=0):
+    def agregarbicicleta(self):
+        # Ingreso de datos de la bicicleta
         patente = input("Ingrese patente: ").strip()
         while validarpatente(patente, listapatentes) == False:
             print("La patente ya existe o el formato es incorrecto, la patente debe ser un numero")
@@ -150,52 +193,101 @@ class Bicicleta():
             patente = input("Ingrese patente: ").strip()
         modelo = input("Ingrese modelo: ").strip()
         estacionactual = input("Ingrese estacion donde se ingresa la bicicleta: ").strip()
-        while validarestacionactual(estacionactual, listaestaciones, empresa.estaciones) == False:
+        while validarestacionactual(estacionactual, listanombres, empresa.estaciones) == False:
             print("No se encontro la estacion, no hay lugar para dejar la bicicleta o el formato es incorrecto, el nombre debe contener solo letras y la primera debe ser mayuscula")
             print("")
             estacionactual = input("Ingrese estacion donde se ingresa la bicicleta: ").strip()
+        cantusos = 0
+        # Agregado de patente a la lista de patentes
+        listapatentes.append(patente)
+        # Agregado de bicicleta a la lista de bicicletas
+        empresa.bicicletas.append(Bicicleta(patente, modelo, estacionactual, cantusos))
+        # Suma uno a cantbicidiponible de la estacion actual
+        for estacion in empresa.estaciones:
+            if estacion.nombre == estacionactual:
+                estacion.cantbicidisponible += 1
+
+    def __str__(self):
+        return "Usuario: {} \nContrasena: {} \nNombre: {} \nDni: {} \nFecha de nacimiento: {} \nTelefono: {} \nMail: {} \nDireccion: {} \nPuesto {} \nCbu: {}".format(self.usuario, self.contrasena, self.nombre, self.dni, self.fecnac, self.telefono, self.mail, self.direccion, self.puesto, self.cbu)
+
+
+class Estacion:
+
+    def __init__(self, nombre, direccion, barrio, cantbicitotal, cantbicidisponible):
+        self.nombre = nombre
+        self.direccion = direccion
+        self.barrio = barrio
+        self.cantbicitotal = cantbicitotal
+        self.cantbicidisponible = cantbicidisponible
+
+    def __str__(self):
+        return "Nombre: {} \nDireccion: {} \nBarrio: {} \nCantidad maxima de bicicletas: {} \nCantidad disponible de bicicletas: {}".format(self.nombre, self.direccion, self.barrio, self.cantbicitotal, self.cantbicidisponible)
+
+
+class Bicicleta():
+
+    def __init__(self, patente, modelo, estacionactual, cantusos):
         self.patente = patente
         self.modelo = modelo
         self.estacionactual = estacionactual
         self.cantusos = cantusos
-        # SUMAR UNO A CANTBICIDISPONIBLE
-    def agregar(self):
-        empresa.bicicletas.append(self)
+    
     def __str__(self):
         return "Patente: {} \nModelo: {} \nEstacion actual: {} \nCantidad de usos: {}".format(self.patente, self.modelo, self.estacionactual, self.cantusos)
 
-# DEBERIA SER UN METODO DE CLIENTE, NO UNA CLASE
+
 class Alquiler():
+
     def __init__(self, usuario, codigo, fecha, duracion, estacionsalida, estacionllegada):
-        fecha = input("Ingrese fecha del alquiler: ").strip()
-        while validarfecha(fecha) == False:
-            fecha = input("Ingrese fecha del alquiler: ").strip() 
-        duracion = input("Ingrese duracion del alquiler en minutos: ").strip()
-        while validarnumero(duracion) == False:
-            print("El formato es incorrecto, la duracion debe ser un numero")
-            print("")
-            duracion = input("Ingrese duracion: ").strip()
-        estacionsalida = input("Ingrese estacion de salida: ").strip()
-        while validarestacionsalida(estacionsalida, listaestaciones) == False:
-            print("No se encontro la estacion o el formato es incorrecto, el nombre debe contener solo letras y la primera debe ser mayuscula")
-            print("")
-            estacionsalida = input("Ingrese estacion de salida: ").strip()
-        estacionllegada = input("Ingrese estacion de llegada: ").strip()
-        while validarestacionactual(estacionllegada, listaestaciones, empresa.estaciones) == False:
-            print("No se encontro la estacion, no hay lugar para dejar la bicicleta o el formato es incorrecto, el nombre debe contener solo letras y la primera debe ser mayuscula")
-            print("")
-            estacionllegada = input("Ingrese estacion de llegada: ").strip()
         self.usuario = usuario
         self.codigo = codigo
         self.fecha = fecha
         self.duracion = duracion
         self.estacionsalida = estacionsalida
         self.estacionllegada = estacionllegada
-        # SUMAR UNO A CANTIDAD DE USOS
-        # SUMAR UNO A ESTACION LLEGADA
-        # SUMAR UNO A ESTACION SALIDA
-    def agregar(self):
-        empresa.alquileres.append(self)
+
     def __str__(self):
         return "Usuario: {} \nCodigo: {} \nFecha: {} \nDuracion: {} \nEstacion salida: {} \nEstacion llegada: {}".format(self.usuario, self.codigo, self.fecha, self.duracion, self.estacionsalida, self.estacionllegada)
-    
+
+
+def recorrertxt():
+    nombrestxt = ["datosclientes.txt", "datostrabajadores.txt", "datosestaciones.txt", "datosbicicletas.txt", "datosalquileres.txt"]
+    listas = [empresa.clientes, empresa.trabajadores, empresa.estaciones, empresa.bicicletas, empresa.alquileres]
+    for nombretxt, lista in zip(nombrestxt, listas): 
+        with open(nombretxt) as nombrepy:
+            for posicion, objeto in enumerate(nombrepy):
+                if posicion == 0:
+                    continue
+                else:
+                    lista.append(objeto)
+    for cliente in empresa.clientes:
+        listausuarios.append(cliente.nombre)
+        listatarjetas.append(cliente.tarjeta)
+        listadnis.append(cliente.dni)
+    for trabajador in empresa.trabajadores:
+        listausuarios.append(trabajador.nombre)
+        listacbus.append(trabajador.cbu)
+        listadnis.append(trabajador.dni)
+    for estacion in empresa.estaciones:
+        listanombres.append(estacion.nombre)
+    for bicicleta in empresa.bicicletas:
+        listapatentes.append(bicicleta.patente)
+
+
+def actualizartxt():
+    nombrestxt = ["datosclientes.txt", "datostrabajadores.txt", "datosestaciones.txt", "datosbicicletas.txt", "datosalquileres.txt"]
+    listas = [empresa.clientes, empresa.trabajadores, empresa.estaciones, empresa.bicicletas, empresa.alquileres]
+    for nombretxt, lista in zip(nombrestxt, listas): 
+        for posicion, objeto in enumerate(lista):
+            if posicion == 0:
+                texto = ""
+                texto += objeto + "\t"
+                f = open(nombretxt, "w")
+                f.write("\n" + texto)
+                f.close()
+            else:
+                texto = ""
+                texto += objeto + "\t" 
+                f = open(nombretxt, "a")
+                f.write("\n" + texto)
+                f.close()

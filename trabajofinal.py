@@ -1,4 +1,4 @@
-from funciones import *
+from clases import *
 
 class main:
     recorrertxt()
@@ -13,16 +13,16 @@ class main:
         eleccion = input("Ingrese opcion: ").strip()
         print("")
         if eleccion == "1":
-            ingresocliente()
+            Cliente()
         elif eleccion == "2":
-            ingresotrabajador()
+            Trabajador()
         elif eleccion == "3":
             usuario1 = input("Ingrese usuario: ").strip()
             contrasena1 = input("Ingrese contrasena: ").strip()
             print("")
             validacioncliente = 0
-            for i in empresaa.clientes:
-                if i[0] == usuario1 and i[1] == contrasena1:
+            for cliente in empresa.clientes:
+                if cliente.usuario == usuario1 and cliente.contrasena == contrasena1:
                     validacioncliente = 1
                     print("Cliente validado")
                     print("")
@@ -35,9 +35,9 @@ class main:
                         eleccionusuario = input("Ingrese opcion: ").strip()
                         print("")
                         if eleccionusuario == "1":
-                            alquilar(usuario1)
+                            cliente.alquilar()
                         elif eleccionusuario == "2":
-                            mostrarinfo()
+                            cliente.mostrarinfo()
                         elif eleccionusuario == "3":
                             seguir1 = "No seguir"
                         else:
@@ -51,8 +51,8 @@ class main:
             contrasena2 = input("Ingrese contrasena: ").strip()
             print("")
             validaciontrabajador = 0
-            for i in empresaa.trabajadores:
-                if i[0] == usuario2 and i[1] == contrasena2:
+            for trabajador in empresa.trabajadores:
+                if trabajador.nombre == usuario2 and trabajador.contrasena == contrasena2:
                     validaciontrabajador = 1
                     print("Trabajador validado")
                     print("")
@@ -65,9 +65,9 @@ class main:
                         elecciontrabajador = input("Ingrese opcion: ").strip()
                         print("")
                         if elecciontrabajador == "1":
-                            ingresoestacion()
+                            trabajador.agregarestacion()
                         elif elecciontrabajador == "2":
-                            ingresobicicleta()
+                            trabajador.agregarbicicleta()
                         elif elecciontrabajador == "3":
                             seguir2 = "No seguir"
                         else:

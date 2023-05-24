@@ -59,9 +59,9 @@ def validarestacionsalida(nombre, listaestaciones):
     return nombre.replace(" ","").isalpha() and nombre[0].replace(" ","").isupper() and nombre in listaestaciones
 
 def validarestacionactual(estacionactual, listaestaciones, listadatosestaciones):
-    for i in listadatosestaciones:
-        if i.nombre == estacionactual:
-            if i.cantbicitotal != i.cantbicidisponible:
+    for estacion in listadatosestaciones:
+        if estacion.nombre == estacionactual:
+            if estacion.cantbicitotal != estacion.cantbicidisponible:
                 cumple = "Si"
             else:
                 cumple = "No"
