@@ -61,7 +61,7 @@ def validarestacionsalida(nombre, listaestaciones):
 def validarestacionactual(estacionactual, listaestaciones, listadatosestaciones):
     for estacion in listadatosestaciones:
         if estacion.nombre == estacionactual:
-            if estacion.cantbicitotal != estacion.cantbicidisponible:
+            if estacion.cantbicitotal != str(estacion.cantbicidisponible):
                 cumple = "Si"
             else:
                 cumple = "No"

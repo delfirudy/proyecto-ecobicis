@@ -122,18 +122,20 @@ class Cliente(Usuario):
             estacionllegada = input("Ingrese estacion de llegada: ").strip()
         # Agregado de alquiler a la lista de alquileres
         empresa.alquileres.append(Alquiler(self.nombre, codigoalquiler, fecha, duracion, estacionsalida, estacionllegada))
+        # Mueve la bicicleta de una estacion a la otra
         # Suma uno a cantusos de la bicicleta
         # Suma uno a cantbicidisponible de la estacion llegada
         # Resta uno a cantbicidisponible de la estacion salida
         for estacion in empresa.estaciones:
             if estacion.nombre == estacionsalida:
                 estacion.cantbicidisponible -= 1
-            for bicicleta in empresa.bicicletas:
-                if bicicleta.estacionactual == estacionsalida:
-                    bicicleta.cantusos += 1
-                    break
             if estacion.nombre == estacionllegada:
                 estacion.cantbicidisponible += 1
+        for bicicleta in empresa.bicicletas:
+            if bicicleta.estacionactual == estacionsalida:
+                bicicleta.cantusos += 1
+                bicicleta.estacionactual = estacionllegada
+                break
         print("")
         print("Alquiler ingresado")
         print("")
