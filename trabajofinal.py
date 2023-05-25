@@ -1,4 +1,4 @@
-from clases import *
+from clases_funciones import *
 
 class main:
     recorrertxt()

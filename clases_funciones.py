@@ -1,4 +1,5 @@
 from validaciones import *
+import pickle
 
 listausuarios = []
 listadnis = []
@@ -22,7 +23,7 @@ empresa = Empresa("Ecobicis")
 
 
 class Usuario:
-    def __init__(self, usuario, contrasena, nombre, dni, fecnac, telefono, mail, direccion):
+    def __init__(self, usuario=0, contrasena=0, nombre=0, dni=0, fecnac=0, telefono=0, mail=0, direccion=0):
         # Ingreso de datos del usuario
         usuario = input("Ingrese usuario: ").strip()
         while validarusuario(usuario, listausuarios) == False:
@@ -80,7 +81,7 @@ class Usuario:
 
 
 class Cliente(Usuario):
-    def __init__(self, usuario, contrasena, nombre, dni, fecnac, telefono, mail, direccion, tarjeta):
+    def __init__(self, usuario=0, contrasena=0, nombre=0, dni=0, fecnac=0, telefono=0, mail=0, direccion=0, tarjeta=0):
         Usuario.__init__(self, usuario, contrasena, nombre, dni, fecnac, telefono, mail, direccion)
         # Ingreso de datos del cliente
         tarjeta = input("Ingrese tarjeta: ").strip()
@@ -93,6 +94,9 @@ class Cliente(Usuario):
         listatarjetas.append(tarjeta)
         # Agregado de cliente a la lista de clientes
         empresa.clientes.append(self)
+        print("")
+        print("Cliente ingresado")
+        print("")
     
     def alquilar(self):
         global codigoalquiler
@@ -130,19 +134,24 @@ class Cliente(Usuario):
                     break
             if estacion.nombre == estacionllegada:
                 estacion.cantbicidisponible += 1
+        print("")
+        print("Alquiler ingresado")
+        print("")
 
     def mostrarinfo(self):
         for estacion in empresa.estaciones:
-            print(estacion.nombre + " " + estacion.direccion + " " + estacion.barrio + " " + estacion.cantbicitotal + " " + estacion.cantbicidisponible)
-    
+            print(str(estacion.nombre) + " " + str(estacion.direccion) + " " + str(estacion.barrio) + " " + str(estacion.cantbicitotal) + " " + str(estacion.cantbicidisponible))
+            print("")
+
     def __str__(self):
         return "Usuario: {} \nContrasena: {} \nNombre: {} \nDni: {} \nFecha de nacimiento: {} \nTelefono: {} \nMail: {} \nDireccion: {} \nTarjeta: {}".format(self.usuario, self.contrasena, self.nombre, self.dni, self.fecnac, self.telefono, self.mail, self.direccion, self.tarjeta)
 
 
 class Trabajador(Usuario):
-    def __init__(self, usuario, contrasena, nombre, dni, fecnac, telefono, mail, direccion, puesto, cbu):
+    def __init__(self, usuario=0, contrasena=0, nombre=0, dni=0, fecnac=0, telefono=0, mail=0, direccion=0, puesto=0, cbu=0):
         Usuario.__init__(self, usuario, contrasena, nombre, dni, fecnac, telefono, mail, direccion)
         # Ingreso de datos del trabajador
+        puesto = input("Ingrese puesto: ").strip()
         while validarpuesto(puesto) == False:
             print("El formato es incorrecto, el puesto debe contener solo letras")
             print("")
@@ -158,6 +167,9 @@ class Trabajador(Usuario):
         listacbus.append(cbu)
         # Agregado de trabajador a la lista de trabajadores
         empresa.trabajadores.append(self)
+        print("")
+        print("Trabajador ingresado")
+        print("")
 
     def agregarestacion(self):
         # Ingreso de datos de la estacion
@@ -186,6 +198,9 @@ class Trabajador(Usuario):
         listanombres.append(nombre)
         # Agregado de estacion a la lista de estaciones
         empresa.estaciones.append(Estacion(nombre, direccion, barrio, cantbicitotal, cantbicidisponible))
+        print("")
+        print("Estacion ingresada")
+        print("")
 
     def agregarbicicleta(self):
         # Ingreso de datos de la bicicleta
@@ -209,6 +224,9 @@ class Trabajador(Usuario):
         for estacion in empresa.estaciones:
             if estacion.nombre == estacionactual:
                 estacion.cantbicidisponible += 1
+        print("")
+        print("Bicicleta ingresada")
+        print("")
 
     def __str__(self):
         return "Usuario: {} \nContrasena: {} \nNombre: {} \nDni: {} \nFecha de nacimiento: {} \nTelefono: {} \nMail: {} \nDireccion: {} \nPuesto {} \nCbu: {}".format(self.usuario, self.contrasena, self.nombre, self.dni, self.fecnac, self.telefono, self.mail, self.direccion, self.puesto, self.cbu)
@@ -251,15 +269,15 @@ class Alquiler():
 
 
 def recorrertxt():
-    nombrestxt = ["datosclientes.txt", "datostrabajadores.txt", "datosestaciones.txt", "datosbicicletas.txt", "datosalquileres.txt"]
+    nombrespickle = ["datosclientes.pickle", "datostrabajadores.pickle", "datosestaciones.pickle", "datosbicicletas.pickle", "datosalquileres.pickle"]
     listas = [empresa.clientes, empresa.trabajadores, empresa.estaciones, empresa.bicicletas, empresa.alquileres]
-    for nombretxt, lista in zip(nombrestxt, listas): 
-        with open(nombretxt) as nombrepy:
-            for posicion, objeto in enumerate(nombrepy):
-                if posicion == 0:
-                    continue
-                else:
-                    lista.append(objeto)
+    for nombrepickle, lista in zip(nombrespickle, listas): 
+        with open(nombrepickle, "rb") as archivopickle:
+            try:
+                while True:
+                    lista.append(pickle.load(archivopickle))
+            except EOFError:
+                pass
     for cliente in empresa.clientes:
         listausuarios.append(cliente.nombre)
         listatarjetas.append(cliente.tarjeta)
@@ -275,19 +293,10 @@ def recorrertxt():
 
 
 def actualizartxt():
-    nombrestxt = ["datosclientes.txt", "datostrabajadores.txt", "datosestaciones.txt", "datosbicicletas.txt", "datosalquileres.txt"]
+    nombrespickle = ["datosclientes.pickle", "datostrabajadores.pickle", "datosestaciones.pickle", "datosbicicletas.pickle", "datosalquileres.pickle"]
     listas = [empresa.clientes, empresa.trabajadores, empresa.estaciones, empresa.bicicletas, empresa.alquileres]
-    for nombretxt, lista in zip(nombrestxt, listas): 
-        for posicion, objeto in enumerate(lista):
-            if posicion == 0:
-                texto = ""
-                texto += objeto + "\t"
-                f = open(nombretxt, "w")
-                f.write("\n" + texto)
-                f.close()
-            else:
-                texto = ""
-                texto += objeto + "\t" 
-                f = open(nombretxt, "a")
-                f.write("\n" + texto)
-                f.close()
+    for nombrepickle, lista in zip(nombrespickle, listas):
+        with open(nombrepickle, "wb") as archivopickle:
+            for objeto in lista:
+                pickle.dump(objeto, archivopickle)
+
