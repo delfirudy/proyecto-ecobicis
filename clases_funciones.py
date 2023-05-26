@@ -111,7 +111,7 @@ class Cliente(Usuario):
             print("")
             duracion = input("Ingrese duracion: ").strip()
         estacionsalida = input("Ingrese estacion de salida: ").strip()
-        while validarestacionsalida(estacionsalida, listanombres) == False:
+        while validarestacionsalida(estacionsalida, listanombres, empresa.estaciones) == False:
             print("No se encontro la estacion o el formato es incorrecto, el nombre debe contener solo letras y la primera debe ser mayuscula")
             print("")
             estacionsalida = input("Ingrese estacion de salida: ").strip()
