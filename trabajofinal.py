@@ -1,7 +1,8 @@
 from clases_funciones import *
 
 class main:
-    recorrertxt()
+    recorrerpickle()
+    print(empresa.clientes)
     seguir = "Seguir"
     while seguir == "Seguir":
         print("1. Ingreso de datos cliente")
@@ -77,7 +78,7 @@ class main:
                 print("El trabajador no existe")
                 print("")
         elif eleccion == "5":
-            actualizartxt()
+            actualizarpickle()
             exit()
         else:
             print("Ingreso incorrecto de opcion")

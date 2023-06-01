@@ -55,20 +55,28 @@ def validarnumero(cantbicitotal):
 def validarpatente(patente, listapatentes):
     patente.isdigit() and patente not in listapatentes
 
-def validarestacionsalida(nombre, listaestaciones, listadatosestaciones):
-    for estacion in listadatosestaciones:
-        if estacion.nombre == nombre:
-            if estacion.cantbicidisponible != 0:
-                cumple = "Si"
-            else:
-                cumple = "No"
+def validarestacionsalida(nombre, listaestaciones, diccionariodatosestaciones):
+    try:
+        estacion = diccionariodatosestaciones.get(nombre)
+        if estacion.cantbicidisponible != 0:
+            cumple = "Si"
+        else:
+            cumple = "No"
+    except KeyError:
+        print("No se encontro la estacion")
+    except:
+        print("Error")
     return nombre.replace(" ","").isalpha() and nombre[0].replace(" ","").isupper() and nombre in listaestaciones and cumple == "Si"
 
-def validarestacionactual(estacionactual, listaestaciones, listadatosestaciones):
-    for estacion in listadatosestaciones:
-        if estacion.nombre == estacionactual:
-            if estacion.cantbicitotal != str(estacion.cantbicidisponible):
-                cumple = "Si"
-            else:
-                cumple = "No"
+def validarestacionactual(estacionactual, listaestaciones, diccionariodatosestaciones):
+    try:
+        estacion = diccionariodatosestaciones.get(estacionactual)
+        if estacion.cantbicitotal != str(estacion.cantbicidisponible):
+            cumple = "Si"
+        else:
+            cumple = "No"
+    except KeyError:
+        print("No se encontro la estacion")
+    except:
+        print("Error")
     return estacionactual.replace(" ","").isalpha() and estacionactual[0].replace(" ","").isupper() and estacionactual in listaestaciones and cumple == "Si"

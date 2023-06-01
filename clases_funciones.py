@@ -3,21 +3,20 @@ import pickle
 
 listausuarios = []
 listadnis = []
-listatarjetas = []
+listatarjetas =[]
 listacbus = []
 listanombres = []
 listapatentes = []
-codigoalquiler = 0
 
 
 class Empresa:
     def __init__(self, nombre):
         self.nombre = nombre
-        self.trabajadores = []
-        self.clientes = []
-        self.estaciones = []
-        self.bicicletas = []
-        self.alquileres = []
+        self.trabajadores = {}
+        self.clientes = {}
+        self.estaciones = {}
+        self.bicicletas = {}
+        self.alquileres = {}
 
 empresa = Empresa("Ecobicis")
 
@@ -92,15 +91,13 @@ class Cliente(Usuario):
         self.tarjeta = tarjeta
         # Agregado de tarjeta a la lista de tarjetas
         listatarjetas.append(tarjeta)
-        # Agregado de cliente a la lista de clientes
-        empresa.clientes.append(self)
+        # Agregado de cliente al diccionario de clientes
+        empresa.clientes[(self.usuario, self.contrasena)] = self
         print("")
         print("Cliente ingresado")
         print("")
     
     def alquilar(self):
-        global codigoalquiler
-        codigoalquiler += codigoalquiler
         # Ingreso de datos del alquiler
         fecha = input("Ingrese fecha del alquiler: ").strip()
         while validarfecha(fecha) == False:
@@ -120,18 +117,27 @@ class Cliente(Usuario):
             print("No se encontro la estacion, no hay lugar para dejar la bicicleta o el formato es incorrecto, el nombre debe contener solo letras y la primera debe ser mayuscula")
             print("")
             estacionllegada = input("Ingrese estacion de llegada: ").strip()
-        # Agregado de alquiler a la lista de alquileres
-        empresa.alquileres.append(Alquiler(self.nombre, codigoalquiler, fecha, duracion, estacionsalida, estacionllegada))
+        # Agregado de alquiler al diccionario de alquileres
+        empresa.alquileres[(Alquiler.codigo)] = Alquiler(self.nombre, fecha, duracion, estacionsalida, estacionllegada)
+        # Resta uno a cantbicidisponible de la estacion salida
+        try:
+            estacion = empresa.estaciones.get(estacionsalida)
+            estacion.cantbicidisponible -= 1
+        except KeyError:
+            print("No se encontro la estacion")
+        except:
+            print("Error")
+        # Suma uno a cantbicidisponible de la estacion llegada 
+        try:
+            estacion = empresa.estaciones.get(estacionllegada)
+            estacion.cantbicidisponible += 1
+        except KeyError:
+            print("No se encontro la estacion")
+        except:
+            print("Error")
         # Mueve la bicicleta de una estacion a la otra
         # Suma uno a cantusos de la bicicleta
-        # Suma uno a cantbicidisponible de la estacion llegada
-        # Resta uno a cantbicidisponible de la estacion salida
-        for estacion in empresa.estaciones:
-            if estacion.nombre == estacionsalida:
-                estacion.cantbicidisponible -= 1
-            if estacion.nombre == estacionllegada:
-                estacion.cantbicidisponible += 1
-        for bicicleta in empresa.bicicletas:
+        for bicicleta in empresa.bicicletas.values():
             if bicicleta.estacionactual == estacionsalida:
                 bicicleta.cantusos += 1
                 bicicleta.estacionactual = estacionllegada
@@ -141,7 +147,7 @@ class Cliente(Usuario):
         print("")
 
     def mostrarinfo(self):
-        for estacion in empresa.estaciones:
+        for estacion in empresa.estaciones.values():
             print(str(estacion.nombre) + " " + str(estacion.direccion) + " " + str(estacion.barrio) + " " + str(estacion.cantbicitotal) + " " + str(estacion.cantbicidisponible))
             print("")
 
@@ -167,8 +173,8 @@ class Trabajador(Usuario):
         self.cbu = cbu
         # Agregado del cbu a la lista de cbus
         listacbus.append(cbu)
-        # Agregado de trabajador a la lista de trabajadores
-        empresa.trabajadores.append(self)
+        # Agregado de trabajador al diccionario de trabajadores
+        empresa.trabajadores[(self.usuario, self.contrasena)] = self
         print("")
         print("Trabajador ingresado")
         print("")
@@ -198,8 +204,8 @@ class Trabajador(Usuario):
         cantbicidisponible = 0
         # Agregado de nombre a la lista de nombres
         listanombres.append(nombre)
-        # Agregado de estacion a la lista de estaciones
-        empresa.estaciones.append(Estacion(nombre, direccion, barrio, cantbicitotal, cantbicidisponible))
+        # Agregado de estacion al diccionario de estaciones
+        empresa.estaciones[nombre] = Estacion(nombre, direccion, barrio, cantbicitotal, cantbicidisponible)
         print("")
         print("Estacion ingresada")
         print("")
@@ -220,12 +226,16 @@ class Trabajador(Usuario):
         cantusos = 0
         # Agregado de patente a la lista de patentes
         listapatentes.append(patente)
-        # Agregado de bicicleta a la lista de bicicletas
-        empresa.bicicletas.append(Bicicleta(patente, modelo, estacionactual, cantusos))
+        # Agregado de bicicleta al diccionario de bicicletas
+        empresa.bicicletas[patente] = Bicicleta(patente, modelo, estacionactual, cantusos)
         # Suma uno a cantbicidiponible de la estacion actual
-        for estacion in empresa.estaciones:
-            if estacion.nombre == estacionactual:
-                estacion.cantbicidisponible += 1
+        try:
+            estacion = empresa.estaciones.get(estacionactual)
+            estacion.cantbicidisponible += 1
+        except KeyError:
+            print("No se encontro la estacion")
+        except:
+            print("Error")
         print("")
         print("Bicicleta ingresada")
         print("")
@@ -258,47 +268,53 @@ class Bicicleta():
 
 
 class Alquiler():
-    def __init__(self, usuario, codigo, fecha, duracion, estacionsalida, estacionllegada):
+    id = 0
+
+    def __init__(self, usuario, fecha, duracion, estacionsalida, estacionllegada):
+        self.id = Alquiler.sumarid()
         self.usuario = usuario
-        self.codigo = codigo
         self.fecha = fecha
         self.duracion = duracion
         self.estacionsalida = estacionsalida
         self.estacionllegada = estacionllegada
 
+    def sumarid(self):
+        Alquiler.id += 1
+        return Alquiler.id
+
     def __str__(self):
         return "Usuario: {} \nCodigo: {} \nFecha: {} \nDuracion: {} \nEstacion salida: {} \nEstacion llegada: {}".format(self.usuario, self.codigo, self.fecha, self.duracion, self.estacionsalida, self.estacionllegada)
 
 
-def recorrertxt():
+def recorrerpickle():
     nombrespickle = ["datosclientes.pickle", "datostrabajadores.pickle", "datosestaciones.pickle", "datosbicicletas.pickle", "datosalquileres.pickle"]
-    listas = [empresa.clientes, empresa.trabajadores, empresa.estaciones, empresa.bicicletas, empresa.alquileres]
-    for nombrepickle, lista in zip(nombrespickle, listas): 
+    diccionarios = [empresa.clientes, empresa.trabajadores, empresa.estaciones, empresa.bicicletas, empresa.alquileres]
+    for nombrepickle, diccionario in zip(nombrespickle, diccionarios): 
         with open(nombrepickle, "rb") as archivopickle:
             try:
                 while True:
-                    lista.append(pickle.load(archivopickle))
+                    objeto = pickle.load(archivopickle)
+                    diccionario[(objeto.id)] = objeto
             except EOFError:
                 pass
-    for cliente in empresa.clientes:
+    for cliente in empresa.clientes.values():
         listausuarios.append(cliente.nombre)
         listatarjetas.append(cliente.tarjeta)
         listadnis.append(cliente.dni)
-    for trabajador in empresa.trabajadores:
+    for trabajador in empresa.trabajadores.values():
         listausuarios.append(trabajador.nombre)
         listacbus.append(trabajador.cbu)
         listadnis.append(trabajador.dni)
-    for estacion in empresa.estaciones:
+    for estacion in empresa.estaciones.values():
         listanombres.append(estacion.nombre)
     for bicicleta in empresa.bicicletas:
         listapatentes.append(bicicleta.patente)
 
 
-def actualizartxt():
+def actualizarpickle():
     nombrespickle = ["datosclientes.pickle", "datostrabajadores.pickle", "datosestaciones.pickle", "datosbicicletas.pickle", "datosalquileres.pickle"]
-    listas = [empresa.clientes, empresa.trabajadores, empresa.estaciones, empresa.bicicletas, empresa.alquileres]
-    for nombrepickle, lista in zip(nombrespickle, listas):
+    diccionarios = [empresa.clientes, empresa.trabajadores, empresa.estaciones, empresa.bicicletas, empresa.alquileres]
+    for nombrepickle, diccionario in zip(nombrespickle, diccionarios):
         with open(nombrepickle, "wb") as archivopickle:
-            for objeto in lista:
+            for objeto in diccionario.values():
                 pickle.dump(objeto, archivopickle)
-
