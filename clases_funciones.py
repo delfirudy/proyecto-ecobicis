@@ -110,7 +110,7 @@ class Cliente(Usuario):
             duracion = input("Ingrese duracion: ").strip()
         estacionsalida = input("Ingrese estacion de salida: ").strip()
         while validarestacionsalida(estacionsalida, listanombres, empresa.estaciones) == False:
-            print("No se encontro la estacion o el formato es incorrecto, el nombre debe contener solo letras y la primera debe ser mayuscula")
+            print("No se encontro la estacion, no hay bicicletas o el formato es incorrecto, el nombre debe contener solo letras y la primera debe ser mayuscula")
             print("")
             estacionsalida = input("Ingrese estacion de salida: ").strip()
         estacionllegada = input("Ingrese estacion de llegada: ").strip()
@@ -281,7 +281,7 @@ class Alquiler():
         self.estacionsalida = estacionsalida
         self.estacionllegada = estacionllegada
 
-    def sumarid(self):
+    def sumarid():
         Alquiler.id += 1
         return Alquiler.id
 
@@ -309,9 +309,9 @@ def recorrerpickle():
         listacbus.append(trabajador.cbu)
         listadnis.append(trabajador.dni)
     for estacion in empresa.estaciones.values():
-        listanombres.append(estacion.id)
-    for bicicleta in empresa.bicicletas:
-        listapatentes.append(bicicleta.id)
+        listanombres.append(estacion.nombre)
+    for bicicleta in empresa.bicicletas.values():
+        listapatentes.append(bicicleta.patente)
 
 
 def actualizarpickle():

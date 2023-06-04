@@ -1,6 +1,6 @@
 from clases_funciones import *
 
-class Submenutrabajador:
+def submenutrabajador():
     usuario = input("Ingrese usuario: ").strip()
     contrasena = input("Ingrese contrasena: ").strip()
     while validarpersona(usuario, contrasena, empresa.trabajadores) == False:
@@ -9,6 +9,7 @@ class Submenutrabajador:
         usuario = input("Ingrese usuario: ").strip()
         contrasena = input("Ingrese contrasena: ").strip()
     trabajador = empresa.trabajadores.get(usuario + contrasena)
+    print("")
     print("Trabajador validado")
     print("")
     seguir1 = True
@@ -29,7 +30,7 @@ class Submenutrabajador:
             print("Ingreso incorrecto de opcion")
             print("")
 
-class Submenucliente:
+def submenucliente():
     usuario = input("Ingrese usuario: ").strip()
     contrasena = input("Ingrese contrasena: ").strip()
     while validarpersona(usuario, contrasena, empresa.clientes) == False:
@@ -38,6 +39,7 @@ class Submenucliente:
         usuario = input("Ingrese usuario: ").strip()
         contrasena = input("Ingrese contrasena: ").strip()
     cliente = empresa.clientes.get(usuario + contrasena)
+    print("")
     print("Cliente validado")
     print("")
     seguir2 = True
@@ -75,9 +77,9 @@ class Menu:
         elif eleccion == "2":
             Trabajador()
         elif eleccion == "3":
-            Submenucliente()
+            submenucliente()
         elif eleccion == "4":
-            Submenutrabajador()
+            submenutrabajador()
         elif eleccion == "5":
             actualizarpickle()
             exit()
