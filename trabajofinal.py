@@ -1,10 +1,67 @@
 from clases_funciones import *
 
-class main:
+class Submenutrabajador:
+    usuario = input("Ingrese usuario: ").strip()
+    contrasena = input("Ingrese contrasena: ").strip()
+    while validarpersona(usuario, contrasena, empresa.trabajadores) == False:
+        print("Trabajador no encontrado")
+        print("")
+        usuario = input("Ingrese usuario: ").strip()
+        contrasena = input("Ingrese contrasena: ").strip()
+    trabajador = empresa.trabajadores.get(usuario + contrasena)
+    print("Trabajador validado")
+    print("")
+    seguir1 = True
+    while seguir1 == True:
+        print("1. Ingresar estacion")
+        print("2. Ingresar bicicleta")
+        print("3. Volver al menu principal")
+        print("")
+        elecciontrabajador = input("Ingrese opcion: ").strip()
+        print("")
+        if elecciontrabajador == "1":
+            trabajador.agregarestacion()
+        elif elecciontrabajador == "2":
+            trabajador.agregarbicicleta()
+        elif elecciontrabajador == "3":
+            seguir1 = False
+        else:
+            print("Ingreso incorrecto de opcion")
+            print("")
+
+class Submenucliente:
+    usuario = input("Ingrese usuario: ").strip()
+    contrasena = input("Ingrese contrasena: ").strip()
+    while validarpersona(usuario, contrasena, empresa.clientes) == False:
+        print("Cliente no encontrado")
+        print("")
+        usuario = input("Ingrese usuario: ").strip()
+        contrasena = input("Ingrese contrasena: ").strip()
+    cliente = empresa.clientes.get(usuario + contrasena)
+    print("Cliente validado")
+    print("")
+    seguir2 = True
+    while seguir2 == True:
+        print("1. Alquilar")
+        print("2. Información sobre estaciones")
+        print("3. Volver al menu principal")
+        print("")
+        eleccionusuario = input("Ingrese opcion: ").strip()
+        print("")
+        if eleccionusuario == "1":
+            cliente.alquilar()
+        elif eleccionusuario == "2":
+            cliente.mostrarinfo()
+        elif eleccionusuario == "3":
+            seguir2 = False
+        else:
+            print("Ingreso incorrecto de opcion")
+            print("")
+
+class Menu:
     recorrerpickle()
-    print(empresa.clientes)
-    seguir = "Seguir"
-    while seguir == "Seguir":
+    seguir = True
+    while seguir == True:
         print("1. Ingreso de datos cliente")
         print("2. Ingreso de datos trabajador")
         print("3. Opciones cliente")
@@ -18,65 +75,9 @@ class main:
         elif eleccion == "2":
             Trabajador()
         elif eleccion == "3":
-            usuario1 = input("Ingrese usuario: ").strip()
-            contrasena1 = input("Ingrese contrasena: ").strip()
-            print("")
-            validacioncliente = 0
-            for cliente in empresa.clientes:
-                if cliente.usuario == usuario1 and cliente.contrasena == contrasena1:
-                    validacioncliente = 1
-                    print("Cliente validado")
-                    print("")
-                    seguir1 = "Seguir"
-                    while seguir1 == "Seguir":
-                        print("1. Alquilar")
-                        print("2. Información sobre estaciones")
-                        print("3. Volver al menu principal")
-                        print("")
-                        eleccionusuario = input("Ingrese opcion: ").strip()
-                        print("")
-                        if eleccionusuario == "1":
-                            cliente.alquilar()
-                        elif eleccionusuario == "2":
-                            cliente.mostrarinfo()
-                        elif eleccionusuario == "3":
-                            seguir1 = "No seguir"
-                        else:
-                            print("Ingreso incorrecto de opcion")
-                            print("")
-            if validacioncliente == 0:
-                print("El cliente no existe")
-                print("")
+            Submenucliente()
         elif eleccion == "4":
-            usuario2 = input("Ingrese usuario: ").strip()
-            contrasena2 = input("Ingrese contrasena: ").strip()
-            print("")
-            validaciontrabajador = 0
-            for trabajador in empresa.trabajadores:
-                if trabajador.nombre == usuario2 and trabajador.contrasena == contrasena2:
-                    validaciontrabajador = 1
-                    print("Trabajador validado")
-                    print("")
-                    seguir2 = "Seguir"
-                    while seguir2 == "Seguir":
-                        print("1. Ingresar estacion")
-                        print("2. Ingresar bicicleta")
-                        print("3. Volver al menu principal")
-                        print("")
-                        elecciontrabajador = input("Ingrese opcion: ").strip()
-                        print("")
-                        if elecciontrabajador == "1":
-                            trabajador.agregarestacion()
-                        elif elecciontrabajador == "2":
-                            trabajador.agregarbicicleta()
-                        elif elecciontrabajador == "3":
-                            seguir2 = "No seguir"
-                        else:
-                            print("Ingreso incorrecto de opcion")
-                            print("")
-            if validaciontrabajador == 0:
-                print("El trabajador no existe")
-                print("")
+            Submenutrabajador()
         elif eleccion == "5":
             actualizarpickle()
             exit()
@@ -84,4 +85,4 @@ class main:
             print("Ingreso incorrecto de opcion")
             print("")
 
-trabajofinal = main()
+trabajofinal = Menu()

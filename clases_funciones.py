@@ -62,6 +62,7 @@ class Usuario:
             print("El formato es incorrecto, la direccion debe tener letras y numeros")
             print("")
             direccion = input("Ingrese direccion: ").strip()
+        self.id = usuario + contrasena
         self.usuario = usuario
         self.contrasena = contrasena
         self.nombre = nombre
@@ -92,7 +93,7 @@ class Cliente(Usuario):
         # Agregado de tarjeta a la lista de tarjetas
         listatarjetas.append(tarjeta)
         # Agregado de cliente al diccionario de clientes
-        empresa.clientes[(self.usuario, self.contrasena)] = self
+        empresa.clientes[self.id] = self
         print("")
         print("Cliente ingresado")
         print("")
@@ -118,7 +119,7 @@ class Cliente(Usuario):
             print("")
             estacionllegada = input("Ingrese estacion de llegada: ").strip()
         # Agregado de alquiler al diccionario de alquileres
-        empresa.alquileres[(Alquiler.codigo)] = Alquiler(self.nombre, fecha, duracion, estacionsalida, estacionllegada)
+        empresa.alquileres[(Alquiler.id)] = Alquiler(self.nombre, fecha, duracion, estacionsalida, estacionllegada)
         # Resta uno a cantbicidisponible de la estacion salida
         try:
             estacion = empresa.estaciones.get(estacionsalida)
@@ -174,7 +175,7 @@ class Trabajador(Usuario):
         # Agregado del cbu a la lista de cbus
         listacbus.append(cbu)
         # Agregado de trabajador al diccionario de trabajadores
-        empresa.trabajadores[(self.usuario, self.contrasena)] = self
+        empresa.trabajadores[self.id] = self
         print("")
         print("Trabajador ingresado")
         print("")
@@ -246,6 +247,7 @@ class Trabajador(Usuario):
 
 class Estacion:
     def __init__(self, nombre, direccion, barrio, cantbicitotal, cantbicidisponible):
+        self.id = nombre
         self.nombre = nombre
         self.direccion = direccion
         self.barrio = barrio
@@ -258,6 +260,7 @@ class Estacion:
 
 class Bicicleta():
     def __init__(self, patente, modelo, estacionactual, cantusos):
+        self.id = patente
         self.patente = patente
         self.modelo = modelo
         self.estacionactual = estacionactual
@@ -283,7 +286,7 @@ class Alquiler():
         return Alquiler.id
 
     def __str__(self):
-        return "Usuario: {} \nCodigo: {} \nFecha: {} \nDuracion: {} \nEstacion salida: {} \nEstacion llegada: {}".format(self.usuario, self.codigo, self.fecha, self.duracion, self.estacionsalida, self.estacionllegada)
+        return "Usuario: {} \nCodigo: {} \nFecha: {} \nDuracion: {} \nEstacion salida: {} \nEstacion llegada: {}".format(self.usuario, self.id, self.fecha, self.duracion, self.estacionsalida, self.estacionllegada)
 
 
 def recorrerpickle():
@@ -306,9 +309,9 @@ def recorrerpickle():
         listacbus.append(trabajador.cbu)
         listadnis.append(trabajador.dni)
     for estacion in empresa.estaciones.values():
-        listanombres.append(estacion.nombre)
+        listanombres.append(estacion.id)
     for bicicleta in empresa.bicicletas:
-        listapatentes.append(bicicleta.patente)
+        listapatentes.append(bicicleta.id)
 
 
 def actualizarpickle():

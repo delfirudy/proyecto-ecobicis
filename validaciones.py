@@ -80,3 +80,14 @@ def validarestacionactual(estacionactual, listaestaciones, diccionariodatosestac
     except:
         print("Error")
     return estacionactual.replace(" ","").isalpha() and estacionactual[0].replace(" ","").isupper() and estacionactual in listaestaciones and cumple == "Si"
+
+def validarpersona(usuario, contrasena, listapersonas):
+    try:
+        trabajador = listapersonas.get(usuario + contrasena)
+        cumple = "Si"
+    except KeyError:
+        print("No se encontro el trabajador")
+        cumple = "No"
+    except:
+        print("Error")
+    return cumple == "Si"
