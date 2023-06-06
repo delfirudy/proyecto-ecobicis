@@ -97,6 +97,17 @@ class Cliente(Usuario):
         print("")
         print("Cliente ingresado")
         print("")
+
+    def cambio(self):
+        pass
+
+    def eliminar(self):
+        empresa.clientes.pop(self.usuario + self.contrasena)
+        listadnis.remove(self.dni)
+        listatarjetas.remove(self.tarjeta)
+        print("")
+        print("Cliente eliminado")
+        print("")
     
     def alquilar(self):
         # Ingreso de datos del alquiler
@@ -180,6 +191,17 @@ class Trabajador(Usuario):
         print("Trabajador ingresado")
         print("")
 
+    def cambio(self):
+        pass
+
+    def eliminar(self):
+        empresa.trabajadores.pop(self.usuario + self.contrasena)
+        listacbus.remove(self.cbu)
+        listadnis.remove(self.dni)
+        print("")
+        print("Trabajador eliminado")
+        print("")
+
     def agregarestacion(self):
         # Ingreso de datos de la estacion
         nombre = input("Ingrese nombre: ").strip()
@@ -254,6 +276,19 @@ class Estacion:
         self.cantbicitotal = cantbicitotal
         self.cantbicidisponible = cantbicidisponible
 
+    def cambio(self):
+        pass
+
+    def eliminar(self):
+        empresa.estaciones.pop(self.nombre)
+        for bicicleta in empresa.bicicletas.values():
+            if bicicleta.estacionactual == self.nombre:
+                empresa.bicicletas.pop(bicicleta.patente)
+        listanombres.pop(self.nombre)
+        print("")
+        print("Estacion eliminada, reingrese las bicicletas en otra estacion")
+        print("")
+
     def __str__(self):
         return "Nombre: {} \nDireccion: {} \nBarrio: {} \nCantidad maxima de bicicletas: {} \nCantidad disponible de bicicletas: {}".format(self.nombre, self.direccion, self.barrio, self.cantbicitotal, self.cantbicidisponible)
 
@@ -265,6 +300,18 @@ class Bicicleta():
         self.modelo = modelo
         self.estacionactual = estacionactual
         self.cantusos = cantusos
+
+    def cambio(self):
+        pass
+
+    def eliminar(self):
+        empresa.bicicletas.pop(self.patente)
+        estacion = empresa.estaciones.get(self.estacionactual)
+        estacion.cantbicidisponible -= 1
+        listapatentes.pop(self.patente)
+        print("")
+        print("Bicicleta eliminada")
+        print("")
     
     def __str__(self):
         return "Patente: {} \nModelo: {} \nEstacion actual: {} \nCantidad de usos: {}".format(self.patente, self.modelo, self.estacionactual, self.cantusos)
