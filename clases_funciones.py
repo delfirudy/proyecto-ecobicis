@@ -283,10 +283,13 @@ class Estacion:
 
     def eliminar(self):
         empresa.estaciones.pop(self.nombre)
+        bicicletas = []
         for bicicleta in empresa.bicicletas.values():
             if bicicleta.estacionactual == self.nombre:
-                empresa.bicicletas.pop(bicicleta.patente)
-        listanombres.pop(self.nombre)
+                bicicletas.append(bicicleta.patente)
+        for patente in bicicletas:
+            empresa.bicicletas.pop(patente)
+        listanombres.remove(self.nombre)
         print("")
         print("Estacion eliminada, reingrese las bicicletas en otra estacion")
         print("")
@@ -310,7 +313,7 @@ class Bicicleta():
         empresa.bicicletas.pop(self.patente)
         estacion = empresa.estaciones.get(self.estacionactual)
         estacion.cantbicidisponible -= 1
-        listapatentes.pop(self.patente)
+        listapatentes.remove(self.patente)
         print("")
         print("Bicicleta eliminada")
         print("")
