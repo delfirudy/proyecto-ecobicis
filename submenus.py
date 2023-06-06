@@ -14,7 +14,7 @@ def submenucambio(trabajador):
             trabajador.cambio()
         elif eleccioncambio == "2":
             patente = input("Ingrese la patente de la bicicleta a modificar: ")
-            while validarpatente(patente) == True:
+            while validarpatente(patente, listapatentes) == True:
                 print("Patente no encontrada")
                 print("")
                 patente = input("Ingrese bicicleta a modificar: ")
@@ -22,7 +22,7 @@ def submenucambio(trabajador):
             bicicleta.cambio()
         elif eleccioncambio == "3":
             nombre = input("Ingrese el nombre de la estacion a modificar: ")
-            while validarestacion(nombre) == True:
+            while validarestacion(nombre, listanombres) == True:
                 print("Estacion no encontrada")
                 print("")
                 nombre = input("Ingrese el nombre de la estacion a modificar: ")
@@ -47,20 +47,21 @@ def submenueliminar(trabajador):
         print("")
         if eleccioneliminar == "1":
             trabajador.eliminar()
+            seguir4 = False
         elif eleccioneliminar == "2":
-            patente = input("Ingrese la patente de la bicicleta a modificar: ")
-            while validarpatente(patente) == True:
+            patente = input("Ingrese la patente de la bicicleta a eliminar: ")
+            while validarpatente(patente, listapatentes) == True:
                 print("Patente no encontrada")
                 print("")
-                patente = input("Ingrese bicicleta a modificar: ")
+                patente = input("Ingrese bicicleta a eliminar: ")
             bicicleta = empresa.bicicletas.get(patente)
             bicicleta.eliminar()
         elif eleccioneliminar == "3":
-            nombre = input("Ingrese el nombre de la estacion a modificar: ")
-            while validarestacion(nombre) == True:
+            nombre = input("Ingrese el nombre de la estacion a eliminar: ")
+            while validarestacion(nombre, listanombres) == True:
                 print("Estacion no encontrada")
                 print("")
-                nombre = input("Ingrese el nombre de la estacion a modificar: ")
+                nombre = input("Ingrese el nombre de la estacion a eliminar: ")
             estacion = empresa.estaciones.get(nombre)
             estacion.eliminar()
         elif eleccioneliminar == "4":
@@ -87,7 +88,7 @@ def submenutrabajador():
         print("2. Ingresar bicicleta")
         print("3. Cambiar datos")
         print("4. Dar de baja")
-        print("3. Volver al menu principal")
+        print("5. Volver al menu principal")
         print("")
         elecciontrabajador = input("Ingrese opcion: ").strip()
         print("")
@@ -134,7 +135,8 @@ def submenucliente():
         elif eleccionusuario == "3":
             cliente.cambio()
         elif eleccionusuario == "4":
-            cliente.baja()
+            cliente.eliminar()
+            seguir2 = False
         elif eleccionusuario == "5":
             seguir2 = False
         else:

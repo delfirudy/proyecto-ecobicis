@@ -3,6 +3,9 @@ from submenus import *
 
 class Menu:
     recorrerpickle()
+    print(empresa.estaciones)
+    print(empresa.trabajadores)
+    print(empresa.bicicletas)
     seguir = True
     while seguir == True:
         print("1. Ingreso de datos cliente")
