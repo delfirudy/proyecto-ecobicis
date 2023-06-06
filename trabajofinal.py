@@ -18,7 +18,7 @@ class Menu:
         elif eleccion == "2":
             Trabajador()
         elif eleccion == "3":
-            submenucliente()
+            subMenuCliente()
         elif eleccion == "4":
             submenutrabajador()
         elif eleccion == "5":

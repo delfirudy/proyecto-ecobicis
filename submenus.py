@@ -106,7 +106,7 @@ def submenutrabajador():
             print("Ingreso incorrecto de opcion")
             print("")
 
-def submenucliente():
+def subMenuCliente():
     usuario = input("Ingrese usuario: ").strip()
     contrasena = input("Ingrese contrasena: ").strip()
     while validarpersona(usuario, contrasena, empresa.clientes) == False:
