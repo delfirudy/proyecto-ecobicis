@@ -1,4 +1,7 @@
-from clases_funciones import *
+from clase_usuario import *
+from clase_alquiler import *
+from clase_estacion import *
+from clase_bicicleta import *
 
 def submenucambio(trabajador):
     seguir3 = True
