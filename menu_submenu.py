@@ -17,7 +17,7 @@ def submenucambio(trabajador):
             trabajador.cambio()
         elif eleccioncambio == "2":
             patente = input("Ingrese la patente de la bicicleta a modificar: ")
-            while validarpatente(patente, listapatentes) == True:
+            while validarPatente(patente, listapatentes) == True:
                 print("Patente no encontrada")
                 print("")
                 patente = input("Ingrese bicicleta a modificar: ")
@@ -25,7 +25,7 @@ def submenucambio(trabajador):
             bicicleta.cambio()
         elif eleccioncambio == "3":
             nombre = input("Ingrese el nombre de la estacion a modificar: ")
-            while validarestacion(nombre, listanombres) == True:
+            while validarEstacion(nombre, listanombres) == True:
                 print("Estacion no encontrada")
                 print("")
                 nombre = input("Ingrese el nombre de la estacion a modificar: ")
@@ -53,7 +53,7 @@ def submenueliminar(trabajador):
             seguir4 = False
         elif eleccioneliminar == "2":
             patente = input("Ingrese la patente de la bicicleta a eliminar: ")
-            while validarpatente(patente, listapatentes) == True:
+            while validarPatente(patente, listapatentes) == True:
                 print("Patente no encontrada")
                 print("")
                 patente = input("Ingrese bicicleta a eliminar: ")
@@ -61,7 +61,7 @@ def submenueliminar(trabajador):
             bicicleta.eliminar()
         elif eleccioneliminar == "3":
             nombre = input("Ingrese el nombre de la estacion a eliminar: ")
-            while validarestacion(nombre, listanombres) == True:
+            while validarEstacion(nombre, listanombres) == True:
                 print("Estacion no encontrada")
                 print("")
                 nombre = input("Ingrese el nombre de la estacion a eliminar: ")
@@ -76,7 +76,7 @@ def submenueliminar(trabajador):
 def submenutrabajador():
     usuario = input("Ingrese usuario: ").strip()
     contrasena = input("Ingrese contrasena: ").strip()
-    while validarpersona(usuario, contrasena, empresa.trabajadores) == False:
+    while validarPersona(usuario, contrasena, empresa.trabajadores) == False:
         print("Trabajador no encontrado")
         print("")
         usuario = input("Ingrese usuario: ").strip()
@@ -112,7 +112,7 @@ def submenutrabajador():
 def subMenuCliente():
     usuario = input("Ingrese usuario: ").strip()
     contrasena = input("Ingrese contrasena: ").strip()
-    while validarpersona(usuario, contrasena, empresa.clientes) == False:
+    while validarPersona(usuario, contrasena, empresa.clientes) == False:
         print("Cliente no encontrado")
         print("")
         usuario = input("Ingrese usuario: ").strip()

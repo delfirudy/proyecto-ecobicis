@@ -13,7 +13,7 @@ class Bicicleta():
         eleccioncambio = input("Ingrese dato que quiere cambiar: ")
         if eleccioncambio == "patente":
             patente = input("Ingrese patente: ").strip()
-            while validarpatente(patente, listapatentes) == False:
+            while validarPatente(patente, listapatentes) == False:
                 print("La patente ya existe o el formato es incorrecto, la patente debe ser un numero")
                 print("")
                 patente = input("Ingrese patente: ").strip()

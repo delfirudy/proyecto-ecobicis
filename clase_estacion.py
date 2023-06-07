@@ -14,7 +14,7 @@ class Estacion:
         eleccioncambio = input("Ingrese dato que quiere cambiar: ")
         if eleccioncambio == "nombre":
            nombre = input("Ingrese nombre: ").strip()
-           while validarestacion(nombre, listanombres) == False:
+           while validarEstacion(nombre, listanombres) == False:
                 print("La estacion ya existe o el formato es incorrecto, el nombre debe contener solo letras")
                 print("")
                 nombre = input("Ingrese nombre: ").strip()
@@ -23,21 +23,21 @@ class Estacion:
            self.nombre = nombre
         elif eleccioncambio == "direccion":
             direccion = input("Ingrese direccion: ").strip()
-            while validardireccion(direccion) == False:
+            while validarDireccion(direccion) == False:
                 print("El formato es incorrecto, la direccion debe tener letras y numeros")
                 print("")
                 direccion = input("Ingrese direccion: ").strip()
             self.direccion = direccion 
         elif eleccioncambio == "barrio":
             barrio = input("Ingrese barrio: ").strip()
-            while validarnombre(barrio) == False:
+            while validarNombre(barrio) == False:
                 print("El formato es incorrecto, el barrio debe contener solo letras y la primera debe ser mayuscula")
                 print("")
                 barrio = input("Ingrese barrio: ").strip()
             self.barrio = barrio
         elif eleccioncambio == "cantidad total":
             cantbicitotal = input("Ingrese capacidad: ").strip()
-            while validarnumero(cantbicitotal) == False:
+            while validarNumero(cantbicitotal) == False:
                 print("El formato es incorrecto, la capacidad debe ser un numero")
                 print("")
                 cantbicitotal = input("Ingrese capacidad: ").strip()

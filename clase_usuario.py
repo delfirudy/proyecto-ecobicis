@@ -7,40 +7,40 @@ class Usuario:
     def __init__(self, usuario=None, contrasena=None, nombre=None, dni=0, fecnac=None, telefono=0, mail=None, direccion=None):
         # Ingreso de datos del usuario
         usuario = input("Ingrese usuario: ").strip()
-        while validarusuario(usuario, listausuarios) == False:
+        while validarUsuario(usuario, listausuarios) == False:
             print("El usuario ya existe o el formato es incorrecto, el usuario debe contener solo letras")
             print("")
             usuario = input("Ingrese usuario: ").strip()
         contrasena = input("Ingrese contrasena: ").strip()
-        while validarcontrasena(contrasena) == False:
+        while validarContrasena(contrasena) == False:
             print("El formato es incorrecto, la contrasena debe contener solo letras y la primera debe ser mayuscula")
             print("")
             contrasena = input("Ingrese contrasena: ").strip()
         nombre = input("Ingrese nombre: ").strip()
-        while validarnombre(nombre) == False:
+        while validarNombre(nombre) == False:
             print("El formato es incorrecto, el nombre debe contener solo letras y la primera debe ser mayuscula")
             print("")
             nombre = input("Ingrese nombre: ").strip()
         dni = input("Ingrese dni: ").strip()
-        while validardni(dni, listadnis) == False:
+        while validarDni(dni, listadnis) == False:
             print("El dni ya existe o el formato es incorrecto, debe ser un numero de ocho caracteres")
             print("")
             dni = input("Ingrese dni: ").strip()
         fecnac = input("Ingrese fecha de nacimiento: ").strip() 
-        while validarfecha(fecnac) == False:
+        while validarFecha(fecnac) == False:
             fecnac = input("Ingrese fecha de nacimiento: ").strip() 
         telefono = input("Ingrese telefono: ").strip()
-        while validartelefono(telefono) == False:
+        while validarTelefono(telefono) == False:
             print("El formato es incorrecto, el telefono debe ser un numero de diez caracteres")
             print("")
             telefono = input("Ingrese telefono: ").strip()
         mail = input("Ingrese mail: ").strip()
-        while validarmail(mail) == False:
+        while validarMail(mail) == False:
             print("El formato es incorrecto, el mail debe contener un @")
             print("")
             mail = input("Ingrese mail: ").strip()
         direccion = input("Ingrese direccion: ").strip()
-        while validardireccion(direccion) == False:
+        while validarDireccion(direccion) == False:
             print("El formato es incorrecto, la direccion debe tener letras y numeros")
             print("")
             direccion = input("Ingrese direccion: ").strip()
@@ -67,7 +67,7 @@ class Cliente(Usuario):
         Usuario.__init__(self, usuario, contrasena, nombre, dni, fecnac, telefono, mail, direccion)
         # Ingreso de datos del cliente
         tarjeta = input("Ingrese tarjeta: ").strip()
-        while validartarjeta(tarjeta, listatarjetas) == False:
+        while validarTarjeta(tarjeta, listatarjetas) == False:
             print("La tarjeta ya existe o el formato es incorrecto, la tarjeta debe ser un numero de 16 digitos")
             print("")
             tarjeta = input("Ingrese tarjeta: ").strip()
@@ -84,7 +84,7 @@ class Cliente(Usuario):
         eleccioncambio = input("Ingrese dato que quiere cambiar: ")
         if eleccioncambio == "usuario":
             usuario = input("Ingrese usuario: ").strip()
-            while validarusuario(usuario, listausuarios) == False:
+            while validarUsuario(usuario, listausuarios) == False:
                 print("El usuario ya existe o el formato es incorrecto, el usuario debe contener solo letras")
                 print("")
                 usuario = input("Ingrese usuario: ").strip()
@@ -93,21 +93,21 @@ class Cliente(Usuario):
             self.usuario = usuario
         elif eleccioncambio == "contrasena":
             contrasena = input("Ingrese contrasena: ").strip()
-            while validarcontrasena(contrasena) == False:
+            while validarContrasena(contrasena) == False:
                 print("El formato es incorrecto, la contrasena debe contener solo letras y la primera debe ser mayuscula")
                 print("")
                 contrasena = input("Ingrese contrasena: ").strip()
             self.contrasena = contrasena
         elif eleccioncambio == "nombre":
             nombre = input("Ingrese nombre: ").strip()
-            while validarnombre(nombre) == False:
+            while validarNombre(nombre) == False:
                 print("El formato es incorrecto, el nombre debe contener solo letras y la primera debe ser mayuscula")
                 print("")
                 nombre = input("Ingrese nombre: ").strip()
             self.nombre = nombre
         elif eleccioncambio == "dni":
             dni = input("Ingrese dni: ").strip()
-            while validardni(dni, listadnis) == False:
+            while validarDni(dni, listadnis) == False:
                 print("El dni ya existe o el formato es incorrecto, debe ser un numero de ocho caracteres")
                 print("")
                 dni = input("Ingrese dni: ").strip()
@@ -116,33 +116,33 @@ class Cliente(Usuario):
             self.dni = dni
         elif eleccioncambio == "fecha de nacimiento":
             fecnac = input("Ingrese fecha de nacimiento: ").strip() 
-            while validarfecha(fecnac) == False:
+            while validarFecha(fecnac) == False:
                 fecnac = input("Ingrese fecha de nacimiento: ").strip() 
             self.fecnac = fecnac
         elif eleccioncambio == "telefono":
             telefono = input("Ingrese telefono: ").strip()
-            while validartelefono(telefono) == False:
+            while validarTelefono(telefono) == False:
                 print("El formato es incorrecto, el telefono debe ser un numero de diez caracteres")
                 print("")
                 telefono = input("Ingrese telefono: ").strip()
             self.telefono = telefono
         elif eleccioncambio == "mail":
             mail = input("Ingrese mail: ").strip()
-            while validarmail(mail) == False:
+            while validarMail(mail) == False:
                 print("El formato es incorrecto, el mail debe contener un @")
                 print("")
                 mail = input("Ingrese mail: ").strip()
             self.mail = mail
         elif eleccioncambio == "direccion":
             direccion = input("Ingrese direccion: ").strip()
-            while validardireccion(direccion) == False:
+            while validarDireccion(direccion) == False:
                 print("El formato es incorrecto, la direccion debe tener letras y numeros")
                 print("")
                 direccion = input("Ingrese direccion: ").strip()
             self.direccion = direccion
         elif eleccioncambio == "Tarjeta":
             tarjeta = input("Ingrese tarjeta: ").strip()
-            while validartarjeta(tarjeta, listatarjetas) == False:
+            while validarTarjeta(tarjeta, listatarjetas) == False:
                 print("La tarjeta ya existe o el formato es incorrecto, la tarjeta debe ser un numero de 16 digitos")
                 print("")
                 tarjeta = input("Ingrese tarjeta: ").strip()
@@ -165,20 +165,20 @@ class Cliente(Usuario):
     def alquilar(self):
         # Ingreso de datos del alquiler
         fecha = input("Ingrese fecha del alquiler: ").strip()
-        while validarfecha(fecha) == False:
+        while validarFecha(fecha) == False:
             fecha = input("Ingrese fecha del alquiler: ").strip() 
         duracion = input("Ingrese duracion del alquiler en minutos: ").strip()
-        while validarnumero(duracion) == False:
+        while validarNumero(duracion) == False:
             print("El formato es incorrecto, la duracion debe ser un numero")
             print("")
             duracion = input("Ingrese duracion: ").strip()
         estacionsalida = input("Ingrese estacion de salida: ").strip()
-        while validarestacionsalida(estacionsalida, listanombres, empresa.estaciones) == False:
+        while validarEstacionSalida(estacionsalida, listanombres, empresa.estaciones) == False:
             print("No se encontro la estacion, no hay bicicletas o el formato es incorrecto, el nombre debe contener solo letras y la primera debe ser mayuscula")
             print("")
             estacionsalida = input("Ingrese estacion de salida: ").strip()
         estacionllegada = input("Ingrese estacion de llegada: ").strip()
-        while validarestacionactual(estacionllegada, listanombres, empresa.estaciones) == False:
+        while validarEstacionActual(estacionllegada, listanombres, empresa.estaciones) == False:
             print("No se encontro la estacion, no hay lugar para dejar la bicicleta o el formato es incorrecto, el nombre debe contener solo letras y la primera debe ser mayuscula")
             print("")
             estacionllegada = input("Ingrese estacion de llegada: ").strip()
@@ -225,12 +225,12 @@ class Trabajador(Usuario):
         Usuario.__init__(self, usuario, contrasena, nombre, dni, fecnac, telefono, mail, direccion)
         # Ingreso de datos del trabajador
         puesto = input("Ingrese puesto: ").strip()
-        while validarpuesto(puesto) == False:
+        while validarPuesto(puesto) == False:
             print("El formato es incorrecto, el puesto debe contener solo letras")
             print("")
             puesto = input("Ingrese puesto: ").strip()
         cbu = input("Ingrese cbu: ").strip()
-        while validarcbu(cbu, listacbus) == False:
+        while validarCbu(cbu, listacbus) == False:
             print("El cbu ya existe o el formato es incorrecto, el cbu debe ser un numero de 22 digitos")
             print("")
             cbu = input("Ingrese el cbu: ").strip()
@@ -248,7 +248,7 @@ class Trabajador(Usuario):
         eleccioncambio = input("Ingrese dato que quiere cambiar: ")
         if eleccioncambio == "usuario":
             usuario = input("Ingrese usuario: ").strip()
-            while validarusuario(usuario, listausuarios) == False:
+            while validarUsuario(usuario, listausuarios) == False:
                 print("El usuario ya existe o el formato es incorrecto, el usuario debe contener solo letras")
                 print("")
                 usuario = input("Ingrese usuario: ").strip()
@@ -257,21 +257,21 @@ class Trabajador(Usuario):
             self.usuario = usuario
         elif eleccioncambio == "contrasena":
             contrasena = input("Ingrese contrasena: ").strip()
-            while validarcontrasena(contrasena) == False:
+            while validarContrasena(contrasena) == False:
                 print("El formato es incorrecto, la contrasena debe contener solo letras y la primera debe ser mayuscula")
                 print("")
                 contrasena = input("Ingrese contrasena: ").strip()
             self.contrasena = contrasena
         elif eleccioncambio == "nombre":
             nombre = input("Ingrese nombre: ").strip()
-            while validarnombre(nombre) == False:
+            while validarNombre(nombre) == False:
                 print("El formato es incorrecto, el nombre debe contener solo letras y la primera debe ser mayuscula")
                 print("")
                 nombre = input("Ingrese nombre: ").strip()
             self.nombre = nombre
         elif eleccioncambio == "dni":
             dni = input("Ingrese dni: ").strip()
-            while validardni(dni, listadnis) == False:
+            while validarDni(dni, listadnis) == False:
                 print("El dni ya existe o el formato es incorrecto, debe ser un numero de ocho caracteres")
                 print("")
                 dni = input("Ingrese dni: ").strip()
@@ -280,40 +280,40 @@ class Trabajador(Usuario):
             self.dni = dni
         elif eleccioncambio == "fecha de nacimiento":
             fecnac = input("Ingrese fecha de nacimiento: ").strip() 
-            while validarfecha(fecnac) == False:
+            while validarFecha(fecnac) == False:
                 fecnac = input("Ingrese fecha de nacimiento: ").strip() 
             self.fecnac = fecnac
         elif eleccioncambio == "telefono":
             telefono = input("Ingrese telefono: ").strip()
-            while validartelefono(telefono) == False:
+            while validarTelefono(telefono) == False:
                 print("El formato es incorrecto, el telefono debe ser un numero de diez caracteres")
                 print("")
                 telefono = input("Ingrese telefono: ").strip()
             self.telefono = telefono
         elif eleccioncambio == "mail":
             mail = input("Ingrese mail: ").strip()
-            while validarmail(mail) == False:
+            while validarMail(mail) == False:
                 print("El formato es incorrecto, el mail debe contener un @")
                 print("")
                 mail = input("Ingrese mail: ").strip()
             self.mail = mail
         elif eleccioncambio == "direccion":
             direccion = input("Ingrese direccion: ").strip()
-            while validardireccion(direccion) == False:
+            while validarDireccion(direccion) == False:
                 print("El formato es incorrecto, la direccion debe tener letras y numeros")
                 print("")
                 direccion = input("Ingrese direccion: ").strip()
             self.direccion = direccion
         elif eleccioncambio == "puesto":
             puesto = input("Ingrese puesto: ").strip()
-            while validarpuesto(puesto) == False:
+            while validarPuesto(puesto) == False:
                 print("El formato es incorrecto, el puesto debe contener solo letras")
                 print("")
                 puesto = input("Ingrese puesto: ").strip()
             self.puesto = puesto
         elif eleccioncambio == "cbu":
             cbu = input("Ingrese cbu: ").strip()
-            while validarcbu(cbu, listacbus) == False:
+            while validarCbu(cbu, listacbus) == False:
                 print("El cbu ya existe o el formato es incorrecto, el cbu debe ser un numero de 22 digitos")
                 print("")
                 cbu = input("Ingrese cbu: ").strip()
@@ -336,22 +336,22 @@ class Trabajador(Usuario):
     def agregarEstacion(self):
         # Ingreso de datos de la estacion
         nombre = input("Ingrese nombre: ").strip()
-        while validarestacion(nombre, listanombres) == False:
+        while validarEstacion(nombre, listanombres) == False:
             print("La estacion ya existe o el formato es incorrecto, el nombre debe contener solo letras y la primera debe ser mayuscula")
             print("")
             nombre = input("Ingrse nombre: ").strip()
         direccion = input("Ingrese direccion: ").strip()
-        while validardireccion(direccion) == False:
+        while validarDireccion(direccion) == False:
             print("El formato es incorrecto, la direccion debe tener letras y numeros")
             print("")
             direccion = input("Ingrese direccion: ").strip()
         barrio = input("Ingrese barrio: ").strip()
-        while validarnombre(barrio) == False:
+        while validarNombre(barrio) == False:
             print("El formato es incorrecto, el barrio debe contener solo letras y la primera debe ser mayuscula")
             print("")
             barrio = input("Ingrese barrio: ").strip()
         cantbicitotal = input("Ingrese capacidad: ").strip()
-        while validarnumero(cantbicitotal) == False:
+        while validarNumero(cantbicitotal) == False:
             print("El formato es incorrecto, la capacidad debe ser un numero")
             print("")
             cantbicitotal = input("Ingrese capacidad: ").strip()
@@ -367,13 +367,13 @@ class Trabajador(Usuario):
     def agregarBicicleta(self):
         # Ingreso de datos de la bicicleta
         patente = input("Ingrese patente: ").strip()
-        while validarpatente(patente, listapatentes) == False:
+        while validarPatente(patente, listapatentes) == False:
             print("La patente ya existe o el formato es incorrecto, la patente debe ser un numero")
             print("")
             patente = input("Ingrese patente: ").strip()
         modelo = input("Ingrese modelo: ").strip()
         estacionactual = input("Ingrese estacion donde se ingresa la bicicleta: ").strip()
-        while validarestacionactual(estacionactual, listanombres, empresa.estaciones) == False:
+        while validarEstacionActual(estacionactual, listanombres, empresa.estaciones) == False:
             print("No se encontro la estacion, no hay lugar para dejar la bicicleta o el formato es incorrecto, el nombre debe contener solo letras y la primera debe ser mayuscula")
             print("")
             estacionactual = input("Ingrese estacion donde se ingresa la bicicleta: ").strip()

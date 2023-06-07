@@ -1,19 +1,19 @@
 from datetime import datetime
 from datetime import date
 
-def validarusuario(usuario, listausuarios):
+def validarUsuario(usuario, listausuarios):
     return usuario.replace(" ","").isalpha() and usuario not in listausuarios
 
-def validarcontrasena(contrasena):
+def validarContrasena(contrasena):
     return contrasena.replace(" ","").isalpha() and contrasena[0].replace(" ","").isupper()
 
-def validarnombre(nombre):
+def validarNombre(nombre):
     return nombre.replace(" ","").isalpha() and nombre[0].replace(" ","").isupper()
 
-def validardni(dni, listadnis):
+def validarDni(dni, listadnis):
     return dni.isdigit() and len(dni) == 8 and dni not in listadnis
 
-def validarfecha(fecha):
+def validarFecha(fecha):
     try:
         fecha_valida = datetime.strptime(fecha, "%Y/%m/%d").date()
         fecha_actual = date.today()
@@ -28,34 +28,34 @@ def validarfecha(fecha):
         print("")
         return False
     
-def validartelefono(telefono):
+def validarTelefono(telefono):
     return telefono.isdigit() and len(telefono) == 10
 
-def validarmail(mail):
+def validarMail(mail):
     return "@" in mail
 
-def validardireccion(direccion):
+def validarDireccion(direccion):
     return direccion.replace(" ","").isalnum()
 
-def validartarjeta(tarjeta, listatarjetas):
+def validarTarjeta(tarjeta, listatarjetas):
     return tarjeta.isdigit() and len(tarjeta) == 16 and tarjeta not in listatarjetas
 
-def validarpuesto(puesto):
+def validarPuesto(puesto):
     return puesto.replace(" ","").isalpha()
 
-def validarcbu(cbu, listacbus):
+def validarCbu(cbu, listacbus):
     return cbu.isdigit() and len(cbu) == 22 and cbu not in listacbus
 
-def validarestacion(nombre, listaestaciones):
+def validarEstacion(nombre, listaestaciones):
     return nombre.replace(" ","").isalpha() and nombre[0].replace(" ","").isupper() and nombre not in listaestaciones
 
-def validarnumero(cantbicitotal):
+def validarNumero(cantbicitotal):
     return cantbicitotal.isdigit() 
 
-def validarpatente(patente, listapatentes):
+def validarPatente(patente, listapatentes):
     patente.isdigit() and patente not in listapatentes
 
-def validarestacionsalida(nombre, listaestaciones, diccionariodatosestaciones):
+def validarEstacionSalida(nombre, listaestaciones, diccionariodatosestaciones):
     try:
         estacion = diccionariodatosestaciones.get(nombre)
         if estacion.cantbicidisponible != 0:
@@ -68,7 +68,7 @@ def validarestacionsalida(nombre, listaestaciones, diccionariodatosestaciones):
         print("Error")
     return nombre.replace(" ","").isalpha() and nombre[0].replace(" ","").isupper() and nombre in listaestaciones and cumple == "Si"
 
-def validarestacionactual(estacionactual, listaestaciones, diccionariodatosestaciones):
+def validarEstacionActual(estacionactual, listaestaciones, diccionariodatosestaciones):
     try:
         estacion = diccionariodatosestaciones.get(estacionactual)
         if estacion.cantbicitotal != str(estacion.cantbicidisponible):
@@ -81,12 +81,12 @@ def validarestacionactual(estacionactual, listaestaciones, diccionariodatosestac
         print("Error")
     return estacionactual.replace(" ","").isalpha() and estacionactual[0].replace(" ","").isupper() and estacionactual in listaestaciones and cumple == "Si"
 
-def validarpersona(usuario, contrasena, listapersonas):
+def validarPersona(usuario, contrasena, listapersonas):
     try:
         trabajador = listapersonas.get(usuario + contrasena)
         cumple = "Si"
     except KeyError:
-        print("No se encontro el trabajador")
+        print("No se encontro a la persona")
         cumple = "No"
     except:
         print("Error")
