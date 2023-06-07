@@ -4,7 +4,7 @@ from clase_bicicleta import *
 from validaciones import *
 
 class Usuario:
-    def __init__(self, usuario=0, contrasena=0, nombre=0, dni=0, fecnac=0, telefono=0, mail=0, direccion=0):
+    def __init__(self, usuario=None, contrasena=None, nombre=None, dni=0, fecnac=None, telefono=0, mail=None, direccion=None):
         # Ingreso de datos del usuario
         usuario = input("Ingrese usuario: ").strip()
         while validarusuario(usuario, listausuarios) == False:
@@ -63,7 +63,7 @@ class Usuario:
 
 
 class Cliente(Usuario):
-    def __init__(self, usuario=None, contrasena=None, nombre=None, dni=None, fecnac=0, telefono=0, mail=0, direccion=0, tarjeta=0):
+    def __init__(self, usuario=None, contrasena=None, nombre=None, dni=0, fecnac=None, telefono=0, mail=None, direccion=None, tarjeta=0):
         Usuario.__init__(self, usuario, contrasena, nombre, dni, fecnac, telefono, mail, direccion)
         # Ingreso de datos del cliente
         tarjeta = input("Ingrese tarjeta: ").strip()
@@ -153,7 +153,6 @@ class Cliente(Usuario):
             print("No se encontro el dato")
             print("")
 
-
     def eliminar(self):
         empresa.clientes.pop(self.usuario + self.contrasena)
         listadnis.remove(self.dni)
@@ -212,7 +211,7 @@ class Cliente(Usuario):
         print("Alquiler ingresado")
         print("")
 
-    def mostrarinfo(self):
+    def mostrarInfo(self):
         for estacion in empresa.estaciones.values():
             print(str(estacion.nombre) + " " + str(estacion.direccion) + " " + str(estacion.barrio) + " " + str(estacion.cantbicitotal) + " " + str(estacion.cantbicidisponible))
             print("")
@@ -222,7 +221,7 @@ class Cliente(Usuario):
 
 
 class Trabajador(Usuario):
-    def __init__(self, usuario=0, contrasena=0, nombre=0, dni=0, fecnac=0, telefono=0, mail=0, direccion=0, puesto=0, cbu=0):
+    def __init__(self, usuario=None, contrasena=None, nombre=None, dni=0, fecnac=None, telefono=0, mail=None, direccion=None, puesto=None, cbu=0):
         Usuario.__init__(self, usuario, contrasena, nombre, dni, fecnac, telefono, mail, direccion)
         # Ingreso de datos del trabajador
         puesto = input("Ingrese puesto: ").strip()
@@ -334,7 +333,7 @@ class Trabajador(Usuario):
         print("Trabajador eliminado")
         print("")
 
-    def agregarestacion(self):
+    def agregarEstacion(self):
         # Ingreso de datos de la estacion
         nombre = input("Ingrese nombre: ").strip()
         while validarestacion(nombre, listanombres) == False:
@@ -365,7 +364,7 @@ class Trabajador(Usuario):
         print("Estacion ingresada")
         print("")
 
-    def agregarbicicleta(self):
+    def agregarBicicleta(self):
         # Ingreso de datos de la bicicleta
         patente = input("Ingrese patente: ").strip()
         while validarpatente(patente, listapatentes) == False:

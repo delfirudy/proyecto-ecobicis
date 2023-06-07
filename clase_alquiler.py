@@ -5,14 +5,14 @@ class Alquiler():
     id = 0
 
     def __init__(self, usuario, fecha, duracion, estacionsalida, estacionllegada):
-        self.id = Alquiler.sumarid()
+        self.id = Alquiler.sumarId()
         self.usuario = usuario
         self.fecha = fecha
         self.duracion = duracion
         self.estacionsalida = estacionsalida
         self.estacionllegada = estacionllegada
 
-    def sumarid():
+    def sumarId():
         Alquiler.id += 1
         return Alquiler.id
 

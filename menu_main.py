@@ -6,7 +6,7 @@ from actualizacion_pickle import *
 from menu_submenu import *
 
 class Menu:
-    recorrerpickle()
+    recorrerPickle()
     seguir = True
     while seguir == True:
         print("1. Ingreso de datos cliente")
@@ -26,7 +26,7 @@ class Menu:
         elif eleccion == "4":
             submenutrabajador()
         elif eleccion == "5":
-            actualizarpickle()
+            actualizarPickle()
             exit()
         else:
             print("Ingreso incorrecto de opcion")

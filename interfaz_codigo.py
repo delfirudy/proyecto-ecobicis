@@ -549,7 +549,6 @@ class MainWindow(QMainWindow):
 
         dialog.exec_()
 
-
 if __name__ == "__main__":
     app = QApplication(sys.argv)
     app.setStyleSheet(open("interfaz_estilo.qss").read())
