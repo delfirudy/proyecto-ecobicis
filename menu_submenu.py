@@ -16,21 +16,9 @@ def submenucambio(trabajador):
         if eleccioncambio == "1":
             trabajador.cambio()
         elif eleccioncambio == "2":
-            patente = input("Ingrese la patente de la bicicleta a modificar: ")
-            while validarPatente(patente, listapatentes) == True:
-                print("Patente no encontrada")
-                print("")
-                patente = input("Ingrese bicicleta a modificar: ")
-            bicicleta = empresa.bicicletas.get(patente)
-            bicicleta.cambio()
+            trabajador.cambiarBicicleta()
         elif eleccioncambio == "3":
-            nombre = input("Ingrese el nombre de la estacion a modificar: ")
-            while validarEstacion(nombre, listanombres) == True:
-                print("Estacion no encontrada")
-                print("")
-                nombre = input("Ingrese el nombre de la estacion a modificar: ")
-            estacion = empresa.estaciones.get(nombre)
-            estacion.cambio()
+            trabajador.cambiarEstacion()
         elif eleccioncambio == "4":
             seguir3 = False
         else:
@@ -52,21 +40,9 @@ def submenueliminar(trabajador):
             trabajador.eliminar()
             seguir4 = False
         elif eleccioneliminar == "2":
-            patente = input("Ingrese la patente de la bicicleta a eliminar: ")
-            while validarPatente(patente, listapatentes) == True:
-                print("Patente no encontrada")
-                print("")
-                patente = input("Ingrese bicicleta a eliminar: ")
-            bicicleta = empresa.bicicletas.get(patente)
-            bicicleta.eliminar()
+            trabajador.eliminarBicicleta()
         elif eleccioneliminar == "3":
-            nombre = input("Ingrese el nombre de la estacion a eliminar: ")
-            while validarEstacion(nombre, listanombres) == True:
-                print("Estacion no encontrada")
-                print("")
-                nombre = input("Ingrese el nombre de la estacion a eliminar: ")
-            estacion = empresa.estaciones.get(nombre)
-            estacion.eliminar()
+            trabajador.eliminarEstacion()
         elif eleccioneliminar == "4":
             seguir4 = False
         else:

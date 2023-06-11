@@ -394,5 +394,41 @@ class Trabajador(Usuario):
         print("Bicicleta ingresada")
         print("")
 
+    def cambiarBicicleta(self):
+        patente = input("Ingrese la patente de la bicicleta a modificar: ")
+        while validarPatente(patente, listapatentes) == True:
+            print("Patente no encontrada")
+            print("")
+            patente = input("Ingrese bicicleta a modificar: ")
+        bicicleta = empresa.bicicletas.get(patente)
+        bicicleta.cambio()
+
+    def cambiarEstacion(self):
+        nombre = input("Ingrese el nombre de la estacion a modificar: ")
+        while validarEstacion(nombre, listanombres) == True:
+            print("Estacion no encontrada")
+            print("")
+            nombre = input("Ingrese el nombre de la estacion a modificar: ")
+        estacion = empresa.estaciones.get(nombre)
+        estacion.cambio()
+
+    def eliminarBicicleta(self):
+        patente = input("Ingrese la patente de la bicicleta a eliminar: ")
+        while validarPatente(patente, listapatentes) == True:
+            print("Patente no encontrada")
+            print("")
+            patente = input("Ingrese bicicleta a eliminar: ")
+        bicicleta = empresa.bicicletas.get(patente)
+        bicicleta.eliminar()
+
+    def eliminarEstacion(self):
+        nombre = input("Ingrese el nombre de la estacion a eliminar: ")
+        while validarEstacion(nombre, listanombres) == True:
+            print("Estacion no encontrada")
+            print("")
+            nombre = input("Ingrese el nombre de la estacion a eliminar: ")
+        estacion = empresa.estaciones.get(nombre)
+        estacion.eliminar()
+
     def __str__(self):
         return "Usuario: {} \nContrasena: {} \nNombre: {} \nDni: {} \nFecha de nacimiento: {} \nTelefono: {} \nMail: {} \nDireccion: {} \nPuesto {} \nCbu: {}".format(self.usuario, self.contrasena, self.nombre, self.dni, self.fecnac, self.telefono, self.mail, self.direccion, self.puesto, self.cbu)

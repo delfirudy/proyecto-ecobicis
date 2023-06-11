@@ -4,6 +4,10 @@ from PyQt5.QtWidgets import QApplication, QMainWindow, QDialog, QLabel, QLineEdi
 
 class MainWindow(QMainWindow):
 
+
+
+
+
     # VENTANA PRINCIPAL
     def __init__(self):
         super().__init__()
@@ -13,30 +17,37 @@ class MainWindow(QMainWindow):
 
         self.button1 = QPushButton("Ingreso de datos cliente", self)
         self.button1.setGeometry(50, 50, 250, 30)
-        self.button1.clicked.connect(self.show_client_data_dialog)
+        self.button1.clicked.connect(self.menu_ingreso_cliente)
 
         self.button2 = QPushButton("Ingreso de datos trabajador", self)
         self.button2.setGeometry(50, 90, 250, 30)
-        self.button2.clicked.connect(self.show_worker_data_dialog)
+        self.button2.clicked.connect(self.menu_ingreso_trabajador)
 
         self.button3 = QPushButton("Opciones cliente", self)
         self.button3.setGeometry(50, 130, 250, 30)
-        self.button3.clicked.connect(self.show_client_options_dialog)
+        self.button3.clicked.connect(self.menu_opciones_cliente)
 
         self.button4 = QPushButton("Opciones trabajador", self)
         self.button4.setGeometry(50, 170, 250, 30)
-        self.button4.clicked.connect(self.show_worker_options_dialog)
+        self.button4.clicked.connect(self.menu_opciones_trabajador)
 
         self.button5 = QPushButton("Salir", self)
         self.button5.setGeometry(50, 210, 250, 30)
         self.button5.clicked.connect(self.close)
 
+        self.input_boxes = []
+
+
+
+
+
     # VENTANA SECUNDARIA INGRESO CLIENTE
-    def show_client_data_dialog(self):
+    def menu_ingreso_cliente(self):
         dialog = QDialog(self)
         dialog.setWindowTitle("Ingreso de datos cliente")
         dialog.setGeometry(300, 300, 350, 440)
 
+        self.input_boxes = []
         label_titles = ["Usuario", "Contrasena", "Nombre", "Dni", "Fecha de nacimiento", "Telefono", "Mail", "Direccion", "Tarjeta"]
         for i in range(len(label_titles)):
             label = QLabel(label_titles[i], dialog)
@@ -44,10 +55,11 @@ class MainWindow(QMainWindow):
 
             input_box = QLineEdit(dialog)
             input_box.setGeometry(200, 30 + 30 * i, 100, 20)
+            self.input_boxes.append(input_box.text())
 
         ingresar_button = QPushButton("Ingresar", dialog)
         ingresar_button.setGeometry(50, 300, 250, 30)
-        ingresar_button.clicked.connect(self.ingresar_cliente)
+        ingresar_button.clicked.connect(self.ingreso_cliente)
 
         volver_button = QPushButton("Volver", dialog)
         volver_button.setGeometry(50, 340, 250, 30)
@@ -55,12 +67,45 @@ class MainWindow(QMainWindow):
 
         dialog.exec_()
 
+    # Funcion de ingreso del cliente
+    def ingreso_cliente(self):
+        datoscliente = self.input_boxes
+
+        if self.validacion_ingreso_cliente(datoscliente) == True: 
+
+            # Codigo de ingreso del cliente
+
+            dialog = QDialog(self)
+            dialog.setWindowTitle("Ingreso de datos cliente")
+            dialog.setGeometry(300, 300, 350, 440)
+
+            label = QLabel("Ingreso realizado", dialog)
+            label.setGeometry(50, 30, 150, 20)
+
+            volver_button = QPushButton("Volver", dialog)
+            volver_button.setGeometry(50, 70, 250, 30)
+            volver_button.clicked.connect(dialog.close)
+
+            dialog.exec_()
+
+    # Funcion de validacion de datos del cliente
+    def validacion_ingreso_cliente(self, datoscliente):
+
+        # Codigo de validacion de datos del cliente
+
+        return True        
+
+
+
+
+
     # VENTANA SECUNDARIA INGRESO TRABAJADOR    
-    def show_worker_data_dialog(self):
+    def menu_ingreso_trabajador(self):
         dialog = QDialog(self)
         dialog.setWindowTitle("Ingreso de datos trabajador")
         dialog.setGeometry(300, 300, 350, 440)
 
+        self.input_boxes = []
         label_titles = ["Usuario", "Contrasena", "Nombre", "Dni", "Fecha de nacimiento", "Telefono", "Mail", "Direccion", "Puesto", "Cbu"]
         for i in range(len(label_titles)):
             label = QLabel(label_titles[i], dialog)
@@ -68,10 +113,11 @@ class MainWindow(QMainWindow):
 
             input_box = QLineEdit(dialog)
             input_box.setGeometry(200, 30 + 30 * i, 100, 20)
+            self.input_boxes.append(input_box.text())
 
         ingresar_button = QPushButton("Ingresar", dialog)
         ingresar_button.setGeometry(50, 330, 250, 30)
-        ingresar_button.clicked.connect(self.ingresar_trabajador)
+        ingresar_button.clicked.connect(self.ingreso_trabajador)
 
         volver_button = QPushButton("Volver", dialog)
         volver_button.setGeometry(50, 370, 250, 30)
@@ -79,8 +125,40 @@ class MainWindow(QMainWindow):
 
         dialog.exec_()
 
+    # Funcion de ingreso del trabajador
+    def ingreso_trabajador(self):
+        datostrabajador = self.input_boxes
+
+        if self.validacion_ingreso_trabajador(datostrabajador) == True:
+
+            # Codigo de ingreso del trabajador
+
+            dialog = QDialog(self)
+            dialog.setWindowTitle("Ingreso de datos trabajador")
+            dialog.setGeometry(300, 300, 350, 440)
+
+            label = QLabel("Ingreso realizado", dialog)
+            label.setGeometry(50, 30, 150, 20)
+
+            volver_button = QPushButton("Volver", dialog)
+            volver_button.setGeometry(50, 70, 250, 30)
+            volver_button.clicked.connect(dialog.close)
+
+            dialog.exec_()
+
+    # Funcion de validacion de datos del trabajador
+    def validacion_ingreso_trabajador(self, datostrabajador):
+
+        # Codigo de validacion de datos del trabajador
+
+        return True
+
+
+
+
+
     # VENTANA SECUNDARIA OPCIONES CLIENTE
-    def show_client_options_dialog(self):
+    def menu_opciones_cliente(self):
         dialog = QDialog(self)
         dialog.setWindowTitle("Opciones cliente")
         dialog.setGeometry(300, 300, 350, 440)
@@ -97,7 +175,7 @@ class MainWindow(QMainWindow):
 
         validate_button = QPushButton("Validar", dialog)
         validate_button.setGeometry(50, 110, 250, 30)
-        validate_button.clicked.connect(self.validate_client_credentials)
+        validate_button.clicked.connect(self.submenu_opciones_cliente)
 
         volver_button = QPushButton("Volver", dialog)
         volver_button.setGeometry(50, 150, 250, 30)
@@ -105,45 +183,19 @@ class MainWindow(QMainWindow):
 
         dialog.exec_()
 
-    # VENTANA SECUNDARIA OPCIONES TRABAJADOR
-    def show_worker_options_dialog(self):
-        dialog = QDialog(self)
-        dialog.setWindowTitle("Opciones trabajador")
-        dialog.setGeometry(300, 300, 350, 440)
-
-        username_label = QLabel("Usuario", dialog)
-        username_label.setGeometry(50, 30, 100, 20)
-        self.username_input = QLineEdit(dialog)
-        self.username_input.setGeometry(150, 30, 100, 20)
-
-        password_label = QLabel("Contraseña", dialog)
-        password_label.setGeometry(50, 70, 100, 20)
-        self.password_input = QLineEdit(dialog)
-        self.password_input.setGeometry(150, 70, 100, 20)
-
-        validate_button = QPushButton("Validar", dialog)
-        validate_button.setGeometry(50, 110, 250, 30)
-        validate_button.clicked.connect(self.validate_worker_credentials)
-    
-        volver_button = QPushButton("Volver", dialog)
-        volver_button.setGeometry(50, 150, 250, 30)
-        volver_button.clicked.connect(dialog.close)
-
-        dialog.exec_()
-
-    # VENTANAS VALIDACIONES CLIENTE Y TRABAJADOR
-    def validate_client_credentials(self):
+    # Funcion de ingreso usuario y contrasena cliente
+    def submenu_opciones_cliente(self):
         username = self.username_input.text()
         password = self.password_input.text()
 
-        if self.validate_credentials(username, password):
+        if self.validacion_opciones_cliente(username, password):
             dialog = QDialog(self)
             dialog.setWindowTitle("Opciones cliente")
             dialog.setGeometry(300, 300, 350, 440)
 
             alquiler_button = QPushButton("Alquilar", dialog)
             alquiler_button.setGeometry(50, 30, 250, 30)
-            alquiler_button.clicked.connect(self.alquiler)
+            alquiler_button.clicked.connect(self.alquilar)
 
             info_button = QPushButton("Informacion", dialog)
             info_button.setGeometry(50, 70, 250, 30)
@@ -163,11 +215,114 @@ class MainWindow(QMainWindow):
 
             dialog.exec_()
 
-    def validate_worker_credentials(self):
+    # Funcion de validacion de usuario y contrasena
+    def validacion_opciones_cliente(self, username, password):
+
+        # Codigo de validacion de usuario y contrasena
+
+        return True
+    
+    def alquilar(self):
+        dialog = QDialog(self)
+        dialog.setWindowTitle("Alquilar")
+        dialog.setGeometry(300, 300, 350, 440)
+
+        self.input_boxes = []
+        label_titles = ["Fecha", "Duracion", "Estacion salida", "Estacion llegada"]
+        for i in range(len(label_titles)):
+            label = QLabel(label_titles[i], dialog)
+            label.setGeometry(50, 30 + 30 * i, 150, 20)
+
+            input_box = QLineEdit(dialog)
+            input_box.setGeometry(200, 30 + 30 * i, 100, 20)
+            self.input_boxes.append(input_box.text())
+
+        alquilar_button = QPushButton("Alquilar", dialog)
+        alquilar_button.setGeometry(50, 160, 250, 30)
+        alquilar_button.clicked.connect(self.ingresar_alquiler)
+
+        volver_button = QPushButton("Volver", dialog)
+        volver_button.setGeometry(50, 200, 250, 30)
+        volver_button.clicked.connect(dialog.close)
+
+        dialog.exec_()
+
+    def ingresar_alquiler(self):
+        datosalquiler = self.input_boxes
+
+        if self.validacion_datos_alquiler(datosalquiler) == True:
+
+            dialog = QDialog(self)
+            dialog.setWindowTitle("Alquilar")
+            dialog.setGeometry(300, 300, 350, 440)
+
+            # Aca el codigo de ingreso de alquiler
+
+            label = QLabel("Alquiler ingresado", dialog)
+            label.setGeometry(50, 30, 150, 20)
+
+            volver_button = QPushButton("Volver", dialog)
+            volver_button.setGeometry(50, 70, 250, 30)
+            volver_button.clicked.connect(dialog.close)
+
+            dialog.exec_() 
+
+    def validacion_datos_alquiler(self, datosalquiler):
+
+        # Codigo de validacion de datos alquiler
+
+        return True
+    
+    def mostrar_informacion(self):
+        dialog = QDialog(self)
+        dialog.setWindowTitle("Informacion")
+        dialog.setGeometry(300, 300, 350, 440)
+
+        # Aca el codigo de mostrar informacion
+
+        volver_button = QPushButton("Volver", dialog)
+        volver_button.setGeometry(50, 200, 250, 30)
+        volver_button.clicked.connect(dialog.close)
+
+        dialog.exec_()
+
+
+
+
+
+
+    # VENTANA SECUNDARIA OPCIONES TRABAJADOR
+    def menu_opciones_trabajador(self):
+        dialog = QDialog(self)
+        dialog.setWindowTitle("Opciones trabajador")
+        dialog.setGeometry(300, 300, 350, 440)
+
+        username_label = QLabel("Usuario", dialog)
+        username_label.setGeometry(50, 30, 100, 20)
+        self.username_input = QLineEdit(dialog)
+        self.username_input.setGeometry(150, 30, 100, 20)
+
+        password_label = QLabel("Contraseña", dialog)
+        password_label.setGeometry(50, 70, 100, 20)
+        self.password_input = QLineEdit(dialog)
+        self.password_input.setGeometry(150, 70, 100, 20)
+
+        validate_button = QPushButton("Validar", dialog)
+        validate_button.setGeometry(50, 110, 250, 30)
+        validate_button.clicked.connect(self.submenu_opciones_trabajador)
+    
+        volver_button = QPushButton("Volver", dialog)
+        volver_button.setGeometry(50, 150, 250, 30)
+        volver_button.clicked.connect(dialog.close)
+
+        dialog.exec_()
+
+    # Funcion de ingreso usuario y contrasena trabajador
+    def submenu_opciones_trabajador(self):
         username = self.username_input.text()
         password = self.password_input.text()
 
-        if self.validate_credentials(username, password):
+        if self.validacion_opciones_trabajador(username, password) == True:
             dialog = QDialog(self)
             dialog.setWindowTitle("Opciones trabajador")
             dialog.setGeometry(300, 300, 350, 440)
@@ -194,7 +349,18 @@ class MainWindow(QMainWindow):
 
             dialog.exec_()
 
-    # VENTANAS DENTRO DE TRABAJADOR
+    # Funcion de validacion de usuario y contrasena
+    def validacion_opciones_trabajador(self, username, password):
+
+        # Codigo de validacion de usuario y contrasena
+
+        return True
+
+
+
+
+
+    # VENTANA CAMBIO DE DATOS DENTRO DE TRABAJADOR
     def cambiar_menu(self):
         dialog = QDialog(self)
         dialog.setWindowTitle("Cambiar datos")
@@ -218,6 +384,11 @@ class MainWindow(QMainWindow):
 
         dialog.exec_()
 
+
+
+
+
+    # VENTANA BAJA DE OBJETOS DENTRO DE TRABAJADOR
     def baja_menu(self):
         dialog = QDialog(self)
         dialog.setWindowTitle("Dar de baja")
@@ -241,36 +412,9 @@ class MainWindow(QMainWindow):
 
         dialog.exec_()
 
+
+
     # FUNCIONES PRINCIPALES
-
-    def validate_credentials(self, username, password):
-
-        # Aca el codigo de validacion de trabajador y cliente
-
-        return True
-
-    def alquiler(self):
-        dialog = QDialog(self)
-        dialog.setWindowTitle("Alquilar")
-        dialog.setGeometry(300, 300, 350, 440)
-
-        label_titles = ["Fecha", "Duracion", "Estacion salida", "Estacion llegada"]
-        for i in range(len(label_titles)):
-            label = QLabel(label_titles[i], dialog)
-            label.setGeometry(50, 30 + 30 * i, 150, 20)
-
-            input_box = QLineEdit(dialog)
-            input_box.setGeometry(200, 30 + 30 * i, 100, 20)
-
-        alquilar_button = QPushButton("Alquilar", dialog)
-        alquilar_button.setGeometry(50, 160, 250, 30)
-        alquilar_button.clicked.connect(self.ingresar_alquiler)
-
-        volver_button = QPushButton("Volver", dialog)
-        volver_button.setGeometry(50, 200, 250, 30)
-        volver_button.clicked.connect(dialog.close)
-
-        dialog.exec_()
 
     def estacion(self):
         dialog = QDialog(self)
@@ -317,6 +461,22 @@ class MainWindow(QMainWindow):
         volver_button.clicked.connect(dialog.close)
 
         dialog.exec_()
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
 
     def cambiar(self):
         dialog = QDialog(self)
@@ -424,53 +584,7 @@ class MainWindow(QMainWindow):
         dialog.exec_()
 
     # FUNCIONES DE AVISO Y EJECUCION
-    def ingresar_cliente(self):
-        dialog = QDialog(self)
-        dialog.setWindowTitle("Ingreso de datos cliente")
-        dialog.setGeometry(300, 300, 350, 440)
 
-        # Aca codigo de ingreso de cliente
-
-        label = QLabel("Ingreso realizado", dialog)
-        label.setGeometry(50, 30, 150, 20)
-
-        volver_button = QPushButton("Volver", dialog)
-        volver_button.setGeometry(50, 70, 250, 30)
-        volver_button.clicked.connect(dialog.close)
-
-        dialog.exec_()
-
-    def ingresar_trabajador(self):
-        dialog = QDialog(self)
-        dialog.setWindowTitle("Ingreso de datos trabajador")
-        dialog.setGeometry(300, 300, 350, 440)
-
-        # Aca codigo de ingreso de trabajador
-
-        label = QLabel("Ingreso realizado", dialog)
-        label.setGeometry(50, 30, 150, 20)
-
-        volver_button = QPushButton("Volver", dialog)
-        volver_button.setGeometry(50, 70, 250, 30)
-        volver_button.clicked.connect(dialog.close)
-
-        dialog.exec_()
-
-    def ingresar_alquiler(self):
-        dialog = QDialog(self)
-        dialog.setWindowTitle("Alquilar")
-        dialog.setGeometry(300, 300, 350, 440)
-
-        # Aca el codigo de ingreso de alquiler
-
-        label = QLabel("Alquiler ingresado", dialog)
-        label.setGeometry(50, 30, 150, 20)
-
-        volver_button = QPushButton("Volver", dialog)
-        volver_button.setGeometry(50, 70, 250, 30)
-        volver_button.clicked.connect(dialog.close)
-
-        dialog.exec_() 
 
     def ingresar_estacion(self):
         dialog = QDialog(self)
@@ -500,19 +614,6 @@ class MainWindow(QMainWindow):
 
         volver_button = QPushButton("Volver", dialog)
         volver_button.setGeometry(50, 70, 250, 30)
-        volver_button.clicked.connect(dialog.close)
-
-        dialog.exec_()
-
-    def mostrar_informacion(self):
-        dialog = QDialog(self)
-        dialog.setWindowTitle("Informacion")
-        dialog.setGeometry(300, 300, 350, 440)
-
-        # Aca el codigo de mostrar informacion
-
-        volver_button = QPushButton("Volver", dialog)
-        volver_button.setGeometry(50, 200, 250, 30)
         volver_button.clicked.connect(dialog.close)
 
         dialog.exec_()
