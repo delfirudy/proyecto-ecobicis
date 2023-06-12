@@ -24,7 +24,7 @@ class Menu:
         elif eleccion == "3":
             subMenuCliente()
         elif eleccion == "4":
-            submenutrabajador()
+            subMenuTrabajador()
         elif eleccion == "5":
             actualizarPickle()
             exit()

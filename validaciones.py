@@ -53,7 +53,7 @@ def validarNumero(cantbicitotal):
     return cantbicitotal.isdigit() 
 
 def validarPatente(patente, listapatentes):
-    patente.isdigit() and patente not in listapatentes
+    return patente.isdigit() and patente not in listapatentes
 
 def validarEstacionSalida(nombre, listaestaciones, diccionariodatosestaciones):
     try:

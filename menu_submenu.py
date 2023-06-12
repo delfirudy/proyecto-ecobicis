@@ -3,7 +3,7 @@ from clase_alquiler import *
 from clase_estacion import *
 from clase_bicicleta import *
 
-def submenucambio(trabajador):
+def submenuCambio(trabajador):
     seguir3 = True
     while seguir3 == True:
         print("1. Cambiar datos trabajador")
@@ -26,7 +26,7 @@ def submenucambio(trabajador):
             print("")
 
 
-def submenueliminar(trabajador):
+def submenuEliminar(trabajador):
     seguir4 = True
     while seguir4 == True:
         print("1. Eliminar trabajador")
@@ -49,7 +49,7 @@ def submenueliminar(trabajador):
             print("Ingreso incorrecto de opcion")
             print("")
 
-def submenutrabajador():
+def subMenuTrabajador():
     usuario = input("Ingrese usuario: ").strip()
     contrasena = input("Ingrese contrasena: ").strip()
     while validarPersona(usuario, contrasena, empresa.trabajadores) == False:
@@ -72,13 +72,13 @@ def submenutrabajador():
         elecciontrabajador = input("Ingrese opcion: ").strip()
         print("")
         if elecciontrabajador == "1":
-            trabajador.agregarestacion()
+            trabajador.agregarEstacion()
         elif elecciontrabajador == "2":
-            trabajador.agregarbicicleta()
+            trabajador.agregarBicicleta()
         elif elecciontrabajador == "3":
-            submenucambio(trabajador)
+            submenuCambio(trabajador)
         elif elecciontrabajador == "4":
-            submenueliminar(trabajador)
+            submenuEliminar(trabajador)
         elif elecciontrabajador == "5":
             seguir1 = False
         else:
@@ -110,7 +110,7 @@ def subMenuCliente():
         if eleccionusuario == "1":
             cliente.alquilar()
         elif eleccionusuario == "2":
-            cliente.mostrarinfo()
+            cliente.mostrarInfo()
         elif eleccionusuario == "3":
             cliente.cambio()
         elif eleccionusuario == "4":

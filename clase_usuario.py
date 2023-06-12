@@ -1,6 +1,7 @@
 from clase_estacion import *
 from clase_alquiler import *
 from clase_bicicleta import *
+from clase_empresa import *
 from validaciones import *
 
 class Usuario:
