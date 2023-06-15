@@ -13,17 +13,17 @@ def recorrerPickle():
             except EOFError:
                 pass
     for cliente in empresa.clientes.values():
-        listausuarios.append(cliente.nombre)
-        listatarjetas.append(cliente.tarjeta)
-        listadnis.append(cliente.dni)
+        empresa.listausuarios.append(cliente.usuario)
+        empresa.listatarjetas.append(cliente.tarjeta)
+        empresa.listadnis.append(cliente.dni)
     for trabajador in empresa.trabajadores.values():
-        listausuarios.append(trabajador.nombre)
-        listacbus.append(trabajador.cbu)
-        listadnis.append(trabajador.dni)
+        empresa.listausuarios.append(trabajador.usuario)
+        empresa.listacbus.append(trabajador.cbu)
+        empresa.listadnis.append(trabajador.dni)
     for estacion in empresa.estaciones.values():
-        listanombres.append(estacion.nombre)
+        empresa.listanombres.append(estacion.nombre)
     for bicicleta in empresa.bicicletas.values():
-        listapatentes.append(bicicleta.patente)
+        empresa.listapatentes.append(bicicleta.patente)
 
 
 def actualizarPickle():

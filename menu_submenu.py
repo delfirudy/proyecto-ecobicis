@@ -14,7 +14,7 @@ def submenuCambio(trabajador):
         eleccioncambio = input("Ingrese opcion: ")
         print("")
         if eleccioncambio == "1":
-            trabajador.cambio()
+            trabajador.cambio("Trabajador", empresa.trabajadores)
         elif eleccioncambio == "2":
             trabajador.cambiarBicicleta()
         elif eleccioncambio == "3":
@@ -112,7 +112,7 @@ def subMenuCliente():
         elif eleccionusuario == "2":
             cliente.mostrarInfo()
         elif eleccionusuario == "3":
-            cliente.cambio()
+            cliente.cambio("Cliente", empresa.clientes)
         elif eleccionusuario == "4":
             cliente.eliminar()
             seguir2 = False

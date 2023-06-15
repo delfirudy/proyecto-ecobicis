@@ -83,7 +83,7 @@ def validarEstacionActual(estacionactual, listaestaciones, diccionariodatosestac
 
 def validarPersona(usuario, contrasena, listapersonas):
     try:
-        trabajador = listapersonas.get(usuario + contrasena)
+        persona = listapersonas.get(usuario + contrasena)
         cumple = "Si"
     except KeyError:
         print("No se encontro a la persona")
