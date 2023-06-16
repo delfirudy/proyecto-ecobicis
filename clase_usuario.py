@@ -64,13 +64,13 @@ class Usuario:
     def validarUsuario(self, usuario, listausuarios):
         return usuario.replace(" ","").isalpha() and usuario not in listausuarios
     
-    def validarContrasena(contrasena):
+    def validarContrasena(self, contrasena):
         return contrasena.replace(" ","").isalpha() and contrasena[0].replace(" ","").isupper()
     
-    def validarDni(dni, listadnis):
+    def validarDni(self, dni, listadnis):
         return dni.isdigit() and len(dni) == 8 and dni not in listadnis
 
-    def validarFecha(fecha):
+    def validarFecha(self, fecha):
         try:
             fecha_valida = datetime.strptime(fecha, "%Y/%m/%d").date()
             fecha_actual = date.today()
@@ -85,13 +85,13 @@ class Usuario:
             print("")
             return False
         
-    def validarTelefono(telefono):
+    def validarTelefono(self, telefono):
         return telefono.isdigit() and len(telefono) == 10
 
-    def validarMail(mail):
+    def validarMail(self, mail):
         return "@" in mail
 
-    def validarEstacionActual(estacionactual, listaestaciones, diccionariodatosestaciones):
+    def validarEstacionActual(self, estacionactual, listaestaciones, diccionariodatosestaciones):
         try:
             estacion = diccionariodatosestaciones.get(estacionactual)
             if estacion.cantbicitotal != str(estacion.cantbicidisponible):
@@ -111,6 +111,8 @@ class Usuario:
         eleccioncambio = input("Ingrese dato que quiere cambiar: ")
 
         if eleccioncambio == "usuario":
+            print(empresa.clientes)
+            print(empresa.listausuarios)
             usuario = input("Ingrese usuario: ").strip()
             while self.validarUsuario(usuario, empresa.listausuarios) == False:
                 print("El usuario ya existe o el formato es incorrecto, el usuario debe contener solo letras")
@@ -122,6 +124,8 @@ class Usuario:
             self.usuario = usuario
             self.id = self.usuario + self.contrasena
             diccionario[self.id] = self
+            print(empresa.clientes)
+            print(empresa.listausuarios)
         elif eleccioncambio == "contrasena":
             contrasena = input("Ingrese contrasena: ").strip()
             while self.validarContrasena(contrasena) == False:
@@ -229,10 +233,10 @@ class Cliente(Usuario):
         print("Cliente ingresado")
         print("")
 
-    def validarTarjeta(tarjeta, listatarjetas):
+    def validarTarjeta(self, tarjeta, listatarjetas):
         return tarjeta.isdigit() and len(tarjeta) == 16 and tarjeta not in listatarjetas
     
-    def validarEstacionSalida(nombre, listaestaciones, diccionariodatosestaciones):
+    def validarEstacionSalida(self, nombre, listaestaciones, diccionariodatosestaciones):
         try:
             estacion = diccionariodatosestaciones.get(nombre)
             if estacion.cantbicidisponible != 0:
@@ -351,10 +355,10 @@ class Trabajador(Usuario):
         print("Trabajador ingresado")
         print("")
 
-    def validarPuesto(puesto):
+    def validarPuesto(self, puesto):
         return puesto.replace(" ","").isalpha()
     
-    def validarCbu(cbu, listacbus):
+    def validarCbu(self, cbu, listacbus):
         return cbu.isdigit() and len(cbu) == 22 and cbu not in listacbus
 
     def cambio_puesto(self):
