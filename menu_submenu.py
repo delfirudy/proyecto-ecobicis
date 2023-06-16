@@ -3,6 +3,17 @@ from clase_alquiler import *
 from clase_estacion import *
 from clase_bicicleta import *
 
+def validarPersona(usuario, contrasena, listapersonas):
+    try:
+        persona = listapersonas.get(usuario + contrasena)
+        cumple = "Si"
+    except KeyError:
+        print("No se encontro a la persona")
+        cumple = "No"
+    except:
+        print("Error")
+    return cumple == "Si"
+
 def submenuCambio(trabajador):
     seguir3 = True
     while seguir3 == True:
