@@ -4,14 +4,11 @@ from clase_estacion import *
 from clase_bicicleta import *
 
 def validarPersona(usuario, contrasena, listapersonas):
-    try:
-        persona = listapersonas.get(usuario + contrasena)
-        cumple = "Si"
-    except KeyError:
-        print("No se encontro a la persona")
-        cumple = "No"
-    except:
-        print("Error")
+    cumple = "No"
+    for id in listapersonas.keys():
+        if id == usuario + contrasena:
+            cumple = "Si"
+            break
     return cumple == "Si"
 
 def submenuCambio(trabajador):

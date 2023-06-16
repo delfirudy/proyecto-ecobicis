@@ -111,8 +111,6 @@ class Usuario:
         eleccioncambio = input("Ingrese dato que quiere cambiar: ")
 
         if eleccioncambio == "usuario":
-            print(empresa.clientes)
-            print(empresa.listausuarios)
             usuario = input("Ingrese usuario: ").strip()
             while self.validarUsuario(usuario, empresa.listausuarios) == False:
                 print("El usuario ya existe o el formato es incorrecto, el usuario debe contener solo letras")
@@ -124,8 +122,6 @@ class Usuario:
             self.usuario = usuario
             self.id = self.usuario + self.contrasena
             diccionario[self.id] = self
-            print(empresa.clientes)
-            print(empresa.listausuarios)
         elif eleccioncambio == "contrasena":
             contrasena = input("Ingrese contrasena: ").strip()
             while self.validarContrasena(contrasena) == False:
