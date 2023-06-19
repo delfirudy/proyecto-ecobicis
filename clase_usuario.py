@@ -298,21 +298,16 @@ class Cliente(Usuario):
             fecha = input("Ingrese fecha del alquiler: ").strip()
             while self.validarFecha(fecha) == False:
                 fecha = input("Ingrese fecha del alquiler: ").strip() 
-            inicio = input("Ingrese hora de inicio:").strip()
+            inicio = input("Ingrese hora de inicio: ").strip()
             while self.validarHoraInicio(inicio) == False:
-                inicio = input("Ingrese hora de inicio:").strip()
+                inicio = input("Ingrese hora de inicio: ").strip()
             estacionsalida = input("Ingrese estacion de salida: ").strip()
             while self.validarEstacionSalida(estacionsalida, empresa.listanombres, empresa.estaciones) == False:
                 print("No se encontro la estacion, no hay bicicletas o el formato es incorrecto, el nombre debe contener solo letras y la primera debe ser mayuscula")
                 print("")
                 estacionsalida = input("Ingrese estacion de salida: ").strip()
-            estacionllegada = input("Ingrese estacion de llegada: ").strip()
-            while self.validarEstacionActual(estacionllegada, empresa.listanombres, empresa.estaciones) == False:
-                print("No se encontro la estacion, no hay lugar para dejar la bicicleta o el formato es incorrecto, el nombre debe contener solo letras y la primera debe ser mayuscula")
-                print("")
-                estacionllegada = input("Ingrese estacion de llegada: ").strip()
 
-            empresa.alquileres[(Alquiler.id)] = Alquiler(self.nombre, fecha, inicio, "0", "0", estacionsalida, estacionllegada, "en curso")
+            empresa.alquileres[(Alquiler.id)] = Alquiler(self.nombre, fecha, inicio, "0", "0", estacionsalida, " ", "en curso")
             try:
                 estacion = empresa.estaciones.get(estacionsalida)
                 estacion.cantbicidisponible -= 1
@@ -320,18 +315,6 @@ class Cliente(Usuario):
                 print("No se encontro la estacion")
             except:
                 print("Error")
-            try:
-                estacion = empresa.estaciones.get(estacionllegada)
-                estacion.cantbicidisponible += 1
-            except KeyError:
-                print("No se encontro la estacion")
-            except:
-                print("Error")
-            for bicicleta in empresa.bicicletas.values():
-                if bicicleta.estacionactual == estacionsalida:
-                    bicicleta.cantusos += 1
-                    bicicleta.estacionactual = estacionllegada
-                    break
             
             print("")
             print("Alquiler ingresado")
@@ -340,7 +323,7 @@ class Cliente(Usuario):
     def finalizarAlquiler(self):
 
         validado = "No"
-        for alquiler in empresa.alquileres:
+        for alquiler in empresa.alquileres.values():
             if alquiler.usuario == self.usuario and alquiler.estado == "en curso":
                 validado = "Si"
                 alquiler_actual = alquiler
@@ -352,8 +335,29 @@ class Cliente(Usuario):
                 print("El formato es incorrecto o la hora de finalizacion es anterior a la hora de inicio, la hora debe ser de la forma HH:mm")
                 print("")
                 fin = input("Ingrese hora de finalizacion: ").strip()
-            duracion = fin - alquiler_actual.inicio
-            alquiler_actual.finalizar(fin, duracion)
+            duracion = datetime.strptime(fin, '%H:%M') - datetime.strptime(alquiler_actual.inicio, '%H:%M')
+            estacionllegada = input("Ingrese estacion de llegada: ").strip()
+            while self.validarEstacionActual(estacionllegada, empresa.listanombres, empresa.estaciones) == False:
+                print("No se encontro la estacion, no hay lugar para dejar la bicicleta o el formato es incorrecto, el nombre debe contener solo letras y la primera debe ser mayuscula")
+                print("")
+                estacionllegada = input("Ingrese estacion de llegada: ").strip()
+
+            try:
+                estacion = empresa.estaciones.get(estacionllegada)
+                estacion.cantbicidisponible += 1
+            except KeyError:
+                print("No se encontro la estacion")
+            except:
+                print("Error")
+            for bicicleta in empresa.bicicletas.values():
+                if bicicleta.estacionactual == alquiler_actual.estacionsalida:
+                    bicicleta.cantusos += 1
+                    bicicleta.estacionactual = estacionllegada
+                    break
+            
+            alquiler_actual.finalizar(fin, duracion, estacionllegada)
+
+
 
     def mostrarInfo(self):
         print("Nombre    Direccion    Barrio    Capacidad    Disponible")

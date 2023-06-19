@@ -19,7 +19,8 @@ class Alquiler():
         Alquiler.id += 1
         return Alquiler.id
     
-    def finalizar(self, fin, duracion):
+    def finalizar(self, fin, duracion, estacionllegada):
+        self.estacionllegada = estacionllegada
         self.fin = fin
         self.duracion = duracion
         print("")

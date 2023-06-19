@@ -108,23 +108,26 @@ def subMenuCliente():
     seguir2 = True
     while seguir2 == True:
         print("1. Alquilar")
-        print("2. Información sobre estaciones")
-        print("3. Cambiar datos")
-        print("4. Dar de baja")
-        print("5. Volver al menu principal")
+        print("2. Finalizar alquiler")
+        print("3. Información sobre estaciones")
+        print("4. Cambiar datos")
+        print("5. Dar de baja")
+        print("6. Volver al menu principal")
         print("")
         eleccionusuario = input("Ingrese opcion: ").strip()
         print("")
         if eleccionusuario == "1":
             cliente.alquilar()
         elif eleccionusuario == "2":
-            cliente.mostrarInfo()
+            cliente.finalizarAlquiler()
         elif eleccionusuario == "3":
-            cliente.cambio("Cliente", empresa.clientes)
+            cliente.mostrarInfo()
         elif eleccionusuario == "4":
+            cliente.cambio("Cliente", empresa.clientes)
+        elif eleccionusuario == "5":
             cliente.eliminar()
             seguir2 = False
-        elif eleccionusuario == "5":
+        elif eleccionusuario == "6":
             seguir2 = False
         else:
             print("Ingreso incorrecto de opcion")
