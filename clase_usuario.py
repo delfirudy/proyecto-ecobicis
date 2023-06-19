@@ -245,6 +245,21 @@ class Cliente(Usuario):
             print("Error")
         return nombre.replace(" ","").isalpha() and nombre[0].replace(" ","").isupper() and nombre in listaestaciones and cumple == "Si"
 
+    def validarHoraInicio(self, hora):
+        try:
+            datetime.strptime(hora, '%H:%M')
+            return True
+        except ValueError:
+            print("El formato es incorrecto, la hora debe ser de la forma HH:mm")
+            return False
+        
+    def validarHoraFin(self, inicio, fin):
+        try:
+            datetime.strptime(fin, '%H:%M')
+            return inicio < fin
+        except ValueError:
+            return False
+
     def cambio_tarjeta(self):
 
         tarjeta = input("Ingrese tarjeta: ").strip()
@@ -270,49 +285,75 @@ class Cliente(Usuario):
     
     def alquilar(self):
 
-        fecha = input("Ingrese fecha del alquiler: ").strip()
-        while self.validarFecha(fecha) == False:
-            fecha = input("Ingrese fecha del alquiler: ").strip() 
-        duracion = input("Ingrese duracion del alquiler en minutos: ").strip()
-        while validarNumero(duracion) == False:
-            print("El formato es incorrecto, la duracion debe ser un numero")
-            print("")
-            duracion = input("Ingrese duracion: ").strip()
-        estacionsalida = input("Ingrese estacion de salida: ").strip()
-        while self.validarEstacionSalida(estacionsalida, empresa.listanombres, empresa.estaciones) == False:
-            print("No se encontro la estacion, no hay bicicletas o el formato es incorrecto, el nombre debe contener solo letras y la primera debe ser mayuscula")
-            print("")
-            estacionsalida = input("Ingrese estacion de salida: ").strip()
-        estacionllegada = input("Ingrese estacion de llegada: ").strip()
-        while self.validarEstacionActual(estacionllegada, empresa.listanombres, empresa.estaciones) == False:
-            print("No se encontro la estacion, no hay lugar para dejar la bicicleta o el formato es incorrecto, el nombre debe contener solo letras y la primera debe ser mayuscula")
-            print("")
-            estacionllegada = input("Ingrese estacion de llegada: ").strip()
-
-        empresa.alquileres[(Alquiler.id)] = Alquiler(self.nombre, fecha, duracion, estacionsalida, estacionllegada)
-        try:
-            estacion = empresa.estaciones.get(estacionsalida)
-            estacion.cantbicidisponible -= 1
-        except KeyError:
-            print("No se encontro la estacion")
-        except:
-            print("Error")
-        try:
-            estacion = empresa.estaciones.get(estacionllegada)
-            estacion.cantbicidisponible += 1
-        except KeyError:
-            print("No se encontro la estacion")
-        except:
-            print("Error")
-        for bicicleta in empresa.bicicletas.values():
-            if bicicleta.estacionactual == estacionsalida:
-                bicicleta.cantusos += 1
-                bicicleta.estacionactual = estacionllegada
+        validado = "Si"
+        for alquiler in empresa.alquileres:
+            if alquiler.usuario == self.usuario and alquiler.estado == "en curso":
+                validado = "No"
+                print("")
+                print("Ya tiene un alquiler en curso")
+                print("")
                 break
-        
-        print("")
-        print("Alquiler ingresado")
-        print("")
+
+        if validado == "Si":
+            fecha = input("Ingrese fecha del alquiler: ").strip()
+            while self.validarFecha(fecha) == False:
+                fecha = input("Ingrese fecha del alquiler: ").strip() 
+            inicio = input("Ingrese hora de inicio:").strip()
+            while self.validarHoraInicio(inicio) == False:
+                inicio = input("Ingrese hora de inicio:").strip()
+            estacionsalida = input("Ingrese estacion de salida: ").strip()
+            while self.validarEstacionSalida(estacionsalida, empresa.listanombres, empresa.estaciones) == False:
+                print("No se encontro la estacion, no hay bicicletas o el formato es incorrecto, el nombre debe contener solo letras y la primera debe ser mayuscula")
+                print("")
+                estacionsalida = input("Ingrese estacion de salida: ").strip()
+            estacionllegada = input("Ingrese estacion de llegada: ").strip()
+            while self.validarEstacionActual(estacionllegada, empresa.listanombres, empresa.estaciones) == False:
+                print("No se encontro la estacion, no hay lugar para dejar la bicicleta o el formato es incorrecto, el nombre debe contener solo letras y la primera debe ser mayuscula")
+                print("")
+                estacionllegada = input("Ingrese estacion de llegada: ").strip()
+
+            empresa.alquileres[(Alquiler.id)] = Alquiler(self.nombre, fecha, inicio, "0", "0", estacionsalida, estacionllegada, "en curso")
+            try:
+                estacion = empresa.estaciones.get(estacionsalida)
+                estacion.cantbicidisponible -= 1
+            except KeyError:
+                print("No se encontro la estacion")
+            except:
+                print("Error")
+            try:
+                estacion = empresa.estaciones.get(estacionllegada)
+                estacion.cantbicidisponible += 1
+            except KeyError:
+                print("No se encontro la estacion")
+            except:
+                print("Error")
+            for bicicleta in empresa.bicicletas.values():
+                if bicicleta.estacionactual == estacionsalida:
+                    bicicleta.cantusos += 1
+                    bicicleta.estacionactual = estacionllegada
+                    break
+            
+            print("")
+            print("Alquiler ingresado")
+            print("")
+
+    def finalizarAlquiler(self):
+
+        validado = "No"
+        for alquiler in empresa.alquileres:
+            if alquiler.usuario == self.usuario and alquiler.estado == "en curso":
+                validado = "Si"
+                alquiler_actual = alquiler
+                break
+
+        if validado == "Si":
+            fin = input("Ingrese hora de finalizacion: ").strip()
+            while self.validarHoraFin(alquiler_actual.inicio, fin) == False:
+                print("El formato es incorrecto o la hora de finalizacion es anterior a la hora de inicio, la hora debe ser de la forma HH:mm")
+                print("")
+                fin = input("Ingrese hora de finalizacion: ").strip()
+            duracion = fin - alquiler_actual.inicio
+            alquiler_actual.finalizar(fin, duracion)
 
     def mostrarInfo(self):
         print("Nombre    Direccion    Barrio    Capacidad    Disponible")
