@@ -178,6 +178,7 @@ class Usuario:
                 self.cambioTarjeta()
             else:
                 cambiado = "No"
+                print("")
                 print("No se encontro el dato")
                 print("")
         elif eleccioncambio == "puesto":
@@ -185,6 +186,7 @@ class Usuario:
                 self.cambioPuesto()
             else:
                 cambiado = "No"
+                print("")
                 print("No se encontro el dato")
                 print("")
         elif eleccioncambio == "cbu":
@@ -192,10 +194,12 @@ class Usuario:
                 self.cambioCbu()
             else:
                 cambiado = "No"
+                print("")
                 print("No se encontro el dato")
                 print("")
         else:
             cambiado = "No"
+            print("")
             print("No se encontro el dato")
             print("")
 
@@ -273,14 +277,25 @@ class Cliente(Usuario):
 
     def eliminar(self):
 
-        empresa.clientes.pop(self.id)
-        empresa.listadnis.remove(self.dni)
-        empresa.listatarjetas.remove(self.tarjeta)
-        empresa.listausuarios.remove(self.usuario)
+        condicion = "Si"
+        for alquiler in empresa.alquileres:
+            if alquiler.usuario == self.usuario and alquiler.estado == "en curso":
+                condicion = "No"
+                break
 
-        print("")
-        print("Cliente eliminado")
-        print("")
+        if condicion == "Si":
+            empresa.clientes.pop(self.id)
+            empresa.listadnis.remove(self.dni)
+            empresa.listatarjetas.remove(self.tarjeta)
+            empresa.listausuarios.remove(self.usuario)
+
+            print("")
+            print("Cliente eliminado")
+            print("")
+        else:
+            print("")
+            print("Usted tiene un alquiler en progreso, finalicelo para eliminar su usuario")
+            print("")
     
     def alquilar(self):
 
@@ -357,10 +372,9 @@ class Cliente(Usuario):
             alquiler_actual.finalizarAlquiler(fin, duracion, estacionllegada)
 
     def mostrarInfo(self):
-        print("Nombre    Direccion    Barrio    Capacidad    Disponible")
 
         for estacion in empresa.estaciones.values():
-            print(str(estacion.nombre) + " " + str(estacion.direccion) + " " + str(estacion.barrio) + " " + str(estacion.cantbicitotal) + " " + str(estacion.cantbicidisponible))
+            print(estacion)
             print("")
 
     def __str__(self):
@@ -398,6 +412,14 @@ class Trabajador(Usuario):
     
     def validarCbu(self, cbu, listacbus):
         return cbu.isdigit() and len(cbu) == 22 and cbu not in listacbus
+    
+    def validarAlquileres(self):
+        condicion = "Si"
+        for alquiler in empresa.alquileres:
+            if alquiler.estado == "en curso":
+                condicion = "No"
+                break
+        return condicion
 
     def cambioPuesto(self):
 
@@ -500,8 +522,13 @@ class Trabajador(Usuario):
             print("")
             patente = input("Ingrese bicicleta a modificar: ").strip()
 
-        bicicleta = empresa.bicicletas.get(patente)
-        bicicleta.cambio()
+        if self.validarAlquileres == "Si":
+            bicicleta = empresa.bicicletas.get(patente)
+            bicicleta.cambio()
+        else:
+            print("")
+            print("Hay alquileres en curso, espere a que se finalicen para cambiar")
+            print("")
 
     def cambiarEstacion(self):
 
@@ -511,8 +538,13 @@ class Trabajador(Usuario):
             print("")
             nombre = input("Ingrese el nombre de la estacion a modificar: ").strip()
 
-        estacion = empresa.estaciones.get(nombre)
-        estacion.cambio()
+        if self.validarAlquileres == "Si":
+            estacion = empresa.estaciones.get(nombre)
+            estacion.cambio()
+        else:
+            print("")
+            print("Hay alquileres en curso, espere a que se finalicen para cambiar")
+            print("")
 
     def eliminarBicicleta(self):
 
@@ -522,8 +554,13 @@ class Trabajador(Usuario):
             print("")
             patente = input("Ingrese bicicleta a eliminar: ").strip()
             
-        bicicleta = empresa.bicicletas.get(patente)
-        bicicleta.eliminar()
+        if self.validarAlquileres == "Si":
+            bicicleta = empresa.bicicletas.get(patente)
+            bicicleta.eliminar()
+        else:
+            print("")
+            print("Hay alquileres en curso, espere a que se finalicen para eliminar")
+            print("")
 
     def eliminarEstacion(self):
 
@@ -533,9 +570,14 @@ class Trabajador(Usuario):
             print("")
             nombre = input("Ingrese el nombre de la estacion a eliminar: ").strip()
 
-        estacion = empresa.estaciones.get(nombre)
-        estacion.eliminar()
+        if self.validarAlquileres == "Si":
+            estacion = empresa.estaciones.get(nombre)
+            estacion.eliminar()
+        else:
+            print("")
+            print("Hay alquileres en curso, espere a que se finalicen para eliminar")
+            print("")
 
     def __str__(self):
 
-        return "Usuario: {} \nContrasena: {} \nNombre: {} \nDni: {} \nFecha de nacimiento: {} \nTelefono: {} \nMail: {} \nDireccion: {} \nPuesto {} \nCbu: {}".format(self.usuario, self.contrasena, self.nombre, self.dni, self.fecnac, self.telefono, self.mail, self.direccion, self.puesto, self.cbu)
+        return "Usuario: {} \nContrasena: {} \nNombre: {} \nDni: {} \nFecha de nacimiento: {} \nTelefono: {} \nMail: {} \nDireccion: {} \nPuesto: {} \nCbu: {}".format(self.usuario, self.contrasena, self.nombre, self.dni, self.fecnac, self.telefono, self.mail, self.direccion, self.puesto, self.cbu)

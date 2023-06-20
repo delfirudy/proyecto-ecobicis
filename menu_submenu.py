@@ -33,7 +33,6 @@ def submenuCambio(trabajador):
             print("Ingreso incorrecto de opcion")
             print("")
 
-
 def submenuEliminar(trabajador):
     seguir4 = True
     while seguir4 == True:
@@ -60,6 +59,7 @@ def submenuEliminar(trabajador):
 def subMenuTrabajador():
     usuario = input("Ingrese usuario: ").strip()
     contrasena = input("Ingrese contrasena: ").strip()
+    print("")
     while validarPersona(usuario, contrasena, empresa.trabajadores) == False:
         print("Trabajador no encontrado")
         print("")
@@ -96,6 +96,7 @@ def subMenuTrabajador():
 def subMenuCliente():
     usuario = input("Ingrese usuario: ").strip()
     contrasena = input("Ingrese contrasena: ").strip()
+    print("")
     while validarPersona(usuario, contrasena, empresa.clientes) == False:
         print("Cliente no encontrado")
         print("")
