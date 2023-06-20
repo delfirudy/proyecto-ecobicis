@@ -18,14 +18,17 @@ class Estacion:
         eleccioncambio = input("Ingrese dato que quiere cambiar: ")
 
         if eleccioncambio == "nombre":
-           nombre = input("Ingrese nombre: ").strip()
-           while validarEstacion(nombre, empresa.listanombres) == False:
+            nombre = input("Ingrese nombre: ").strip()
+            while validarEstacion(nombre, empresa.listanombres) == False:
                 print("La estacion ya existe o el formato es incorrecto, el nombre debe contener solo letras")
                 print("")
                 nombre = input("Ingrese nombre: ").strip()
-           posicion = empresa.listanombres.index(self.nombre)
-           empresa.listanombres[posicion] = nombre
-           self.nombre = nombre
+            del empresa.estaciones[self.id]
+            posicion = empresa.listanombres.index(self.nombre)
+            empresa.listanombres[posicion] = nombre
+            self.nombre = nombre
+            self.id = nombre
+            empresa.estaciones[self.id] = self
         elif eleccioncambio == "direccion":
             direccion = input("Ingrese direccion: ").strip()
             while validarDireccion(direccion) == False:

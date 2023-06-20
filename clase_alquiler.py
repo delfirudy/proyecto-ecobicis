@@ -2,6 +2,7 @@ from clase_empresa import *
 from validaciones import *
 
 class Alquiler():
+
     id = 0
 
     def __init__(self, usuario, fecha, inicio, fin, duracion, estacionsalida, estacionllegada, estado):
@@ -19,10 +20,10 @@ class Alquiler():
         Alquiler.id += 1
         return Alquiler.id
     
-    def finalizar(self, fin, duracion, estacionllegada):
-        self.estacionllegada = estacionllegada
+    def finalizarAlquiler(self, fin, duracion, estacionllegada):
         self.fin = fin
         self.duracion = duracion
+        self.estacionllegada = estacionllegada
         print("")
         print("Alquiler finalizado, la duracion del viaje fue {} ".format(duracion))
         print("")

@@ -104,7 +104,6 @@ class Usuario:
             print("Error")
         return estacionactual.replace(" ","").isalpha() and estacionactual[0].replace(" ","").isupper() and estacionactual in listaestaciones and cumple == "Si"
 
-
     def cambio(self, tipo, diccionario):
 
         cambiado = "Si"
@@ -176,21 +175,21 @@ class Usuario:
             self.direccion = direccion
         elif eleccioncambio == "tarjeta":
             if tipo == "Cliente":
-                self.cambio_tarjeta()
+                self.cambioTarjeta()
             else:
                 cambiado = "No"
                 print("No se encontro el dato")
                 print("")
         elif eleccioncambio == "puesto":
             if tipo == "Trabajador":
-                self.cambio_puesto()
+                self.cambioPuesto()
             else:
                 cambiado = "No"
                 print("No se encontro el dato")
                 print("")
         elif eleccioncambio == "cbu":
             if tipo == "Trabajador":
-                self.cambio_trabajador()
+                self.cambioCbu()
             else:
                 cambiado = "No"
                 print("No se encontro el dato")
@@ -260,7 +259,7 @@ class Cliente(Usuario):
         except ValueError:
             return False
 
-    def cambio_tarjeta(self):
+    def cambioTarjeta(self):
 
         tarjeta = input("Ingrese tarjeta: ").strip()
         while self.validarTarjeta(tarjeta, empresa.listatarjetas) == False:
@@ -355,9 +354,7 @@ class Cliente(Usuario):
                     bicicleta.estacionactual = estacionllegada
                     break
             
-            alquiler_actual.finalizar(fin, duracion, estacionllegada)
-
-
+            alquiler_actual.finalizarAlquiler(fin, duracion, estacionllegada)
 
     def mostrarInfo(self):
         print("Nombre    Direccion    Barrio    Capacidad    Disponible")
@@ -402,7 +399,7 @@ class Trabajador(Usuario):
     def validarCbu(self, cbu, listacbus):
         return cbu.isdigit() and len(cbu) == 22 and cbu not in listacbus
 
-    def cambio_puesto(self):
+    def cambioPuesto(self):
 
         puesto = input("Ingrese puesto: ").strip()
         while self.validarPuesto(puesto) == False:
@@ -412,7 +409,7 @@ class Trabajador(Usuario):
 
         self.puesto = puesto
 
-    def cambio_cbu(self):
+    def cambioCbu(self):
 
         cbu = input("Ingrese cbu: ").strip()
         while self.validarCbu(cbu, empresa.listacbus) == False:
