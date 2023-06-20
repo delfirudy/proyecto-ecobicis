@@ -2,7 +2,7 @@ from clase_empresa import *
 from validaciones import *
 
 class Alquiler():
-
+    
     id = 0
 
     def __init__(self, usuario, fecha, inicio, fin, duracion, estacionsalida, estacionllegada, estado):
