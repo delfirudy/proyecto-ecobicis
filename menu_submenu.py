@@ -66,7 +66,6 @@ def subMenuTrabajador():
         usuario = input("Ingrese usuario: ").strip()
         contrasena = input("Ingrese contrasena: ").strip()
     trabajador = empresa.trabajadores.get(usuario + contrasena)
-    print("")
     print("Trabajador validado")
     print("")
     seguir1 = True
@@ -103,7 +102,6 @@ def subMenuCliente():
         usuario = input("Ingrese usuario: ").strip()
         contrasena = input("Ingrese contrasena: ").strip()
     cliente = empresa.clientes.get(usuario + contrasena)
-    print("")
     print("Cliente validado")
     print("")
     seguir2 = True

@@ -3,8 +3,7 @@ from validaciones import *
 
 class Estacion:
 
-    def __init__(self, nombre, direccion, barrio, cantbicitotal, cantbicidisponible):
-        
+    def __init__(self, nombre, direccion, barrio, cantbicitotal, cantbicidisponible):        
         self.id = nombre
         self.nombre = nombre
         self.direccion = direccion
@@ -13,10 +12,8 @@ class Estacion:
         self.cantbicidisponible = cantbicidisponible
 
     def cambio(self):
-
         cambiado = "Si"
         eleccioncambio = input("Ingrese dato que quiere cambiar: ")
-
         if eleccioncambio == "nombre":
             nombre = input("Ingrese nombre: ").strip()
             while validarEstacion(nombre, empresa.listanombres) == False:
@@ -57,14 +54,12 @@ class Estacion:
             cambiado = "No"
             print("Dato no encontrado")
             print("")  
-
         if cambiado == "Si":
             print("")
             print("Cambio realizado")
             print("")       
 
     def eliminar(self):
-
         empresa.estaciones.pop(self.nombre)
         empresa.listanombres.remove(self.nombre)
         bicicletas = []
@@ -74,11 +69,9 @@ class Estacion:
         for patente in bicicletas:
             empresa.bicicletas.pop(patente)
             empresa.listapatentes.remove(patente)
-
         print("")
         print("Estacion eliminada, reingrese las bicicletas en otra estacion")
         print("")
 
     def __str__(self):
-
         return "Nombre: {} \nDireccion: {} \nBarrio: {} \nCantidad maxima de bicicletas: {} \nCantidad disponible de bicicletas: {}".format(self.nombre, self.direccion, self.barrio, self.cantbicitotal, self.cantbicidisponible)

@@ -4,7 +4,6 @@ from validaciones import *
 class Bicicleta():
 
     def __init__(self, patente, modelo, estacionactual, cantusos):
-
         self.id = patente
         self.patente = patente
         self.modelo = modelo
@@ -12,10 +11,8 @@ class Bicicleta():
         self.cantusos = cantusos
 
     def cambio(self):
-
         cambiado  = "Si"
         eleccioncambio = input("Ingrese dato que quiere cambiar: ")
-
         if eleccioncambio == "patente":
             patente = input("Ingrese patente: ").strip()
             while validarPatente(patente, empresa.listapatentes) == False:
@@ -35,23 +32,19 @@ class Bicicleta():
             cambiado = "No"
             print("Dato no encontrado")
             print("")
-
         if cambiado == "Si":
             print("")
             print("Cambio realizado")
             print("")
 
     def eliminar(self):
-
         empresa.bicicletas.pop(self.patente)
         estacion = empresa.estaciones.get(self.estacionactual)
         estacion.cantbicidisponible -= 1
         empresa.listapatentes.remove(self.patente)
-
         print("")
         print("Bicicleta eliminada")
         print("")
     
     def __str__(self):
-        
         return "Patente: {} \nModelo: {} \nEstacion actual: {} \nCantidad de usos: {}".format(self.patente, self.modelo, self.estacionactual, self.cantusos)

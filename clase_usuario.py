@@ -8,7 +8,6 @@ from datetime import date
 class Usuario:
 
     def __init__(self, usuario=None, contrasena=None, nombre=None, dni=0, fecnac=None, telefono=0, mail=None, direccion=None):
-
         usuario = input("Ingrese usuario: ").strip()
         while self.validarUsuario(usuario, empresa.listausuarios) == False:
             print("El usuario ya existe o el formato es incorrecto, el usuario debe contener solo letras")
@@ -47,7 +46,6 @@ class Usuario:
             print("El formato es incorrecto, la direccion debe tener letras y numeros")
             print("")
             direccion = input("Ingrese direccion: ").strip()
-
         self.id = usuario + contrasena
         self.usuario = usuario
         self.contrasena = contrasena
@@ -57,7 +55,6 @@ class Usuario:
         self.telefono = telefono
         self.mail = mail
         self.direccion = direccion
-
         empresa.listausuarios.append(usuario)
         empresa.listadnis.append(dni)
 
@@ -105,10 +102,8 @@ class Usuario:
         return estacionactual.replace(" ","").isalpha() and estacionactual[0].replace(" ","").isupper() and estacionactual in listaestaciones and cumple == "Si"
 
     def cambio(self, tipo, diccionario):
-
         cambiado = "Si"
         eleccioncambio = input("Ingrese dato que quiere cambiar: ")
-
         if eleccioncambio == "usuario":
             usuario = input("Ingrese usuario: ").strip()
             while self.validarUsuario(usuario, empresa.listausuarios) == False:
@@ -202,32 +197,27 @@ class Usuario:
             print("")
             print("No se encontro el dato")
             print("")
-
         if cambiado == "Si":
             print("")
             print("Cambio realizado")
             print("")
 
     def __str__(self):
-
         return "Usuario: {} \nContrasena: {} \nNombre: {} \nDni: {} \nFecha de nacimiento: {} \nTelefono: {} \nMail: {} \nDireccion: {}".format(self.usuario, self.contrasena, self.nombre, self.dni, self.fecnac, self.telefono, self.mail, self.direccion)
 
 
 class Cliente(Usuario):
 
-    def __init__(self, usuario=None, contrasena=None, nombre=None, dni=0, fecnac=None, telefono=0, mail=None, direccion=None, tarjeta=0):
-        
+    def __init__(self, usuario=None, contrasena=None, nombre=None, dni=0, fecnac=None, telefono=0, mail=None, direccion=None, tarjeta=0):    
         Usuario.__init__(self, usuario, contrasena, nombre, dni, fecnac, telefono, mail, direccion)
         tarjeta = input("Ingrese tarjeta: ").strip()
         while self.validarTarjeta(tarjeta, empresa.listatarjetas) == False:
             print("La tarjeta ya existe o el formato es incorrecto, la tarjeta debe ser un numero de 16 digitos")
             print("")
             tarjeta = input("Ingrese tarjeta: ").strip()
-        
         self.tarjeta = tarjeta
         empresa.listatarjetas.append(tarjeta)
         empresa.clientes[self.id] = self
-
         print("")
         print("Cliente ingresado")
         print("")
@@ -264,31 +254,26 @@ class Cliente(Usuario):
             return False
 
     def cambioTarjeta(self):
-
         tarjeta = input("Ingrese tarjeta: ").strip()
         while self.validarTarjeta(tarjeta, empresa.listatarjetas) == False:
             print("La tarjeta ya existe o el formato es incorrecto, la tarjeta debe ser un numero de 16 digitos")
             print("")
             tarjeta = input("Ingrese tarjeta: ").strip()
-
         posicion = empresa.listatarjetas.index(self.tarjeta)
         empresa.listatarjetas[posicion] = tarjeta
         self.tarjeta = tarjeta
 
     def eliminar(self):
-
         condicion = "Si"
         for alquiler in empresa.alquileres:
             if alquiler.usuario == self.usuario and alquiler.estado == "en curso":
                 condicion = "No"
                 break
-
         if condicion == "Si":
             empresa.clientes.pop(self.id)
             empresa.listadnis.remove(self.dni)
             empresa.listatarjetas.remove(self.tarjeta)
             empresa.listausuarios.remove(self.usuario)
-
             print("")
             print("Cliente eliminado")
             print("")
@@ -298,7 +283,6 @@ class Cliente(Usuario):
             print("")
     
     def alquilar(self):
-
         validado = "Si"
         for alquiler in empresa.alquileres:
             if alquiler.usuario == self.usuario and alquiler.estado == "en curso":
@@ -307,7 +291,6 @@ class Cliente(Usuario):
                 print("Ya tiene un alquiler en curso")
                 print("")
                 break
-
         if validado == "Si":
             fecha = input("Ingrese fecha del alquiler: ").strip()
             while self.validarFecha(fecha) == False:
@@ -320,24 +303,20 @@ class Cliente(Usuario):
                 print("No se encontro la estacion, no hay bicicletas o el formato es incorrecto, el nombre debe contener solo letras y la primera debe ser mayuscula")
                 print("")
                 estacionsalida = input("Ingrese estacion de salida: ").strip()
-
             empresa.alquileres[(Alquiler.id)] = Alquiler(self.nombre, fecha, inicio, "0", "0", estacionsalida, " ", "en curso")
             estacion = empresa.estaciones.get(estacionsalida)
             estacion.cantbicidisponible -= 1 
-            
             print("")
             print("Alquiler ingresado")
             print("")
 
     def finalizarAlquiler(self):
-
         validado = "No"
         for alquiler in empresa.alquileres.values():
             if alquiler.usuario == self.nombre and alquiler.estado == "en curso":
                 validado = "Si"
                 alquiler_actual = alquiler
                 break
-
         if validado == "Si":
             fin = input("Ingrese hora de finalizacion: ").strip()
             while self.validarHoraFin(alquiler_actual.inicio, fin) == False:
@@ -350,7 +329,6 @@ class Cliente(Usuario):
                 print("No se encontro la estacion, no hay lugar para dejar la bicicleta o el formato es incorrecto, el nombre debe contener solo letras y la primera debe ser mayuscula")
                 print("")
                 estacionllegada = input("Ingrese estacion de llegada: ").strip()
-
             estacion = empresa.estaciones.get(estacionllegada)
             estacion.cantbicidisponible += 1
             for bicicleta in empresa.bicicletas.values():
@@ -358,29 +336,24 @@ class Cliente(Usuario):
                     bicicleta.cantusos += 1
                     bicicleta.estacionactual = estacionllegada
                     break
-            
-            alquiler_actual.finalizar(fin, duracion, estacionllegada)
-            
+            alquiler_actual.finalizar(fin, duracion, estacionllegada) 
         else:
             print("")
             print("No tiene alquileres en curso")
             print("")
 
     def mostrarInfo(self):
-
         for estacion in empresa.estaciones.values():
             print(estacion)
             print("")
 
     def __str__(self):
-
         return "Usuario: {} \nContrasena: {} \nNombre: {} \nDni: {} \nFecha de nacimiento: {} \nTelefono: {} \nMail: {} \nDireccion: {} \nTarjeta: {}".format(self.usuario, self.contrasena, self.nombre, self.dni, self.fecnac, self.telefono, self.mail, self.direccion, self.tarjeta)
 
 
 class Trabajador(Usuario):
 
     def __init__(self, usuario=None, contrasena=None, nombre=None, dni=0, fecnac=None, telefono=0, mail=None, direccion=None, puesto=None, cbu=0):
-        
         Usuario.__init__(self, usuario, contrasena, nombre, dni, fecnac, telefono, mail, direccion)
         puesto = input("Ingrese puesto: ").strip()
         while self.validarPuesto(puesto) == False:
@@ -392,12 +365,10 @@ class Trabajador(Usuario):
             print("El cbu ya existe o el formato es incorrecto, el cbu debe ser un numero de 22 digitos")
             print("")
             cbu = input("Ingrese el cbu: ").strip()
-
         self.puesto = puesto
         self.cbu = cbu
         empresa.listacbus.append(cbu)
         empresa.trabajadores[self.id] = self
-
         print("")
         print("Trabajador ingresado")
         print("")
@@ -409,40 +380,33 @@ class Trabajador(Usuario):
         return cbu.isdigit() and len(cbu) == 22 and cbu not in listacbus
 
     def cambioPuesto(self):
-
         puesto = input("Ingrese puesto: ").strip()
         while self.validarPuesto(puesto) == False:
             print("El formato es incorrecto, el puesto debe contener solo letras")
             print("")
             puesto = input("Ingrese puesto: ").strip()
-
         self.puesto = puesto
 
     def cambioCbu(self):
-
         cbu = input("Ingrese cbu: ").strip()
         while self.validarCbu(cbu, empresa.listacbus) == False:
             print("El cbu ya existe o el formato es incorrecto, el cbu debe ser un numero de 22 digitos")
             print("")
             cbu = input("Ingrese cbu: ").strip()
-
         posicion = empresa.listacbus.index(self.cbu)
         empresa.listacbus[posicion] = cbu
         self.cbu = cbu
 
     def eliminar(self):
-
         empresa.trabajadores.pop(self.id)
         empresa.listacbus.remove(self.cbu)
         empresa.listadnis.remove(self.dni)
         empresa.listausuarios.remove(self.usuario)
-
         print("")
         print("Trabajador eliminado")
         print("")
 
     def agregarEstacion(self):
-
         nombre = input("Ingrese nombre: ").strip()
         while validarEstacion(nombre, empresa.listanombres) == False:
             print("La estacion ya existe o el formato es incorrecto, el nombre debe contener solo letras y la primera debe ser mayuscula")
@@ -463,17 +427,14 @@ class Trabajador(Usuario):
             print("El formato es incorrecto, la capacidad debe ser un numero")
             print("")
             cantbicitotal = input("Ingrese capacidad: ").strip()
-
         cantbicidisponible = 0
         empresa.listanombres.append(nombre)
         empresa.estaciones[nombre] = Estacion(nombre, direccion, barrio, cantbicitotal, cantbicidisponible)
-        
         print("")
         print("Estacion ingresada")
         print("")
 
     def agregarBicicleta(self):
-
         patente = input("Ingrese patente: ").strip()
         while validarPatente(patente, empresa.listapatentes) == False:
             print("La patente ya existe o el formato es incorrecto, la patente debe ser un numero")
@@ -485,7 +446,6 @@ class Trabajador(Usuario):
             print("No se encontro la estacion, no hay lugar para dejar la bicicleta o el formato es incorrecto, el nombre debe contener solo letras y la primera debe ser mayuscula")
             print("")
             estacionactual = input("Ingrese estacion donde se ingresa la bicicleta: ").strip()
-        
         cantusos = 0
         empresa.listapatentes.append(patente)
         empresa.bicicletas[patente] = Bicicleta(patente, modelo, estacionactual, cantusos)
@@ -496,19 +456,16 @@ class Trabajador(Usuario):
             print("No se encontro la estacion")
         except:
             print("Error")
-
         print("")
         print("Bicicleta ingresada")
         print("")
 
     def cambiarBicicleta(self):
-
         condicion = "Si"
         for alquiler in empresa.alquileres.values():
             if alquiler.estado == "en curso":
                 condicion = "No"
                 break
-        
         if condicion == "Si":
             patente = input("Ingrese la patente de la bicicleta a modificar: ").strip()
             while validarPatente(patente, empresa.listapatentes) == True:
@@ -523,13 +480,11 @@ class Trabajador(Usuario):
             print("")
 
     def cambiarEstacion(self):
-
         condicion = "Si"
         for alquiler in empresa.alquileres.values():
             if alquiler.estado == "en curso":
                 condicion = "No"
                 break
-
         if condicion == "Si":
             nombre = input("Ingrese el nombre de la estacion a modificar: ").strip()
             while validarEstacion(nombre, empresa.listanombres) == True:
@@ -544,13 +499,11 @@ class Trabajador(Usuario):
             print("")
 
     def eliminarBicicleta(self):
-
         condicion = "Si"
         for alquiler in empresa.alquileres.values():
             if alquiler.estado == "en curso":
                 condicion = "No"
                 break
-            
         if condicion == "Si":
             patente = input("Ingrese la patente de la bicicleta a eliminar: ").strip()
             while validarPatente(patente, empresa.listapatentes) == True:
@@ -565,13 +518,11 @@ class Trabajador(Usuario):
             print("")
 
     def eliminarEstacion(self):
-
         condicion = "Si"
         for alquiler in empresa.alquileres.values():
             if alquiler.estado == "en curso":
                 condicion = "No"
                 break
-
         if condicion == "Si":
             nombre = input("Ingrese el nombre de la estacion a eliminar: ").strip()
             while validarEstacion(nombre, empresa.listanombres) == True:
@@ -586,5 +537,4 @@ class Trabajador(Usuario):
             print("")
 
     def __str__(self):
-
         return "Usuario: {} \nContrasena: {} \nNombre: {} \nDni: {} \nFecha de nacimiento: {} \nTelefono: {} \nMail: {} \nDireccion: {} \nPuesto: {} \nCbu: {}".format(self.usuario, self.contrasena, self.nombre, self.dni, self.fecnac, self.telefono, self.mail, self.direccion, self.puesto, self.cbu)

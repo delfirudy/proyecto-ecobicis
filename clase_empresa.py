@@ -1,7 +1,6 @@
 class Empresa:
 
-    def __init__(self, nombre):
-        
+    def __init__(self, nombre): 
         self.nombre = nombre
         self.trabajadores = {}
         self.clientes = {}
