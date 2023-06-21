@@ -1,7 +1,5 @@
-from clase_usuario import *
-from clase_alquiler import *
-from clase_estacion import *
-from clase_bicicleta import *
+from clase_cliente import *
+from clase_trabajador import *
 
 def validarPersona(usuario, contrasena, diccionariopersonas):
     """Validación de existencia de trabajador o cliente.
