@@ -3,25 +3,20 @@ from validaciones import *
 
 class Bicicleta():
     """Manejo de datos de las bicicletas.
-
     Methods:
         cambio: Cambio de datos.
         eliminar: Eliminar bicicleta.
-
     Returns:
         String: Lista con los atributos de la bicicleta.
-
     """
 
     def __init__(self, patente, modelo, estacionactual, cantusos):
         """Ingreso de datos
-
         Args:
             patente (Int): Patente de la bicicleta.
             modelo (String): Modelo de la bicicleta.
             estacionactual (String): Estación donde se encuentra la bicicleta
             cantusos (Int): Cantidad de usos de la bicicleta.
-
         """
         self.id = patente
         self.patente = patente
@@ -33,6 +28,7 @@ class Bicicleta():
         """Cambio de datos."""
         cambiado  = "Si"
         eleccioncambio = input("Ingrese dato que quiere cambiar: ")
+        print("")
         if eleccioncambio == "patente":
             patente = input("Ingrese patente: ").strip()
             while validarPatente(patente, empresa.listapatentes) == False:
@@ -53,7 +49,6 @@ class Bicicleta():
             print("Dato no encontrado")
             print("")
         if cambiado == "Si":
-            print("")
             print("Cambio realizado")
             print("")
 
@@ -63,7 +58,6 @@ class Bicicleta():
         estacion = empresa.estaciones.get(self.estacionactual)
         estacion.cantbicidisponible -= 1
         empresa.listapatentes.remove(self.patente)
-        print("")
         print("Bicicleta eliminada")
         print("")
     

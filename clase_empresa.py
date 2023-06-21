@@ -2,7 +2,6 @@ class Empresa:
     """Manejo de todos los datos"""
     def __init__(self, nombre): 
         """Ingreso de datos.
-
         Args:
             nombre (String): Nombre de la empresa
         """
@@ -12,7 +11,6 @@ class Empresa:
         self.estaciones = {}
         self.bicicletas = {}
         self.alquileres = {}
-
         self.listausuarios = []
         self.listadnis = []
         self.listatarjetas =[]

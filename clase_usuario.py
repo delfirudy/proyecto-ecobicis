@@ -7,7 +7,6 @@ from datetime import date
 
 class Usuario:
     """Manejo de datos de los usuarios.
-
     Methods:
         validarUsuario: Validación de usuario.
         validarContrasena: Validación de contrasena.
@@ -17,14 +16,11 @@ class Usuario:
         validarMail: Validación de mail.
         validarEstacionActual: Validación de estación actual.
         cambio: Cambio de datos.
-
     Returns:
         String: Lista con los atributos del usuario.
-
     """
     def __init__(self, usuario=None, contrasena=None, nombre=None, dni=0, fecnac=None, telefono=0, mail=None, direccion=None):
-        """_summary_
-
+        """Ingreso de datos.
         Args:
             usuario (String): Usuario.
             contrasena (String): Contrasena.
@@ -36,39 +32,47 @@ class Usuario:
             direccion (String): Dirección.
         """
         usuario = input("Ingrese usuario: ").strip()
+        print("")
         while self.validarUsuario(usuario, empresa.listausuarios) == False:
             print("El usuario ya existe o el formato es incorrecto, el usuario debe contener solo letras")
             print("")
             usuario = input("Ingrese usuario: ").strip()
         contrasena = input("Ingrese contrasena: ").strip()
+        print("")
         while self.validarContrasena(contrasena) == False:
             print("El formato es incorrecto, la contrasena debe contener solo letras y la primera debe ser mayuscula")
             print("")
             contrasena = input("Ingrese contrasena: ").strip()
         nombre = input("Ingrese nombre: ").strip()
+        print("")
         while validarNombre(nombre) == False:
             print("El formato es incorrecto, el nombre debe contener solo letras y la primera debe ser mayuscula")
             print("")
             nombre = input("Ingrese nombre: ").strip()
         dni = input("Ingrese dni: ").strip()
+        print("")
         while self.validarDni(dni, empresa.listadnis) == False:
             print("El dni ya existe o el formato es incorrecto, debe ser un numero de ocho caracteres")
             print("")
             dni = input("Ingrese dni: ").strip()
         fecnac = input("Ingrese fecha de nacimiento: ").strip() 
+        print("")
         while self.validarFecha(fecnac) == False:
             fecnac = input("Ingrese fecha de nacimiento: ").strip() 
         telefono = input("Ingrese telefono: ").strip()
+        print("")
         while self.validarTelefono(telefono) == False:
             print("El formato es incorrecto, el telefono debe ser un numero de diez caracteres")
             print("")
             telefono = input("Ingrese telefono: ").strip()
         mail = input("Ingrese mail: ").strip()
+        print("")
         while self.validarMail(mail) == False:
             print("El formato es incorrecto, el mail debe contener un @")
             print("")
             mail = input("Ingrese mail: ").strip()
         direccion = input("Ingrese direccion: ").strip()
+        print("")
         while validarDireccion(direccion) == False:
             print("El formato es incorrecto, la direccion debe tener letras y numeros")
             print("")
@@ -87,11 +91,9 @@ class Usuario:
 
     def validarUsuario(self, usuario, listausuarios):
         """Validación de usuario.
-
         Args:
             usuario (String): Usuario.
             listausuarios (List): Lista con todos los usuarios.
-
         Returns:
             Boolean: Validación o no del usuario.
         """
@@ -99,10 +101,8 @@ class Usuario:
     
     def validarContrasena(self, contrasena):
         """Validación de contrasena.
-
         Args:
             contrasena (String): Contrasena.
-
         Returns:
             Boolean: Validación o no de la contrasena.
         """
@@ -110,11 +110,9 @@ class Usuario:
     
     def validarDni(self, dni, listadnis):
         """Validación del dni.
-
         Args:
             dni (Int): Dni.
             listadnis (List): Lista con todos los dnis.
-
         Returns:
             Boolean: Validación o no del dni.
         """
@@ -122,10 +120,8 @@ class Usuario:
 
     def validarFecha(self, fecha):
         """Validación de fecha.
-
         Args:
             fecha (Datetime): Fecha.
-
         Returns:
             Boolean: Validación o no de la fecha.
         """
@@ -145,10 +141,8 @@ class Usuario:
         
     def validarTelefono(self, telefono):
         """Validación de teléfono.
-
         Args:
             telefono (Int): Teléfono.
-
         Returns:
             Boolean: Validación o no del teléfono.
         """
@@ -156,10 +150,8 @@ class Usuario:
 
     def validarMail(self, mail):
         """Validación de mail.
-
         Args:
             mail (String): Mail.
-
         Returns:
             Boolean: Validación o no del mail.
         """
@@ -167,12 +159,10 @@ class Usuario:
 
     def validarEstacionActual(self, estacionactual, listaestaciones, diccionariodatosestaciones):
         """Validación de estación actual.
-
         Args:
             estacionactual (String): Nombre de la estación.
             listaestaciones (List): Lista con todos los nombres de las estaciones.
             diccionariodatosestaciones (Dict): Diccionario de las estaciones.
-
         Returns:
             Boolean: Validación o no de la estación.
         """
@@ -190,16 +180,16 @@ class Usuario:
 
     def cambio(self, tipo, diccionario):
         """Cambio de datos.
-
         Args:
             tipo (String): Cliente o trabajador.
             diccionario (Dict): Diccionario de clientes o trabajadores.
-            
         """
         cambiado = "Si"
         eleccioncambio = input("Ingrese dato que quiere cambiar: ")
+        print("")
         if eleccioncambio == "usuario":
             usuario = input("Ingrese usuario: ").strip()
+            print("")
             while self.validarUsuario(usuario, empresa.listausuarios) == False:
                 print("El usuario ya existe o el formato es incorrecto, el usuario debe contener solo letras")
                 print("")
@@ -212,6 +202,7 @@ class Usuario:
             diccionario[self.id] = self
         elif eleccioncambio == "contrasena":
             contrasena = input("Ingrese contrasena: ").strip()
+            print("")
             while self.validarContrasena(contrasena) == False:
                 print("El formato es incorrecto, la contrasena debe contener solo letras y la primera debe ser mayuscula")
                 print("")
@@ -222,6 +213,7 @@ class Usuario:
             diccionario[self.id] = self
         elif eleccioncambio == "nombre":
             nombre = input("Ingrese nombre: ").strip()
+            print("")
             while validarNombre(nombre) == False:
                 print("El formato es incorrecto, el nombre debe contener solo letras y la primera debe ser mayuscula")
                 print("")
@@ -229,6 +221,7 @@ class Usuario:
             self.nombre = nombre
         elif eleccioncambio == "dni":
             dni = input("Ingrese dni: ").strip()
+            print("")
             while self.validarDni(dni, empresa.listadnis) == False:
                 print("El dni ya existe o el formato es incorrecto, debe ser un numero de ocho caracteres")
                 print("")
@@ -238,11 +231,13 @@ class Usuario:
             self.dni = dni
         elif eleccioncambio == "fecha de nacimiento":
             fecnac = input("Ingrese fecha de nacimiento: ").strip() 
+            print("")
             while self.validarFecha(fecnac) == False:
                 fecnac = input("Ingrese fecha de nacimiento: ").strip() 
             self.fecnac = fecnac
         elif eleccioncambio == "telefono":
             telefono = input("Ingrese telefono: ").strip()
+            print("")
             while self.validarTelefono(telefono) == False:
                 print("El formato es incorrecto, el telefono debe ser un numero de diez caracteres")
                 print("")
@@ -250,6 +245,7 @@ class Usuario:
             self.telefono = telefono
         elif eleccioncambio == "mail":
             mail = input("Ingrese mail: ").strip()
+            print("")
             while self.validarMail(mail) == False:
                 print("El formato es incorrecto, el mail debe contener un @")
                 print("")
@@ -257,6 +253,7 @@ class Usuario:
             self.mail = mail
         elif eleccioncambio == "direccion":
             direccion = input("Ingrese direccion: ").strip()
+            print("")
             while validarDireccion(direccion) == False:
                 print("El formato es incorrecto, la direccion debe tener letras y numeros")
                 print("")
@@ -267,7 +264,6 @@ class Usuario:
                 self.cambioTarjeta()
             else:
                 cambiado = "No"
-                print("")
                 print("No se encontro el dato")
                 print("")
         elif eleccioncambio == "puesto":
@@ -275,7 +271,6 @@ class Usuario:
                 self.cambioPuesto()
             else:
                 cambiado = "No"
-                print("")
                 print("No se encontro el dato")
                 print("")
         elif eleccioncambio == "cbu":
@@ -283,16 +278,13 @@ class Usuario:
                 self.cambioCbu()
             else:
                 cambiado = "No"
-                print("")
                 print("No se encontro el dato")
                 print("")
         else:
             cambiado = "No"
-            print("")
             print("No se encontro el dato")
             print("")
         if cambiado == "Si":
-            print("")
             print("Cambio realizado")
             print("")
 

@@ -26,7 +26,6 @@ def recorrerPickle():
     for bicicleta in empresa.bicicletas.values():
         empresa.listapatentes.append(bicicleta.patente)
 
-
 def actualizarPickle():
     """Recorre los diccionarios y las listas para guardar la información en los archivos pickle."""
     nombrespickle = ["datos_clientes.pickle", "datos_trabajadores.pickle", "datos_estaciones.pickle", "datos_bicicletas.pickle", "datos_alquileres.pickle"]
@@ -35,3 +34,4 @@ def actualizarPickle():
         with open(nombrepickle, "wb") as archivopickle:
             for objeto in diccionario.values():
                 pickle.dump(objeto, archivopickle)
+                
