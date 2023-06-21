@@ -23,6 +23,9 @@ class Estacion:
                 print("La estacion ya existe o el formato es incorrecto, el nombre debe contener solo letras")
                 print("")
                 nombre = input("Ingrese nombre: ").strip()
+            for bicicleta in empresa.bicicletas.values():
+                if bicicleta.estacionactual == self.nombre:
+                    bicicleta.estacionactual = nombre
             del empresa.estaciones[self.id]
             posicion = empresa.listanombres.index(self.nombre)
             empresa.listanombres[posicion] = nombre
@@ -63,13 +66,14 @@ class Estacion:
     def eliminar(self):
 
         empresa.estaciones.pop(self.nombre)
+        empresa.listanombres.remove(self.nombre)
         bicicletas = []
         for bicicleta in empresa.bicicletas.values():
             if bicicleta.estacionactual == self.nombre:
                 bicicletas.append(bicicleta.patente)
         for patente in bicicletas:
             empresa.bicicletas.pop(patente)
-        empresa.listanombres.remove(self.nombre)
+            empresa.listapatentes.remove(patente)
 
         print("")
         print("Estacion eliminada, reingrese las bicicletas en otra estacion")

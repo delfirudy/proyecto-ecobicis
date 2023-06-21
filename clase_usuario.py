@@ -322,13 +322,8 @@ class Cliente(Usuario):
                 estacionsalida = input("Ingrese estacion de salida: ").strip()
 
             empresa.alquileres[(Alquiler.id)] = Alquiler(self.nombre, fecha, inicio, "0", "0", estacionsalida, " ", "en curso")
-            try:
-                estacion = empresa.estaciones.get(estacionsalida)
-                estacion.cantbicidisponible -= 1
-            except KeyError:
-                print("No se encontro la estacion")
-            except:
-                print("Error")
+            estacion = empresa.estaciones.get(estacionsalida)
+            estacion.cantbicidisponible -= 1 
             
             print("")
             print("Alquiler ingresado")
@@ -338,7 +333,7 @@ class Cliente(Usuario):
 
         validado = "No"
         for alquiler in empresa.alquileres.values():
-            if alquiler.usuario == self.usuario and alquiler.estado == "en curso":
+            if alquiler.usuario == self.nombre and alquiler.estado == "en curso":
                 validado = "Si"
                 alquiler_actual = alquiler
                 break
@@ -356,20 +351,20 @@ class Cliente(Usuario):
                 print("")
                 estacionllegada = input("Ingrese estacion de llegada: ").strip()
 
-            try:
-                estacion = empresa.estaciones.get(estacionllegada)
-                estacion.cantbicidisponible += 1
-            except KeyError:
-                print("No se encontro la estacion")
-            except:
-                print("Error")
+            estacion = empresa.estaciones.get(estacionllegada)
+            estacion.cantbicidisponible += 1
             for bicicleta in empresa.bicicletas.values():
                 if bicicleta.estacionactual == alquiler_actual.estacionsalida:
                     bicicleta.cantusos += 1
                     bicicleta.estacionactual = estacionllegada
                     break
             
-            alquiler_actual.finalizarAlquiler(fin, duracion, estacionllegada)
+            alquiler_actual.finalizar(fin, duracion, estacionllegada)
+            
+        else:
+            print("")
+            print("No tiene alquileres en curso")
+            print("")
 
     def mostrarInfo(self):
 
@@ -412,14 +407,6 @@ class Trabajador(Usuario):
     
     def validarCbu(self, cbu, listacbus):
         return cbu.isdigit() and len(cbu) == 22 and cbu not in listacbus
-    
-    def validarAlquileres(self):
-        condicion = "Si"
-        for alquiler in empresa.alquileres:
-            if alquiler.estado == "en curso":
-                condicion = "No"
-                break
-        return condicion
 
     def cambioPuesto(self):
 
@@ -516,13 +503,18 @@ class Trabajador(Usuario):
 
     def cambiarBicicleta(self):
 
-        patente = input("Ingrese la patente de la bicicleta a modificar: ").strip()
-        while validarPatente(patente, empresa.listapatentes) == True:
-            print("Patente no encontrada")
-            print("")
-            patente = input("Ingrese bicicleta a modificar: ").strip()
-
-        if self.validarAlquileres == "Si":
+        condicion = "Si"
+        for alquiler in empresa.alquileres.values():
+            if alquiler.estado == "en curso":
+                condicion = "No"
+                break
+        
+        if condicion == "Si":
+            patente = input("Ingrese la patente de la bicicleta a modificar: ").strip()
+            while validarPatente(patente, empresa.listapatentes) == True:
+                print("Patente no encontrada")
+                print("")
+                patente = input("Ingrese bicicleta a modificar: ").strip()
             bicicleta = empresa.bicicletas.get(patente)
             bicicleta.cambio()
         else:
@@ -532,13 +524,18 @@ class Trabajador(Usuario):
 
     def cambiarEstacion(self):
 
-        nombre = input("Ingrese el nombre de la estacion a modificar: ").strip()
-        while validarEstacion(nombre, empresa.listanombres) == True:
-            print("Estacion no encontrada")
-            print("")
-            nombre = input("Ingrese el nombre de la estacion a modificar: ").strip()
+        condicion = "Si"
+        for alquiler in empresa.alquileres.values():
+            if alquiler.estado == "en curso":
+                condicion = "No"
+                break
 
-        if self.validarAlquileres == "Si":
+        if condicion == "Si":
+            nombre = input("Ingrese el nombre de la estacion a modificar: ").strip()
+            while validarEstacion(nombre, empresa.listanombres) == True:
+                print("Estacion no encontrada")
+                print("")
+                nombre = input("Ingrese el nombre de la estacion a modificar: ").strip()
             estacion = empresa.estaciones.get(nombre)
             estacion.cambio()
         else:
@@ -548,13 +545,18 @@ class Trabajador(Usuario):
 
     def eliminarBicicleta(self):
 
-        patente = input("Ingrese la patente de la bicicleta a eliminar: ").strip()
-        while validarPatente(patente, empresa.listapatentes) == True:
-            print("Patente no encontrada")
-            print("")
-            patente = input("Ingrese bicicleta a eliminar: ").strip()
+        condicion = "Si"
+        for alquiler in empresa.alquileres.values():
+            if alquiler.estado == "en curso":
+                condicion = "No"
+                break
             
-        if self.validarAlquileres == "Si":
+        if condicion == "Si":
+            patente = input("Ingrese la patente de la bicicleta a eliminar: ").strip()
+            while validarPatente(patente, empresa.listapatentes) == True:
+                print("Patente no encontrada")
+                print("")
+                patente = input("Ingrese bicicleta a eliminar: ").strip()
             bicicleta = empresa.bicicletas.get(patente)
             bicicleta.eliminar()
         else:
@@ -564,13 +566,18 @@ class Trabajador(Usuario):
 
     def eliminarEstacion(self):
 
-        nombre = input("Ingrese el nombre de la estacion a eliminar: ").strip()
-        while validarEstacion(nombre, empresa.listanombres) == True:
-            print("Estacion no encontrada")
-            print("")
-            nombre = input("Ingrese el nombre de la estacion a eliminar: ").strip()
+        condicion = "Si"
+        for alquiler in empresa.alquileres.values():
+            if alquiler.estado == "en curso":
+                condicion = "No"
+                break
 
-        if self.validarAlquileres == "Si":
+        if condicion == "Si":
+            nombre = input("Ingrese el nombre de la estacion a eliminar: ").strip()
+            while validarEstacion(nombre, empresa.listanombres) == True:
+                print("Estacion no encontrada")
+                print("")
+                nombre = input("Ingrese el nombre de la estacion a eliminar: ").strip()
             estacion = empresa.estaciones.get(nombre)
             estacion.eliminar()
         else:

@@ -20,10 +20,11 @@ class Alquiler():
         Alquiler.id += 1
         return Alquiler.id
     
-    def finalizarAlquiler(self, fin, duracion, estacionllegada):
+    def finalizar(self, fin, duracion, estacionllegada):
         self.fin = fin
         self.duracion = duracion
         self.estacionllegada = estacionllegada
+        self.estado = "finalizado"
         print("")
         print("Alquiler finalizado, la duracion del viaje fue {} ".format(duracion))
         print("")
