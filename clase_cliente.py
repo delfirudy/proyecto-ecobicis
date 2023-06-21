@@ -35,6 +35,7 @@ class Cliente(Usuario):
             print("La tarjeta ya existe o el formato es incorrecto, la tarjeta debe ser un numero de 16 digitos")
             print("")
             tarjeta = input("Ingrese tarjeta: ").strip()
+            print("")
         self.tarjeta = tarjeta
         empresa.listatarjetas.append(tarjeta)
         empresa.clientes[self.id] = self
@@ -108,6 +109,7 @@ class Cliente(Usuario):
             print("La tarjeta ya existe o el formato es incorrecto, la tarjeta debe ser un numero de 16 digitos")
             print("")
             tarjeta = input("Ingrese tarjeta: ").strip()
+            print("")
         posicion = empresa.listatarjetas.index(self.tarjeta)
         empresa.listatarjetas[posicion] = tarjeta
         self.tarjeta = tarjeta
@@ -147,6 +149,7 @@ class Cliente(Usuario):
                 print("")
             inicio = input("Ingrese hora de inicio: ").strip()
             print("")
+            print("")
             while self.validarHoraInicio(inicio) == False:
                 inicio = input("Ingrese hora de inicio: ").strip()
                 print("")
@@ -156,7 +159,7 @@ class Cliente(Usuario):
                 print("No se encontro la estacion, no hay bicicletas o el formato es incorrecto, el nombre debe contener solo letras y la primera debe ser mayuscula")
                 print("")
                 estacionsalida = input("Ingrese estacion de salida: ").strip()
-            print("")
+                print("")
             empresa.alquileres[(Alquiler.id)] = Alquiler(self.nombre, fecha, inicio, "0", "0", estacionsalida, " ", "en curso")
             estacion = empresa.estaciones.get(estacionsalida)
             estacion.cantbicidisponible -= 1 
@@ -178,6 +181,7 @@ class Cliente(Usuario):
                 print("El formato es incorrecto o la hora de finalizacion es anterior a la hora de inicio, la hora debe ser de la forma HH:mm")
                 print("")
                 fin = input("Ingrese hora de finalizacion: ").strip()
+                print("")
             duracion = datetime.strptime(fin, '%H:%M') - datetime.strptime(alquiler_actual.inicio, '%H:%M')
             estacionllegada = input("Ingrese estacion de llegada: ").strip()
             print("")
@@ -185,6 +189,7 @@ class Cliente(Usuario):
                 print("No se encontro la estacion, no hay lugar para dejar la bicicleta o el formato es incorrecto, el nombre debe contener solo letras y la primera debe ser mayuscula")
                 print("")
                 estacionllegada = input("Ingrese estacion de llegada: ").strip()
+                print("")
             estacion = empresa.estaciones.get(estacionllegada)
             estacion.cantbicidisponible += 1
             for bicicleta in empresa.bicicletas.values():

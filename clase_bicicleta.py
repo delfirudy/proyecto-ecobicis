@@ -35,6 +35,7 @@ class Bicicleta():
                 print("La patente ya existe o el formato es incorrecto, la patente debe ser un numero")
                 print("")
                 patente = input("Ingrese patente: ").strip()
+                print("")
             del empresa.bicicletas[self.id]
             posicion = empresa.listapatentes.index(self.patente)
             empresa.listapatentes[posicion] = patente
@@ -43,6 +44,7 @@ class Bicicleta():
             empresa.bicicletas[self.id] = self
         elif eleccioncambio == "modelo":
             modelo = input("Ingrese modelo: ").strip()
+            print("")
             self.modelo = modelo
         else:
             cambiado = "No"

@@ -37,46 +37,54 @@ class Usuario:
             print("El usuario ya existe o el formato es incorrecto, el usuario debe contener solo letras")
             print("")
             usuario = input("Ingrese usuario: ").strip()
+            print("")
         contrasena = input("Ingrese contrasena: ").strip()
         print("")
         while self.validarContrasena(contrasena) == False:
             print("El formato es incorrecto, la contrasena debe contener solo letras y la primera debe ser mayuscula")
             print("")
             contrasena = input("Ingrese contrasena: ").strip()
+            print("")
         nombre = input("Ingrese nombre: ").strip()
         print("")
         while validarNombre(nombre) == False:
             print("El formato es incorrecto, el nombre debe contener solo letras y la primera debe ser mayuscula")
             print("")
             nombre = input("Ingrese nombre: ").strip()
+            print("")
         dni = input("Ingrese dni: ").strip()
         print("")
         while self.validarDni(dni, empresa.listadnis) == False:
             print("El dni ya existe o el formato es incorrecto, debe ser un numero de ocho caracteres")
             print("")
             dni = input("Ingrese dni: ").strip()
+            print("")
         fecnac = input("Ingrese fecha de nacimiento: ").strip() 
         print("")
         while self.validarFecha(fecnac) == False:
             fecnac = input("Ingrese fecha de nacimiento: ").strip() 
+            print("")
         telefono = input("Ingrese telefono: ").strip()
         print("")
         while self.validarTelefono(telefono) == False:
             print("El formato es incorrecto, el telefono debe ser un numero de diez caracteres")
             print("")
             telefono = input("Ingrese telefono: ").strip()
+            print("")
         mail = input("Ingrese mail: ").strip()
         print("")
         while self.validarMail(mail) == False:
             print("El formato es incorrecto, el mail debe contener un @")
             print("")
             mail = input("Ingrese mail: ").strip()
+            print("")
         direccion = input("Ingrese direccion: ").strip()
         print("")
         while validarDireccion(direccion) == False:
             print("El formato es incorrecto, la direccion debe tener letras y numeros")
             print("")
             direccion = input("Ingrese direccion: ").strip()
+            print("")
         self.id = usuario + contrasena
         self.usuario = usuario
         self.contrasena = contrasena
@@ -194,6 +202,7 @@ class Usuario:
                 print("El usuario ya existe o el formato es incorrecto, el usuario debe contener solo letras")
                 print("")
                 usuario = input("Ingrese usuario: ").strip()
+                print("")
             del diccionario[self.id]
             posicion = empresa.listausuarios.index(self.usuario)
             empresa.listausuarios[posicion] = usuario
@@ -207,6 +216,7 @@ class Usuario:
                 print("El formato es incorrecto, la contrasena debe contener solo letras y la primera debe ser mayuscula")
                 print("")
                 contrasena = input("Ingrese contrasena: ").strip()
+                print("")
             del diccionario[self.id]
             self.contrasena = contrasena
             self.id = self.usuario + self.contrasena
@@ -218,6 +228,7 @@ class Usuario:
                 print("El formato es incorrecto, el nombre debe contener solo letras y la primera debe ser mayuscula")
                 print("")
                 nombre = input("Ingrese nombre: ").strip()
+                print("")
             self.nombre = nombre
         elif eleccioncambio == "dni":
             dni = input("Ingrese dni: ").strip()
@@ -226,6 +237,7 @@ class Usuario:
                 print("El dni ya existe o el formato es incorrecto, debe ser un numero de ocho caracteres")
                 print("")
                 dni = input("Ingrese dni: ").strip()
+                print("")
             posicion = empresa.listadnis.index(self.dni)
             empresa.listadnis[posicion] = dni
             self.dni = dni
@@ -234,6 +246,7 @@ class Usuario:
             print("")
             while self.validarFecha(fecnac) == False:
                 fecnac = input("Ingrese fecha de nacimiento: ").strip() 
+                print("")
             self.fecnac = fecnac
         elif eleccioncambio == "telefono":
             telefono = input("Ingrese telefono: ").strip()
@@ -242,6 +255,7 @@ class Usuario:
                 print("El formato es incorrecto, el telefono debe ser un numero de diez caracteres")
                 print("")
                 telefono = input("Ingrese telefono: ").strip()
+                print("")
             self.telefono = telefono
         elif eleccioncambio == "mail":
             mail = input("Ingrese mail: ").strip()
@@ -250,6 +264,7 @@ class Usuario:
                 print("El formato es incorrecto, el mail debe contener un @")
                 print("")
                 mail = input("Ingrese mail: ").strip()
+                print("")
             self.mail = mail
         elif eleccioncambio == "direccion":
             direccion = input("Ingrese direccion: ").strip()
@@ -258,6 +273,7 @@ class Usuario:
                 print("El formato es incorrecto, la direccion debe tener letras y numeros")
                 print("")
                 direccion = input("Ingrese direccion: ").strip()
+                print("")
             self.direccion = direccion
         elif eleccioncambio == "tarjeta":
             if tipo == "Cliente":

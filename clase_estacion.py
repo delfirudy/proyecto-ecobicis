@@ -37,6 +37,7 @@ class Estacion:
                 print("La estacion ya existe o el formato es incorrecto, el nombre debe contener solo letras")
                 print("")
                 nombre = input("Ingrese nombre: ").strip()
+                print("")
             for bicicleta in empresa.bicicletas.values():
                 if bicicleta.estacionactual == self.nombre:
                     bicicleta.estacionactual = nombre
@@ -53,6 +54,7 @@ class Estacion:
                 print("El formato es incorrecto, la direccion debe tener letras y numeros")
                 print("")
                 direccion = input("Ingrese direccion: ").strip()
+                print("")
             self.direccion = direccion 
         elif eleccioncambio == "barrio":
             barrio = input("Ingrese barrio: ").strip()
@@ -61,6 +63,7 @@ class Estacion:
                 print("El formato es incorrecto, el barrio debe contener solo letras y la primera debe ser mayuscula")
                 print("")
                 barrio = input("Ingrese barrio: ").strip()
+                print("")
             self.barrio = barrio
         elif eleccioncambio == "cantidad total":
             cantbicitotal = input("Ingrese capacidad: ").strip()
@@ -69,6 +72,7 @@ class Estacion:
                 print("El formato es incorrecto, la capacidad debe ser un numero")
                 print("")
                 cantbicitotal = input("Ingrese capacidad: ").strip()
+                print("")
             self.cantbicitotal = cantbicitotal
         else:
             cambiado = "No"

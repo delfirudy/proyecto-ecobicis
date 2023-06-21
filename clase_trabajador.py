@@ -39,12 +39,14 @@ class Trabajador(Usuario):
             print("El formato es incorrecto, el puesto debe contener solo letras")
             print("")
             puesto = input("Ingrese puesto: ").strip()
+            print("")
         cbu = input("Ingrese cbu: ").strip()
         print("")
         while self.validarCbu(cbu, empresa.listacbus) == False:
             print("El cbu ya existe o el formato es incorrecto, el cbu debe ser un numero de 22 digitos")
             print("")
             cbu = input("Ingrese el cbu: ").strip()
+            print("")
         self.puesto = puesto
         self.cbu = cbu
         empresa.listacbus.append(cbu)
@@ -79,6 +81,7 @@ class Trabajador(Usuario):
             print("El formato es incorrecto, el puesto debe contener solo letras")
             print("")
             puesto = input("Ingrese puesto: ").strip()
+            print("")
         self.puesto = puesto
 
     def cambioCbu(self):
@@ -89,6 +92,7 @@ class Trabajador(Usuario):
             print("El cbu ya existe o el formato es incorrecto, el cbu debe ser un numero de 22 digitos")
             print("")
             cbu = input("Ingrese cbu: ").strip()
+            print("")
         posicion = empresa.listacbus.index(self.cbu)
         empresa.listacbus[posicion] = cbu
         self.cbu = cbu
@@ -110,24 +114,28 @@ class Trabajador(Usuario):
             print("La estacion ya existe o el formato es incorrecto, el nombre debe contener solo letras y la primera debe ser mayuscula")
             print("")
             nombre = input("Ingrse nombre: ").strip()
+            print("")
         direccion = input("Ingrese direccion: ").strip()
         print("")
         while validarDireccion(direccion) == False:
             print("El formato es incorrecto, la direccion debe tener letras y numeros")
             print("")
             direccion = input("Ingrese direccion: ").strip()
+            print("")
         barrio = input("Ingrese barrio: ").strip()
         print("")
         while validarNombre(barrio) == False:
             print("El formato es incorrecto, el barrio debe contener solo letras y la primera debe ser mayuscula")
             print("")
             barrio = input("Ingrese barrio: ").strip()
+            print("")
         cantbicitotal = input("Ingrese capacidad: ").strip()
         print("")
         while validarNumero(cantbicitotal) == False:
             print("El formato es incorrecto, la capacidad debe ser un numero")
             print("")
             cantbicitotal = input("Ingrese capacidad: ").strip()
+            print("")
         cantbicidisponible = 0
         empresa.listanombres.append(nombre)
         empresa.estaciones[nombre] = Estacion(nombre, direccion, barrio, cantbicitotal, cantbicidisponible)
@@ -142,6 +150,7 @@ class Trabajador(Usuario):
             print("La patente ya existe o el formato es incorrecto, la patente debe ser un numero")
             print("")
             patente = input("Ingrese patente: ").strip()
+            print("")
         modelo = input("Ingrese modelo: ").strip()
         print("")
         estacionactual = input("Ingrese estacion donde se ingresa la bicicleta: ").strip()
@@ -150,6 +159,7 @@ class Trabajador(Usuario):
             print("No se encontro la estacion, no hay lugar para dejar la bicicleta o el formato es incorrecto, el nombre debe contener solo letras y la primera debe ser mayuscula")
             print("")
             estacionactual = input("Ingrese estacion donde se ingresa la bicicleta: ").strip()
+            print("")
         cantusos = 0
         empresa.listapatentes.append(patente)
         empresa.bicicletas[patente] = Bicicleta(patente, modelo, estacionactual, cantusos)
@@ -172,6 +182,7 @@ class Trabajador(Usuario):
                 print("Patente no encontrada")
                 print("")
                 patente = input("Ingrese bicicleta a modificar: ").strip()
+                print("")
             bicicleta = empresa.bicicletas.get(patente)
             bicicleta.cambio()
         else:
@@ -192,6 +203,7 @@ class Trabajador(Usuario):
                 print("Estacion no encontrada")
                 print("")
                 nombre = input("Ingrese el nombre de la estacion a modificar: ").strip()
+                print("")
             estacion = empresa.estaciones.get(nombre)
             estacion.cambio()
         else:
@@ -212,6 +224,7 @@ class Trabajador(Usuario):
                 print("Patente no encontrada")
                 print("")
                 patente = input("Ingrese bicicleta a eliminar: ").strip()
+                print("")
             bicicleta = empresa.bicicletas.get(patente)
             bicicleta.eliminar()
         else:
@@ -232,6 +245,7 @@ class Trabajador(Usuario):
                 print("Estacion no encontrada")
                 print("")
                 nombre = input("Ingrese el nombre de la estacion a eliminar: ").strip()
+                print("")
             estacion = empresa.estaciones.get(nombre)
             estacion.eliminar()
         else:
