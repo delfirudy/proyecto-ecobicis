@@ -1,6 +1,11 @@
 class Empresa:
-
+    """Manejo de todos los datos"""
     def __init__(self, nombre): 
+        """Ingreso de datos.
+
+        Args:
+            nombre (String): Nombre de la empresa
+        """
         self.nombre = nombre
         self.trabajadores = {}
         self.clientes = {}

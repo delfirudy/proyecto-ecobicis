@@ -6,7 +6,22 @@ from datetime import datetime
 from datetime import date
 
 class Usuario:
+    """Manejo de datos de los usuarios.
 
+    Methods:
+        validarUsuario: Validación de usuario.
+        validarContrasena: Validación de contrasena.
+        validarDni: Validación de dni.
+        validarFecha: Validación de fecha.
+        validarTelefono: Validación de teléfono.
+        validarMail: Validación de mail.
+        validarEstacionActual: Validación de estación actual.
+        cambio: Cambio de datos.
+
+    Returns:
+        String: Lista con los atributos del usuario.
+
+    """
     def __init__(self, usuario=None, contrasena=None, nombre=None, dni=0, fecnac=None, telefono=0, mail=None, direccion=None):
         usuario = input("Ingrese usuario: ").strip()
         while self.validarUsuario(usuario, empresa.listausuarios) == False:
@@ -207,7 +222,23 @@ class Usuario:
 
 
 class Cliente(Usuario):
+    """Manejo de datos de los clientes.
 
+    Methods:
+        validarTarjeta: Validación de tarjeta.
+        validarEstacionSalida: Validación de estación salida.
+        validarHoraInicio: Validación de hora de inicio.
+        validarHoraFin: Validación de hora fin.
+        cambioTarjeta: Cambio del atributo tarjeta.
+        eliminar: Eliminación del cliente.
+        alquilar: Inicio de alquiler.
+        finalizarAlquiler: Finalización del alquiler.
+        mostrarInfo: Muestra información sobre las estaciones.
+
+    Returns:
+        String: Lista con los atributos del cliente.
+
+    """
     def __init__(self, usuario=None, contrasena=None, nombre=None, dni=0, fecnac=None, telefono=0, mail=None, direccion=None, tarjeta=0):    
         Usuario.__init__(self, usuario, contrasena, nombre, dni, fecnac, telefono, mail, direccion)
         tarjeta = input("Ingrese tarjeta: ").strip()
@@ -352,7 +383,25 @@ class Cliente(Usuario):
 
 
 class Trabajador(Usuario):
+    """Manejo de datos de los trabajadores.
 
+    Methods:
+        validarPuesto: Validación de puesto.
+        validarCbu: Validación de cbu.
+        cambioPuesto: Cambio del atributo puesto.
+        cambioCbu: Cambio del atributo cbu.
+        eliminar: Eliminación del trabajador
+        agregarEstación: Ingreso de datos de nueva estación.
+        agregarBicicleta: Ingreso de datos de nueva bicicleta.
+        cambiarEstación: Cambio de datos de estación.
+        cambiarBicicleta: Cambio de datos de bicicleta.
+        eliminarEstacion: Eliminación de estación.
+        eliminarBicicleta: Eliminación de bicicleta.
+
+    Returns:
+        String: Lista con los atributos del trabajador.
+
+    """
     def __init__(self, usuario=None, contrasena=None, nombre=None, dni=0, fecnac=None, telefono=0, mail=None, direccion=None, puesto=None, cbu=0):
         Usuario.__init__(self, usuario, contrasena, nombre, dni, fecnac, telefono, mail, direccion)
         puesto = input("Ingrese puesto: ").strip()

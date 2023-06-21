@@ -3,15 +3,32 @@ from clase_alquiler import *
 from clase_estacion import *
 from clase_bicicleta import *
 
-def validarPersona(usuario, contrasena, listapersonas):
+def validarPersona(usuario, contrasena, diccionariopersonas):
+    """Validación de existencia de trabajador o cliente.
+
+    Args:
+        usuario (String): Usuario del cliente o trabajador.
+        contrasena (String): Contrasena del cliente o trabajador.
+        listapersonas (Dict): Puede ser el diccionario de clientes o de trabajadores.
+
+    Returns:
+        Boolean: Existencia o no del cliente o trabajador.
+
+    """
     cumple = "No"
-    for id in listapersonas.keys():
+    for id in diccionariopersonas.keys():
         if id == usuario + contrasena:
             cumple = "Si"
             break
     return cumple == "Si"
 
 def submenuCambio(trabajador):
+    """Manejo de opciones del submenu de cambio para el trabajador.
+
+    Args:
+        trabajador (class object): Trabajador que utiliza el submenu.
+
+    """
     seguir3 = True
     while seguir3 == True:
         print("1. Cambiar datos trabajador")
@@ -34,6 +51,12 @@ def submenuCambio(trabajador):
             print("")
 
 def submenuEliminar(trabajador):
+    """Manejo de opciones del submenu de eliminación para el trabajador.
+
+    Args:
+        trabajador (class object): Trabajador que utiliza el submenu.
+
+    """
     seguir4 = True
     while seguir4 == True:
         print("1. Eliminar trabajador")
@@ -57,6 +80,7 @@ def submenuEliminar(trabajador):
             print("")
 
 def subMenuTrabajador():
+    """Manejo de opciones del submenu trabajador."""
     usuario = input("Ingrese usuario: ").strip()
     contrasena = input("Ingrese contrasena: ").strip()
     print("")
@@ -93,6 +117,7 @@ def subMenuTrabajador():
             print("")
 
 def subMenuCliente():
+    """Manejo de opciones del submenu cliente."""
     usuario = input("Ingrese usuario: ").strip()
     contrasena = input("Ingrese contrasena: ").strip()
     print("")

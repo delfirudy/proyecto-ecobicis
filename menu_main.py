@@ -6,6 +6,7 @@ from actualizacion_pickle import *
 from menu_submenu import *
 
 class Menu:
+    """Manejo de opciones del menu principal."""
     recorrerPickle()
     seguir = True
     while seguir == True:
