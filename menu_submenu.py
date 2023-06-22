@@ -21,6 +21,8 @@ def submenuCambio(trabajador):
     """Manejo de opciones del submenu de cambio para el trabajador.
     Args:
         trabajador (class object): Trabajador que utiliza el submenu.
+    Returns:
+        None
     """
     seguir3 = True
     while seguir3 == True:
@@ -47,6 +49,8 @@ def submenuEliminar(trabajador):
     """Manejo de opciones del submenu de eliminación para el trabajador.
     Args:
         trabajador (class object): Trabajador que utiliza el submenu.
+    Returns:
+        None
     """
     seguir4 = True
     while seguir4 == True:
@@ -71,82 +75,108 @@ def submenuEliminar(trabajador):
             print("")
 
 def subMenuTrabajador():
-    """Manejo de opciones del submenu trabajador."""
+    """Manejo de opciones del submenu trabajador.
+    Args:
+        None
+    Returns:
+        None
+    """
+    volvio = "No"
     usuario = input("Ingrese usuario: ").strip()
     contrasena = input("Ingrese contrasena: ").strip()
     print("")
     while validarPersona(usuario, contrasena, empresa.trabajadores) == False:
         print("Trabajador no encontrado")
         print("")
-        usuario = input("Ingrese usuario: ").strip()
-        contrasena = input("Ingrese contrasena: ").strip()
-        print("")
-    trabajador = empresa.trabajadores.get(usuario + contrasena)
-    print("Trabajador validado")
-    print("")
-    seguir1 = True
-    while seguir1 == True:
-        print("1. Ingresar estacion")
-        print("2. Ingresar bicicleta")
-        print("3. Cambiar datos")
-        print("4. Dar de baja")
-        print("5. Volver al menu principal")
-        print("")
-        elecciontrabajador = input("Ingrese opcion: ").strip()
-        print("")
-        if elecciontrabajador == "1":
-            trabajador.agregarEstacion()
-        elif elecciontrabajador == "2":
-            trabajador.agregarBicicleta()
-        elif elecciontrabajador == "3":
-            submenuCambio(trabajador)
-        elif elecciontrabajador == "4":
-            submenuEliminar(trabajador)
-        elif elecciontrabajador == "5":
-            seguir1 = False
+        volver = input("Ingrese 1 si quiere volver al menu principal: ")
+        if volver == "1":
+            volvio = "Si"
+            break
         else:
-            print("Ingreso incorrecto de opcion")
+            volvio = "No"
+            usuario = input("Ingrese usuario: ").strip()
+            contrasena = input("Ingrese contrasena: ").strip()
+        print("")
+    if volvio == "No":
+        trabajador = empresa.trabajadores.get(usuario + contrasena)
+        print("Trabajador validado")
+        print("")
+        seguir1 = True
+        while seguir1 == True:
+            print("1. Ingresar estacion")
+            print("2. Ingresar bicicleta")
+            print("3. Cambiar datos")
+            print("4. Dar de baja")
+            print("5. Volver al menu principal")
             print("")
+            elecciontrabajador = input("Ingrese opcion: ").strip()
+            print("")
+            if elecciontrabajador == "1":
+                trabajador.agregarEstacion()
+            elif elecciontrabajador == "2":
+                trabajador.agregarBicicleta()
+            elif elecciontrabajador == "3":
+                submenuCambio(trabajador)
+            elif elecciontrabajador == "4":
+                submenuEliminar(trabajador)
+            elif elecciontrabajador == "5":
+                seguir1 = False
+            else:
+                print("Ingreso incorrecto de opcion")
+                print("")
 
 def subMenuCliente():
-    """Manejo de opciones del submenu cliente."""
+    """Manejo de opciones del submenu cliente.
+    Args:
+        None
+    Returns:
+        None
+    """
+    volvio = "No"
     usuario = input("Ingrese usuario: ").strip()
     contrasena = input("Ingrese contrasena: ").strip()
     print("")
     while validarPersona(usuario, contrasena, empresa.clientes) == False:
         print("Cliente no encontrado")
         print("")
-        usuario = input("Ingrese usuario: ").strip()
-        contrasena = input("Ingrese contrasena: ").strip()
-        print("")
-    cliente = empresa.clientes.get(usuario + contrasena)
-    print("Cliente validado")
-    print("")
-    seguir2 = True
-    while seguir2 == True:
-        print("1. Alquilar")
-        print("2. Finalizar alquiler")
-        print("3. Información sobre estaciones")
-        print("4. Cambiar datos")
-        print("5. Dar de baja")
-        print("6. Volver al menu principal")
-        print("")
-        eleccionusuario = input("Ingrese opcion: ").strip()
-        print("")
-        if eleccionusuario == "1":
-            cliente.alquilar()
-        elif eleccionusuario == "2":
-            cliente.finalizarAlquiler()
-        elif eleccionusuario == "3":
-            cliente.mostrarInfo()
-        elif eleccionusuario == "4":
-            cliente.cambio("Cliente", empresa.clientes)
-        elif eleccionusuario == "5":
-            cliente.eliminar()
-            seguir2 = False
-        elif eleccionusuario == "6":
-            seguir2 = False
+        volver = input("Ingrese 1 si quiere volver al menu principal, otro numero si quiere seguir: ")
+        if volver == "1":
+            volvio = "Si"
+            break
         else:
-            print("Ingreso incorrecto de opcion")
+            volvio = "No"
+            usuario = input("Ingrese usuario: ").strip()
+            contrasena = input("Ingrese contrasena: ").strip()
+        print("")
+    if volvio == "No":
+        cliente = empresa.clientes.get(usuario + contrasena)
+        print("Cliente validado")
+        print("")
+        seguir2 = True
+        while seguir2 == True:
+            print("1. Alquilar")
+            print("2. Finalizar alquiler")
+            print("3. Información sobre estaciones")
+            print("4. Cambiar datos")
+            print("5. Dar de baja")
+            print("6. Volver al menu principal")
             print("")
+            eleccionusuario = input("Ingrese opcion: ").strip()
+            print("")
+            if eleccionusuario == "1":
+                cliente.alquilar()
+            elif eleccionusuario == "2":
+                cliente.finalizarAlquiler()
+            elif eleccionusuario == "3":
+                cliente.mostrarInfo()
+            elif eleccionusuario == "4":
+                cliente.cambio("Cliente", empresa.clientes)
+            elif eleccionusuario == "5":
+                cliente.eliminar()
+                seguir2 = False
+            elif eleccionusuario == "6":
+                seguir2 = False
+            else:
+                print("Ingreso incorrecto de opcion")
+                print("")
 

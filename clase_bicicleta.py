@@ -3,11 +3,8 @@ from validaciones import *
 
 class Bicicleta():
     """Manejo de datos de las bicicletas.
-    Methods:
-        cambio: Cambio de datos.
-        eliminar: Eliminar bicicleta.
     Returns:
-        String: Lista con los atributos de la bicicleta.
+        Class object: Bicicleta.
     """
 
     def __init__(self, patente, modelo, estacionactual, cantusos):
@@ -17,6 +14,8 @@ class Bicicleta():
             modelo (String): Modelo de la bicicleta.
             estacionactual (String): Estación donde se encuentra la bicicleta
             cantusos (Int): Cantidad de usos de la bicicleta.
+        Returns:
+            None
         """
         self.id = patente
         self.patente = patente
@@ -25,13 +24,19 @@ class Bicicleta():
         self.cantusos = cantusos
 
     def cambio(self):
-        """Cambio de datos."""
+        """Cambio de datos.
+        Args:
+            None
+        Returns:
+            None
+        """
         cambiado  = "Si"
+        print("patente, modelo")
         eleccioncambio = input("Ingrese dato que quiere cambiar: ")
         print("")
         if eleccioncambio == "patente":
             patente = input("Ingrese patente: ").strip()
-            while validarPatente(patente, empresa.listapatentes) == False:
+            while validarPatenteNoExistente(patente, empresa.listapatentes) == False:
                 print("La patente ya existe o el formato es incorrecto, la patente debe ser un numero")
                 print("")
                 patente = input("Ingrese patente: ").strip()
@@ -55,7 +60,12 @@ class Bicicleta():
             print("")
 
     def eliminar(self):
-        """Eliminar bicicleta."""
+        """Eliminar bicicleta.
+        Args:
+            None
+        Returns:
+            None
+        """
         empresa.bicicletas.pop(self.patente)
         estacion = empresa.estaciones.get(self.estacionactual)
         estacion.cantbicidisponible -= 1

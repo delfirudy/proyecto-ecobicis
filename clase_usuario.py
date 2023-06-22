@@ -7,17 +7,8 @@ from datetime import date
 
 class Usuario:
     """Manejo de datos de los usuarios.
-    Methods:
-        validarUsuario: Validación de usuario.
-        validarContrasena: Validación de contrasena.
-        validarDni: Validación de dni.
-        validarFecha: Validación de fecha.
-        validarTelefono: Validación de teléfono.
-        validarMail: Validación de mail.
-        validarEstacionActual: Validación de estación actual.
-        cambio: Cambio de datos.
     Returns:
-        String: Lista con los atributos del usuario.
+        Class object: Usuario.
     """
     def __init__(self, usuario=None, contrasena=None, nombre=None, dni=0, fecnac=None, telefono=0, mail=None, direccion=None):
         """Ingreso de datos.
@@ -30,6 +21,8 @@ class Usuario:
             telefono (Int): Teléfono.
             mail (String): Mail.
             direccion (String): Dirección.
+        Returns:
+            None
         """
         usuario = input("Ingrese usuario: ").strip()
         print("")
@@ -61,7 +54,7 @@ class Usuario:
             print("")
         fecnac = input("Ingrese fecha de nacimiento: ").strip() 
         print("")
-        while self.validarFecha(fecnac) == False:
+        while self.validarFecnac(fecnac) == False:
             fecnac = input("Ingrese fecha de nacimiento: ").strip() 
             print("")
         telefono = input("Ingrese telefono: ").strip()
@@ -126,8 +119,8 @@ class Usuario:
         """
         return dni.isdigit() and len(dni) == 8 and dni not in listadnis
 
-    def validarFecha(self, fecha):
-        """Validación de fecha.
+    def validarFecnac(self, fecha):
+        """Validación de fecha de nacimiento.
         Args:
             fecha (Datetime): Fecha.
         Returns:
@@ -136,7 +129,7 @@ class Usuario:
         try:
             fecha_valida = datetime.strptime(fecha, "%Y/%m/%d").date()
             fecha_actual = date.today()
-            if fecha_valida <= fecha_actual:
+            if fecha_valida < fecha_actual:
                 return True
             else:
                 print("El formato es correcto pero la fecha no es anterior a la actual")
@@ -191,8 +184,11 @@ class Usuario:
         Args:
             tipo (String): Cliente o trabajador.
             diccionario (Dict): Diccionario de clientes o trabajadores.
+        Returns:
+            None
         """
         cambiado = "Si"
+        print("usuario, contrasena, nombre, nombre, dni, fecha de nacimiento, telefono, mail, direccion, tarjeta, puesto, cbu")
         eleccioncambio = input("Ingrese dato que quiere cambiar: ")
         print("")
         if eleccioncambio == "usuario":
@@ -244,7 +240,7 @@ class Usuario:
         elif eleccioncambio == "fecha de nacimiento":
             fecnac = input("Ingrese fecha de nacimiento: ").strip() 
             print("")
-            while self.validarFecha(fecnac) == False:
+            while self.validarFecnac(fecnac) == False:
                 fecnac = input("Ingrese fecha de nacimiento: ").strip() 
                 print("")
             self.fecnac = fecnac
@@ -280,21 +276,21 @@ class Usuario:
                 self.cambioTarjeta()
             else:
                 cambiado = "No"
-                print("No se encontro el dato")
+                print("El dato tarjeta es para clientes")
                 print("")
         elif eleccioncambio == "puesto":
             if tipo == "Trabajador":
                 self.cambioPuesto()
             else:
                 cambiado = "No"
-                print("No se encontro el dato")
+                print("El dato puesto es para trabajadores")
                 print("")
         elif eleccioncambio == "cbu":
             if tipo == "Trabajador":
                 self.cambioCbu()
             else:
                 cambiado = "No"
-                print("No se encontro el dato")
+                print("El dato cbu es para trabajadores")
                 print("")
         else:
             cambiado = "No"

@@ -1,9 +1,14 @@
 class Empresa:
-    """Manejo de todos los datos"""
+    """Manejo de todos los datos
+    Returns:
+        None
+    """
     def __init__(self, nombre): 
         """Ingreso de datos.
         Args:
             nombre (String): Nombre de la empresa
+        Returns:
+            None
         """
         self.nombre = nombre
         self.trabajadores = {}

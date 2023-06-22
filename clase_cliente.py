@@ -2,18 +2,8 @@ from clase_usuario import *
 
 class Cliente(Usuario):
     """Manejo de datos de los clientes.
-    Methods:
-        validarTarjeta: Validación de tarjeta.
-        validarEstacionSalida: Validación de estación salida.
-        validarHoraInicio: Validación de hora de inicio.
-        validarHoraFin: Validación de hora fin.
-        cambioTarjeta: Cambio del atributo tarjeta.
-        eliminar: Eliminación del cliente.
-        alquilar: Inicio de alquiler.
-        finalizarAlquiler: Finalización del alquiler.
-        mostrarInfo: Muestra información sobre las estaciones.
     Returns:
-        String: Lista con los atributos del cliente.
+        Class object: Cliente.
     """
     def __init__(self, usuario=None, contrasena=None, nombre=None, dni=0, fecnac=None, telefono=0, mail=None, direccion=None, tarjeta=0):    
         """Ingreso de datos.
@@ -27,6 +17,8 @@ class Cliente(Usuario):
             mail (String): Mail del cliente.
             direccion (String): Dirección del cliente.
             tarjeta (Int): Tarjeta del cliente.
+        Returns:
+            None
         """
         Usuario.__init__(self, usuario, contrasena, nombre, dni, fecnac, telefono, mail, direccion)
         tarjeta = input("Ingrese tarjeta: ").strip()
@@ -100,9 +92,35 @@ class Cliente(Usuario):
             return inicio < fin
         except ValueError:
             return False
+        
+    def validarFecha(self, fecha):
+        """Validación de fecha.
+        Args:
+            fecha (Datetime): Fecha.
+        Returns:
+            Boolean: Validación o no de la fecha.
+        """
+        try:
+            fecha_valida = datetime.strptime(fecha, "%Y/%m/%d").date()
+            fecha_actual = date.today()
+            if fecha_valida >= fecha_actual:
+                return True
+            else:
+                print("El formato es correcto pero la fecha no es posterior a la actual")
+                print("")
+                return False
+        except ValueError:
+            print("El formato es incorrecto, la fecha debe ser de la forma YYYY/MM/DD")
+            print("")
+            return False
 
     def cambioTarjeta(self):
-        """Cambio de atributo tarteja"""
+        """Cambio de atributo tarteja.
+        Args:
+            None
+        Returns:
+            None
+        """
         tarjeta = input("Ingrese tarjeta: ").strip()
         print("")
         while self.validarTarjeta(tarjeta, empresa.listatarjetas) == False:
@@ -115,7 +133,12 @@ class Cliente(Usuario):
         self.tarjeta = tarjeta
 
     def eliminar(self):
-        """Eliminación de cliente"""
+        """Eliminación de cliente.
+        Args:
+            None
+        Returns:
+            None
+        """
         condicion = "Si"
         for alquiler in empresa.alquileres:
             if alquiler.usuario == self.usuario and alquiler.estado == "en curso":
@@ -133,7 +156,12 @@ class Cliente(Usuario):
             print("")
     
     def alquilar(self):
-        """Alquiler de bicicleta"""
+        """Alquiler de bicicleta.
+        Args:
+            None
+        Returns:
+            None
+        """
         validado = "Si"
         for alquiler in empresa.alquileres:
             if alquiler.usuario == self.usuario and alquiler.estado == "en curso":
@@ -167,7 +195,12 @@ class Cliente(Usuario):
             print("")
 
     def finalizarAlquiler(self):
-        """Finalización de alquiler de bicicleta."""
+        """Finalización de alquiler de bicicleta.
+        Args:
+            None
+        Returns:
+            None
+        """
         validado = "No"
         for alquiler in empresa.alquileres.values():
             if alquiler.usuario == self.nombre and alquiler.estado == "en curso":
@@ -203,7 +236,12 @@ class Cliente(Usuario):
             print("")
 
     def mostrarInfo(self):
-        """Información sobre las estaciones."""
+        """Información sobre las estaciones.
+        Args:
+            None
+        Returns:
+            None
+        """
         for estacion in empresa.estaciones.values():
             print(estacion)
             print("")

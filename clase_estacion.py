@@ -3,11 +3,8 @@ from validaciones import *
 
 class Estacion:
     """Manejo de datos de las estaciones.
-    Methods:
-        cambio: Cambio de datos.
-        eliminar: Eliminar estación.
     Returns:
-        String: Lista con los atributos de la estación.
+        Class object: Estación.
     """
     def __init__(self, nombre, direccion, barrio, cantbicitotal, cantbicidisponible):
         """Ingreso de datos.
@@ -17,6 +14,8 @@ class Estacion:
             barrio (String): Barrio donde se encuentra la estación.
             cantbicitotal (Int): Capacidad de la estación.
             cantbicidisponible (Int): Bicicletas disponibles para alquiler.
+        Returns:
+            None
         """
         self.id = nombre
         self.nombre = nombre
@@ -26,8 +25,14 @@ class Estacion:
         self.cantbicidisponible = cantbicidisponible
 
     def cambio(self):
-        """Cambio de datos."""
+        """Cambio de datos.
+        Args:
+            None
+        Returns:
+            None
+        """
         cambiado = "Si"
+        print("nombre, direccion, barrio, capacidad")
         eleccioncambio = input("Ingrese dato que quiere cambiar: ")
         print("")
         if eleccioncambio == "nombre":
@@ -65,7 +70,7 @@ class Estacion:
                 barrio = input("Ingrese barrio: ").strip()
                 print("")
             self.barrio = barrio
-        elif eleccioncambio == "cantidad total":
+        elif eleccioncambio == "capacidad":
             cantbicitotal = input("Ingrese capacidad: ").strip()
             print("")
             while validarNumero(cantbicitotal) == False:
@@ -83,7 +88,12 @@ class Estacion:
             print("")       
 
     def eliminar(self):
-        """Eliminar estación."""
+        """Eliminar estación.
+        Args:
+            None
+        Returns:
+            None
+        """
         empresa.estaciones.pop(self.nombre)
         empresa.listanombres.remove(self.nombre)
         bicicletas = []

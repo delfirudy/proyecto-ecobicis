@@ -3,14 +3,11 @@ from validaciones import *
 
 class Alquiler():
     """Manejo de datos de los alquileres.
-    Methods:
-        sumarId: Contador para código.
-        finalizar: Finaliza el alquiler.
     Returns:
-        String: Lista con los atributos del alquiler.
+        Class object: Alquiler.
     """
     id = 0
-
+    
     def __init__(self, usuario, fecha, inicio, fin, duracion, estacionsalida, estacionllegada, estado):
         """Ingreso de datos.
         Args:
@@ -22,6 +19,8 @@ class Alquiler():
             estacionsalida (String): Estación de inicio.
             estacionllegada (String): Estación de finalización.
             estado (String): En curso o finalizado.
+        Returns:
+            None
         """
         self.id = Alquiler.sumarId()
         self.usuario = usuario
@@ -35,6 +34,8 @@ class Alquiler():
 
     def sumarId():
         """Contador para código.
+        Args:
+            None
         Returns:
             Int: Código.
         """
@@ -47,6 +48,8 @@ class Alquiler():
             fin (Time): Hora de finalización.
             duracion (Int): Total del alquiler.
             estacionllegada (String): Estación de finalización.
+        Returns:
+            None
         """
         self.fin = fin
         self.duracion = duracion

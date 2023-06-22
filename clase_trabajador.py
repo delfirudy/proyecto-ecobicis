@@ -2,20 +2,8 @@ from clase_usuario import *
 
 class Trabajador(Usuario):
     """Manejo de datos de los trabajadores.
-    Methods:
-        validarPuesto: Validación de puesto.
-        validarCbu: Validación de cbu.
-        cambioPuesto: Cambio del atributo puesto.
-        cambioCbu: Cambio del atributo cbu.
-        eliminar: Eliminación del trabajador
-        agregarEstación: Ingreso de datos de nueva estación.
-        agregarBicicleta: Ingreso de datos de nueva bicicleta.
-        cambiarEstación: Cambio de datos de estación.
-        cambiarBicicleta: Cambio de datos de bicicleta.
-        eliminarEstacion: Eliminación de estación.
-        eliminarBicicleta: Eliminación de bicicleta.
     Returns:
-        String: Lista con los atributos del trabajador.
+        Class object: Trabajador.
     """
 
     def __init__(self, usuario=None, contrasena=None, nombre=None, dni=0, fecnac=None, telefono=0, mail=None, direccion=None, puesto=None, cbu=0):
@@ -31,6 +19,8 @@ class Trabajador(Usuario):
             direccion (String): Dirección del trabajador.
             puesto (String): Puesto laboral del trabajador.
             cbu (Int): Cbu del trabajador.
+        Returns:
+            None
         """
         Usuario.__init__(self, usuario, contrasena, nombre, dni, fecnac, telefono, mail, direccion)
         puesto = input("Ingrese puesto: ").strip()
@@ -72,9 +62,24 @@ class Trabajador(Usuario):
             Boolean: Validación o no del cbu.
         """
         return cbu.isdigit() and len(cbu) == 22 and cbu not in listacbus
+    
+    def validarPatenteExistente(patente, listapatentes):
+        """Validación de patentes no existentes.
+        Args:
+            patente (Int): Patente de la bicicleta.
+            listapatentes (List): Lista con patentes de las bicicletas.
+        Returns:
+            Boolean: Validación o no de la patente.
+        """
+        return patente.isdigit() and patente in listapatentes
 
     def cambioPuesto(self):
-        """Cambio del atributo puesto."""
+        """Cambio del atributo puesto.
+        Args:
+            None
+        Returns:
+            None
+        """
         puesto = input("Ingrese puesto: ").strip()
         print("")
         while self.validarPuesto(puesto) == False:
@@ -85,7 +90,12 @@ class Trabajador(Usuario):
         self.puesto = puesto
 
     def cambioCbu(self):
-        """Cambio del atributo cbu."""
+        """Cambio del atributo cbu.
+        Args:
+            None
+        Returns:
+            None
+        """
         cbu = input("Ingrese cbu: ").strip()
         print("")
         while self.validarCbu(cbu, empresa.listacbus) == False:
@@ -98,7 +108,12 @@ class Trabajador(Usuario):
         self.cbu = cbu
 
     def eliminar(self):
-        """Eliminación del trabajador."""
+        """Eliminación del trabajador.
+        Args:
+            None
+        Returns:
+            None
+        """
         empresa.trabajadores.pop(self.id)
         empresa.listacbus.remove(self.cbu)
         empresa.listadnis.remove(self.dni)
@@ -107,7 +122,12 @@ class Trabajador(Usuario):
         print("")
 
     def agregarEstacion(self):
-        """Ingreso de datos de nueva estación."""
+        """Ingreso de datos de nueva estación.
+        Args:
+            None
+        Returns:
+            None
+        """
         nombre = input("Ingrese nombre: ").strip()
         print("")
         while validarEstacion(nombre, empresa.listanombres) == False:
@@ -143,10 +163,15 @@ class Trabajador(Usuario):
         print("")
 
     def agregarBicicleta(self):
-        """Ingreso de datos de nueva bicicleta."""
+        """Ingreso de datos de nueva bicicleta.
+        Args:
+            None
+        Returns:
+            None
+        """
         patente = input("Ingrese patente: ").strip()
         print("")
-        while validarPatente(patente, empresa.listapatentes) == False:
+        while validarPatenteNoExistente(patente, empresa.listapatentes) == False:
             print("La patente ya existe o el formato es incorrecto, la patente debe ser un numero")
             print("")
             patente = input("Ingrese patente: ").strip()
@@ -169,7 +194,12 @@ class Trabajador(Usuario):
         print("")
 
     def cambiarBicicleta(self):
-        """Cambio de datos de bicicleta."""
+        """Cambio de datos de bicicleta.
+        Args:
+            None
+        Returns:
+            None
+        """
         condicion = "Si"
         for alquiler in empresa.alquileres.values():
             if alquiler.estado == "en curso":
@@ -178,7 +208,7 @@ class Trabajador(Usuario):
         if condicion == "Si":
             patente = input("Ingrese la patente de la bicicleta a modificar: ").strip()
             print("")
-            while validarPatente(patente, empresa.listapatentes) == True:
+            while self.validarPatenteExistente(patente, empresa.listapatentes) == False:
                 print("Patente no encontrada")
                 print("")
                 patente = input("Ingrese bicicleta a modificar: ").strip()
@@ -190,7 +220,12 @@ class Trabajador(Usuario):
             print("")
 
     def cambiarEstacion(self):
-        """Cambio de datos de estación."""
+        """Cambio de datos de estación.
+        Args:
+            None
+        Returns:
+            None
+        """
         condicion = "Si"
         for alquiler in empresa.alquileres.values():
             if alquiler.estado == "en curso":
@@ -211,7 +246,12 @@ class Trabajador(Usuario):
             print("")
 
     def eliminarBicicleta(self):
-        """Eliminación de bicicleta."""
+        """Eliminación de bicicleta.
+        Args:
+            None
+        Returns:
+            None
+        """
         condicion = "Si"
         for alquiler in empresa.alquileres.values():
             if alquiler.estado == "en curso":
@@ -220,7 +260,7 @@ class Trabajador(Usuario):
         if condicion == "Si":
             patente = input("Ingrese la patente de la bicicleta a eliminar: ").strip()
             print("")
-            while validarPatente(patente, empresa.listapatentes) == True:
+            while self.validarPatenteExistente(patente, empresa.listapatentes) == False:
                 print("Patente no encontrada")
                 print("")
                 patente = input("Ingrese bicicleta a eliminar: ").strip()
@@ -232,7 +272,12 @@ class Trabajador(Usuario):
             print("")
 
     def eliminarEstacion(self):
-        "Eliminación de estación."
+        """Eliminación de estación.
+        Args:
+            None
+        Returns:
+            None
+        """
         condicion = "Si"
         for alquiler in empresa.alquileres.values():
             if alquiler.estado == "en curso":
