@@ -140,7 +140,7 @@ class Cliente(Usuario):
             None
         """
         condicion = "Si"
-        for alquiler in empresa.alquileres:
+        for alquiler in empresa.alquileres.values():
             if alquiler.usuario == self.usuario and alquiler.estado == "en curso":
                 condicion = "No"
                 break
