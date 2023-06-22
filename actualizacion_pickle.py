@@ -2,7 +2,12 @@ from clase_empresa import *
 import pickle
 
 def recorrerPickle():
-    """Recorre los archivos pickle y recupera la información en forma de diccionarios y listas."""
+    """Recorre los archivos pickle y recupera la información en forma de diccionarios y listas.
+    Args:
+        None
+    Returns:
+        None
+    """
     nombrespickle = ["datos_clientes.pickle", "datos_trabajadores.pickle", "datos_estaciones.pickle", "datos_bicicletas.pickle", "datos_alquileres.pickle"]
     diccionarios = [empresa.clientes, empresa.trabajadores, empresa.estaciones, empresa.bicicletas, empresa.alquileres]
     for nombrepickle, diccionario in zip(nombrespickle, diccionarios): 
@@ -27,7 +32,12 @@ def recorrerPickle():
         empresa.listapatentes.append(bicicleta.patente)
 
 def actualizarPickle():
-    """Recorre los diccionarios y las listas para guardar la información en los archivos pickle."""
+    """Recorre los diccionarios y las listas para guardar la información en los archivos pickle.
+    Args:
+        None
+    Returns:
+        None
+    """
     nombrespickle = ["datos_clientes.pickle", "datos_trabajadores.pickle", "datos_estaciones.pickle", "datos_bicicletas.pickle", "datos_alquileres.pickle"]
     diccionarios = [empresa.clientes, empresa.trabajadores, empresa.estaciones, empresa.bicicletas, empresa.alquileres]
     for nombrepickle, diccionario in zip(nombrespickle, diccionarios):
