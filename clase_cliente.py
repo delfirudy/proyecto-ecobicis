@@ -164,7 +164,7 @@ class Cliente(Usuario):
         """
         validado = "Si"
         for alquiler in empresa.alquileres.values():
-            if alquiler.usuario == self.usuario and alquiler.estado == "en curso":
+            if alquiler.usuario == self.nombre and alquiler.estado == "en curso":
                 validado = "No"
                 break
         if validado == "Si":

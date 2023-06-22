@@ -1,4 +1,5 @@
 from clase_empresa import *
+from clase_alquiler import *
 import pickle
 
 def recorrerPickle():
@@ -30,6 +31,8 @@ def recorrerPickle():
         empresa.listanombres.append(estacion.nombre)
     for bicicleta in empresa.bicicletas.values():
         empresa.listapatentes.append(bicicleta.patente)
+    for alquiler in empresa.alquileres:
+        Alquiler.id += 1
 
 def actualizarPickle():
     """Recorre los diccionarios y las listas para guardar la información en los archivos pickle.

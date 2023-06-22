@@ -6,13 +6,6 @@ class Menu:
     Returns:
         None
     """
-    recorrerPickle()
-    for bicicleta in empresa.bicicletas.values():
-        print(bicicleta)
-    for estacion in empresa.estaciones.values():
-        print(estacion)
-    for alquiler in empresa.alquileres.values():
-        print(alquiler)
     seguir = True
     while seguir == True:
         print("1. Ingreso de datos cliente")
