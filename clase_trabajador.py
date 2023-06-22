@@ -63,7 +63,7 @@ class Trabajador(Usuario):
         """
         return cbu.isdigit() and len(cbu) == 22 and cbu not in listacbus
     
-    def validarPatenteExistente(patente, listapatentes):
+    def validarPatenteExistente(self, patente, listapatentes):
         """Validación de patentes no existentes.
         Args:
             patente (Int): Patente de la bicicleta.
@@ -72,6 +72,16 @@ class Trabajador(Usuario):
             Boolean: Validación o no de la patente.
         """
         return patente.isdigit() and patente in listapatentes
+
+    def validarEstacionExistente(self, nombre, listaestaciones):
+        """Validación de estaciones.
+        Args:
+            nombre (String): Nombre de la estación.
+            listaestaciones (List): Lista con nombres de las estaciones.
+        Returns:
+            Boolean: Validación o no de la estación.
+        """
+        return nombre.replace(" ","").isalpha() and nombre[0].replace(" ","").isupper() and nombre in listaestaciones
 
     def cambioPuesto(self):
         """Cambio del atributo puesto.
@@ -130,7 +140,7 @@ class Trabajador(Usuario):
         """
         nombre = input("Ingrese nombre: ").strip()
         print("")
-        while validarEstacion(nombre, empresa.listanombres) == False:
+        while validarEstacionNoExistente(nombre, empresa.listanombres) == False:
             print("La estacion ya existe o el formato es incorrecto, el nombre debe contener solo letras y la primera debe ser mayuscula")
             print("")
             nombre = input("Ingrse nombre: ").strip()
@@ -234,7 +244,7 @@ class Trabajador(Usuario):
         if condicion == "Si":
             nombre = input("Ingrese el nombre de la estacion a modificar: ").strip()
             print("")
-            while validarEstacion(nombre, empresa.listanombres) == True:
+            while self.validarEstacionExistente(nombre, empresa.listanombres) == False:
                 print("Estacion no encontrada")
                 print("")
                 nombre = input("Ingrese el nombre de la estacion a modificar: ").strip()
@@ -286,7 +296,7 @@ class Trabajador(Usuario):
         if condicion == "Si":
             nombre = input("Ingrese el nombre de la estacion a eliminar: ").strip()
             print("")
-            while validarEstacion(nombre, empresa.listanombres) == True:
+            while self.validarEstacionExistente(nombre, empresa.listanombres) == False:
                 print("Estacion no encontrada")
                 print("")
                 nombre = input("Ingrese el nombre de la estacion a eliminar: ").strip()

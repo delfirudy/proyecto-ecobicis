@@ -16,7 +16,7 @@ def validarDireccion(direccion):
     """
     return direccion.replace(" ","").isalnum()
 
-def validarEstacion(nombre, listaestaciones):
+def validarEstacionNoExistente(nombre, listaestaciones):
     """Validación de estaciones.
     Args:
         nombre (String): Nombre de la estación.

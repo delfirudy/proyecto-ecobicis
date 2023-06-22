@@ -32,13 +32,13 @@ class Estacion:
             None
         """
         cambiado = "Si"
-        print("nombre, direccion, barrio, capacidad")
+        print("Lista de datos: nombre, direccion, barrio, capacidad")
         eleccioncambio = input("Ingrese dato que quiere cambiar: ")
         print("")
         if eleccioncambio == "nombre":
             nombre = input("Ingrese nombre: ").strip()
             print("")
-            while validarEstacion(nombre, empresa.listanombres) == False:
+            while validarEstacionNoExistente(nombre, empresa.listanombres) == False:
                 print("La estacion ya existe o el formato es incorrecto, el nombre debe contener solo letras")
                 print("")
                 nombre = input("Ingrese nombre: ").strip()

@@ -31,11 +31,12 @@ class Bicicleta():
             None
         """
         cambiado  = "Si"
-        print("patente, modelo")
+        print("Lista de datos: patente, modelo")
         eleccioncambio = input("Ingrese dato que quiere cambiar: ")
         print("")
         if eleccioncambio == "patente":
             patente = input("Ingrese patente: ").strip()
+            print("")
             while validarPatenteNoExistente(patente, empresa.listapatentes) == False:
                 print("La patente ya existe o el formato es incorrecto, la patente debe ser un numero")
                 print("")

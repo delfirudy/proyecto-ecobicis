@@ -163,11 +163,9 @@ class Cliente(Usuario):
             None
         """
         validado = "Si"
-        for alquiler in empresa.alquileres:
+        for alquiler in empresa.alquileres.values():
             if alquiler.usuario == self.usuario and alquiler.estado == "en curso":
                 validado = "No"
-                print("Ya tiene un alquiler en curso")
-                print("")
                 break
         if validado == "Si":
             fecha = input("Ingrese fecha del alquiler: ").strip()
@@ -176,7 +174,6 @@ class Cliente(Usuario):
                 fecha = input("Ingrese fecha del alquiler: ").strip() 
                 print("")
             inicio = input("Ingrese hora de inicio: ").strip()
-            print("")
             print("")
             while self.validarHoraInicio(inicio) == False:
                 inicio = input("Ingrese hora de inicio: ").strip()
@@ -192,6 +189,9 @@ class Cliente(Usuario):
             estacion = empresa.estaciones.get(estacionsalida)
             estacion.cantbicidisponible -= 1 
             print("Alquiler ingresado")
+            print("")
+        else:
+            print("Ya tiene un alquiler en curso")
             print("")
 
     def finalizarAlquiler(self):

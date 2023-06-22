@@ -188,7 +188,7 @@ class Usuario:
             None
         """
         cambiado = "Si"
-        print("usuario, contrasena, nombre, nombre, dni, fecha de nacimiento, telefono, mail, direccion, tarjeta, puesto, cbu")
+        print("Lista de datos: usuario, contrasena, nombre, nombre, dni, fecha de nacimiento, telefono, mail, direccion, tarjeta, puesto, cbu")
         eleccioncambio = input("Ingrese dato que quiere cambiar: ")
         print("")
         if eleccioncambio == "usuario":

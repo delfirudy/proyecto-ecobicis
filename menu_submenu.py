@@ -89,6 +89,7 @@ def subMenuTrabajador():
         print("Trabajador no encontrado")
         print("")
         volver = input("Ingrese 1 si quiere volver al menu principal: ")
+        print("")
         if volver == "1":
             volvio = "Si"
             break
@@ -119,6 +120,7 @@ def subMenuTrabajador():
                 submenuCambio(trabajador)
             elif elecciontrabajador == "4":
                 submenuEliminar(trabajador)
+                seguir1 = False
             elif elecciontrabajador == "5":
                 seguir1 = False
             else:
@@ -140,6 +142,7 @@ def subMenuCliente():
         print("Cliente no encontrado")
         print("")
         volver = input("Ingrese 1 si quiere volver al menu principal, otro numero si quiere seguir: ")
+        print("")
         if volver == "1":
             volvio = "Si"
             break
